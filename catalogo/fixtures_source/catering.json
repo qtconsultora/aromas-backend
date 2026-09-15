@@ -1,0 +1,258 @@
+{
+  "opciones": [
+    {
+      "id": 1,
+      "plato": "Sandwiches de Miga Triple Jamon y Queso",
+      "porciones": 12,
+      "precio": 14000
+    },
+    {
+      "id": 2,
+      "plato": "Sandwiches de Miga Triple Salame y Queso",
+      "porciones": 12,
+      "precio": 15000
+    },
+    {
+      "id": 3,
+      "plato": "Sandwiches de Miga Triple Crudo y Ananá",
+      "porciones": 12,
+      "precio": 19000
+    },
+    {
+      "id": 4,
+      "plato": "Sandwiches de Miga Triple Primavera",
+      "porciones": 12,
+      "precio": 16000
+    },
+    {
+      "id": 5,
+      "plato": "Empanadita de Jamon y queso",
+      "porciones": 12,
+      "precio": 13000
+    },
+    {
+      "id": 6,
+      "plato": "Empanadita de Carne",
+      "porciones": 12,
+      "precio": 13000
+    },
+    {
+      "id": 7,
+      "plato": "Empanadita de Espinaca, Muzzarella y Champignon",
+      "porciones": 12,
+      "precio": 14000
+    },
+    {
+      "id": 8,
+      "plato": "Empanaditas de osobuco desmenuzado al Malbec",
+      "porciones": 12,
+      "precio": 14000
+    },
+    {
+      "id": 9,
+      "plato": "Empanaditas de Choclo y Calabaza",
+      "porciones": 12,
+      "precio": 14000
+    },
+    {
+      "id": 10,
+      "plato": "Tortillitas individuales a la Española",
+      "porciones": 10,
+      "precio": 15000
+    },
+    {
+      "id": 11,
+      "plato": "Tortillitas individuales de Verdura",
+      "porciones": 10,
+      "precio": 15000
+    },
+    {
+      "id": 12,
+      "plato": "Tortillitas individuales de papas",
+      "porciones": 10,
+      "precio": 13000
+    },
+    {
+      "id": 13,
+      "plato": "Pionono Agridulce de Roquefort y nuez",
+      "porciones": 10,
+      "precio": 13000
+    },
+    {
+      "id": 14,
+      "plato": "Pionono Agridulce de Crudo, salsa golf y Anana",
+      "porciones": 10,
+      "precio": 13000
+    },
+    {
+      "id": 15,
+      "plato": "Pionono Morrones, jamón y Salsa Tartara",
+      "porciones": 10,
+      "precio": 12000
+    },
+    {
+      "id": 16,
+      "plato": "Brioche de Crudo, Rucula y Oliva",
+      "porciones": 10,
+      "precio": 16000
+    },
+    {
+      "id": 17,
+      "plato": "Pebetitos con jamon, queso, tomate",
+      "porciones": 10,
+      "precio": 15000
+    },
+    {
+      "id": 18,
+      "plato": "Pebetitos con Cerdo y salsa de puerros",
+      "porciones": 10,
+      "precio": 16000
+    },
+    {
+      "id": 19,
+      "plato": "Pebetitos con Vacio desmenusado",
+      "porciones": 10,
+      "precio": 18000
+    },
+    {
+      "id": 20,
+      "plato": "Pizzetines de Muzzarella",
+      "porciones": 10,
+      "precio": 11000
+    },
+    {
+      "id": 21,
+      "plato": "Pizzetines a los 4 quesos",
+      "porciones": 10,
+      "precio": 12000
+    },
+    {
+      "id": 22,
+      "plato": "Pizzetines Vegetarianos",
+      "porciones": 10,
+      "precio": 11000
+    },
+    {
+      "id": 23,
+      "plato": "Voulevant de roquefort y Nuez",
+      "porciones": 10,
+      "precio": 18000
+    },
+    {
+      "id": 24,
+      "plato": "Voulevant de Quesos y Ciboulette",
+      "porciones": 10,
+      "precio": 18000
+    },
+    {
+      "id": 25,
+      "plato": "Voulevant de Guacamole",
+      "porciones": 10,
+      "precio": 18000
+    },
+    {
+      "id": 26,
+      "plato": "Fosforitos de Hojaldre de jamón y Queso",
+      "porciones": 10,
+      "precio": 20000
+    },
+    {
+      "id": 27,
+      "plato": "Corissant de jamòn y Queso",
+      "porciones": 10,
+      "precio": 22000
+    },
+    {
+      "id": 28,
+      "plato": "Brochette individuales de Pollo",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 29,
+      "plato": "Brochette individuales de Lomo",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 30,
+      "plato": "Brochette individualesde Cerdo",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 31,
+      "plato": "Bruchettas de Frutos de Mar",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 32,
+      "plato": "Bruchettas a la Capresse",
+      "porciones": 5,
+      "precio": 10000
+    },
+    {
+      "id": 33,
+      "plato": "Ensaladita Individuales Caesar",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 34,
+      "plato": "Ensaladita Individuales Waldorf",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 35,
+      "plato": "Ensaladita Individuales Santa Maria",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 36,
+      "plato": "Pinchos individuales de Kabab",
+      "porciones": 5,
+      "precio": "consultar"
+    },
+    {
+      "id": 37,
+      "plato": "Pinchos individuales Capresse",
+      "porciones": 5,
+      "precio": 11000
+    },
+    {
+      "id": 38,
+      "plato": "Pinchos individuales Frutos de Mar",
+      "porciones": 5,
+      "precio": "consultar"
+    }
+  ],
+  "packs": [
+    {
+      "id": 1,
+      "nombre": "Coffee Break 1 (min. 20 pers.)",
+      "descripcion": "Café, Medialunas dulces y Saladas y Masas secas Caseras. Incluye Descartables. No incluye Servicio.",
+      "precio_raw": "$ 5400"
+    },
+    {
+      "id": 2,
+      "nombre": "Coffee Break Salad (min. 20 pers.)",
+      "descripcion": "Café, Jugo naranja Exprimido, Croissant rellenos Salados, Masas Secas, Fosforitos con Jamón y Queso, Sandwiches copetin Jamón y queso",
+      "precio_raw": "$ "
+    },
+    {
+      "id": 3,
+      "nombre": "Catering Fast",
+      "descripcion": "Empanadita Carne, Jamon y queso, Miga Copetin Jamón y Queso, triple copetin Salame y Queso, Triple Copetin Crudo y Queso, Rol de Pionono Roquefort y nuez, Rol Pionono Jamón Crudo y Anana, Rol Pionono Palmito y Morron",
+      "precio_raw": "$ 11000"
+    },
+    {
+      "id": 4,
+      "nombre": "Catering Hot",
+      "descripcion": "Empanadita Carne, Jamon y queso, Miga Copetin Jamón y Queso, Frankfurt de slachichas y mostaza, Pizzettines de muzzarella, Rol Pionono Palmito y Morron, Pebetitos con Cerdo en salsa de Puerro",
+      "precio_raw": null
+    }
+  ]
+}

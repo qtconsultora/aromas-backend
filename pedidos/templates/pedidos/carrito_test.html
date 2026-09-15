@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aromas — Probar carrito</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: #faf7f2; color: #2b241d; margin: 0; padding: 0 16px 60px;
+  }
+  h1 { font-size: 1.4rem; margin: 20px 0 4px; }
+  h2 { font-size: 1.1rem; margin: 0 0 10px; color: #7a2e2e; }
+  .sub { color: #766; font-size: .85rem; margin-bottom: 20px; }
+  .card {
+    background: #fff; border: 1px solid #e6ddd0; border-radius: 10px;
+    padding: 16px; margin-bottom: 18px; max-width: 900px;
+  }
+  .token-box { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .token-box code {
+    background: #f1ece2; padding: 4px 8px; border-radius: 6px; font-size: .8rem;
+    word-break: break-all;
+  }
+  button {
+    background: #7a2e2e; color: #fff; border: none; border-radius: 6px;
+    padding: 8px 14px; font-size: .9rem; cursor: pointer;
+  }
+  button.secondary { background: #b9a98f; }
+  button.danger { background: #a33; }
+  button:disabled { background: #ccc; cursor: not-allowed; }
+  button:hover:not(:disabled) { filter: brightness(1.08); }
+  input, select, textarea {
+    font-size: .9rem; padding: 6px 8px; border: 1px solid #ccc; border-radius: 6px;
+    font-family: inherit;
+  }
+  .dias-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+  .dia-col { border: 1px solid #eee2d0; border-radius: 8px; padding: 8px; background: #fffdf9; }
+  .dia-col h3 { margin: 0 0 6px; font-size: .85rem; text-transform: uppercase; color: #7a2e2e; }
+  .opcion { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 6px; font-size: .82rem; }
+  .opcion input { margin-top: 2px; }
+  .opcion.veg { color: #2f6b2f; }
+  .opcion.consulta { color: #a66; }
+  .acciones-menu { margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .catalogo-lista { display: flex; flex-direction: column; gap: 8px; max-height: 340px; overflow-y: auto; }
+  .catalogo-item {
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+    border-bottom: 1px solid #f0ebe0; padding-bottom: 6px; font-size: .85rem;
+  }
+  .catalogo-item .nombre { flex: 1; }
+  .catalogo-item .precio { color: #555; white-space: nowrap; }
+  .catalogo-item input[type=number] { width: 55px; }
+  table { width: 100%; border-collapse: collapse; font-size: .85rem; }
+  th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #f0ebe0; }
+  .total-row td { font-weight: bold; font-size: 1rem; border-top: 2px solid #7a2e2e; }
+  .msg { padding: 8px 10px; border-radius: 6px; font-size: .85rem; margin-top: 10px; }
+  .msg.ok { background: #e6f4e6; color: #2f6b2f; }
+  .msg.error { background: #fbe6e6; color: #a33; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  label { display: block; font-size: .8rem; color: #555; margin-bottom: 3px; }
+  .campo { margin-bottom: 10px; }
+  pre { background: #f4f0e8; padding: 10px; border-radius: 6px; font-size: .75rem; overflow-x: auto; }
+  .tag { display: inline-block; font-size: .7rem; padding: 1px 6px; border-radius: 10px; background: #eee; margin-left: 6px; }
+</style>
+</head>
+<body>
+
+<h1>Aromas — Probar el carrito</h1>
+<div class="sub">Pantalla de prueba (sin diseño final) para probar la API del carrito de compras contra este servidor.</div>
+
+<div class="card">
+  <h2>1. Carrito</h2>
+  <div class="token-box">
+    <button id="btn-nuevo-carrito">Crear carrito nuevo</button>
+    <span id="token-info"></span>
+  </div>
+  <div id="carrito-msg"></div>
+</div>
+
+<div class="card" id="seccion-menu" style="display:none;">
+  <h2>2. Menú semanal vigente — elegí un plato por día</h2>
+  <div id="menu-fecha" class="sub"></div>
+  <div id="menu-grid" class="dias-grid">Cargando menú...</div>
+  <div class="acciones-menu">
+    <button id="btn-agregar-diaria">Agregar como Vianda Diaria (1 día)</button>
+    <button id="btn-agregar-semanal" class="secondary">Agregar como Vianda Semanal (los 5 días)</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>3. A la carta</h2>
+  <div id="lista-a-la-carta" class="catalogo-lista">Cargando...</div>
+</div>
+
+<div class="card">
+  <h2>4. Catering</h2>
+  <div id="lista-catering" class="catalogo-lista">Cargando...</div>
+</div>
+
+<div class="card">
+  <h2>5. Carrito actual</h2>
+  <table id="tabla-carrito">
+    <thead><tr><th>Ítem</th><th>Cant.</th><th>Precio</th><th>Subtotal</th><th></th></tr></thead>
+    <tbody id="carrito-items"><tr><td colspan="5">Creá un carrito para empezar.</td></tr></tbody>
+    <tfoot><tr class="total-row"><td colspan="3">Total estimado</td><td id="carrito-total">$0</td><td></td></tr></tfoot>
+  </table>
+</div>
+
+<div class="card">
+  <h2>6. Confirmar pedido</h2>
+  <div class="grid2">
+    <div class="campo"><label>Nombre</label><input id="f-nombre" placeholder="Juan"></div>
+    <div class="campo"><label>Apellido</label><input id="f-apellido" placeholder="Pérez"></div>
+    <div class="campo"><label>Teléfono / WhatsApp</label><input id="f-telefono" placeholder="341..."></div>
+    <div class="campo"><label>Email (opcional)</label><input id="f-email" placeholder="juan@mail.com"></div>
+    <div class="campo">
+      <label>Entrega</label>
+      <select id="f-tipo-entrega">
+        <option value="RETIRO">Retiro en el local</option>
+        <option value="DELIVERY">Envío a domicilio</option>
+      </select>
+    </div>
+    <div class="campo"><label>Fecha de retiro (opcional)</label><input id="f-fecha" type="date"></div>
+  </div>
+  <div id="campos-direccion" class="grid2" style="display:none;">
+    <div class="campo"><label>Dirección</label><input id="f-direccion" placeholder="San Martín 1234"></div>
+    <div class="campo"><label>CP (opcional)</label><input id="f-cp" placeholder="2000"></div>
+  </div>
+  <div class="campo"><label>Observaciones</label><textarea id="f-observaciones" rows="2" style="width:100%"></textarea></div>
+  <button id="btn-confirmar">Confirmar pedido</button>
+  <div id="confirmar-msg"></div>
+  <pre id="pedido-resultado" style="display:none;"></pre>
+</div>
+
+<script>
+const API = ""; // mismo origen -- funciona tanto en local como ya hosteado
+const DIAS = [["LUN","Lunes"],["MAR","Martes"],["MIE","Miércoles"],["JUE","Jueves"],["VIE","Viernes"]];
+let token = localStorage.getItem("aromas_carrito_token") || null;
+let menuActivo = null;
+
+function money(v) { return "$" + Number(v).toLocaleString("es-AR", {minimumFractionDigits: 0}); }
+function showMsg(elId, text, ok) {
+  const el = document.getElementById(elId);
+  el.innerHTML = `<div class="msg ${ok ? "ok" : "error"}">${text}</div>`;
+  if (ok) setTimeout(() => { if (el.firstChild) el.innerHTML = ""; }, 4000);
+}
+
+async function api(path, opts) {
+  const res = await fetch(API + path, Object.assign({
+    headers: { "Content-Type": "application/json" }
+  }, opts));
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error("api_error");
+    err.data = data;
+    err.status = res.status;
+    throw err;
+  }
+  return data;
+}
+
+function errText(e) {
+  if (!e.data) return e.message;
+  if (typeof e.data === "string") return e.data;
+  if (e.data.detail) return e.data.detail;
+  return Object.entries(e.data).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : v}`).join(" · ");
+}
+
+// ---------- Carrito ----------
+
+async function crearCarrito() {
+  const data = await api("/api/pedidos/carrito/", { method: "POST" });
+  token = data.token;
+  localStorage.setItem("aromas_carrito_token", token);
+  mostrarToken();
+  await refrescarCarrito();
+  showMsg("carrito-msg", "Carrito creado.", true);
+}
+
+function mostrarToken() {
+  document.getElementById("token-info").innerHTML = token
+    ? `Token activo: <code>${token}</code>`
+    : "Sin carrito todavía.";
+}
+
+async function refrescarCarrito() {
+  if (!token) return;
+  let data;
+  try {
+    data = await api(`/api/pedidos/carrito/${token}/`);
+  } catch (e) {
+    showMsg("carrito-msg", "No se pudo cargar el carrito: " + errText(e), false);
+    return;
+  }
+  const tbody = document.getElementById("carrito-items");
+  tbody.innerHTML = "";
+  if (data.items.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5">El carrito está vacío.</td></tr>`;
+  }
+  for (const item of data.items) {
+    const tr = document.createElement("tr");
+    let detalle = `${item.articulo.nombre}`;
+    if (item.requiere_consulta) detalle += ` <span class="tag">a consultar</span>`;
+    if (item.selecciones_dias && item.selecciones_dias.length) {
+      const dias = item.selecciones_dias.map(s => `${s.dia_semana}: ${s.plato.nombre}`).join("<br>");
+      detalle += `<br><span style="color:#888;font-size:.78rem">${dias}</span>`;
+    }
+    tr.innerHTML = `
+      <td>${detalle}</td>
+      <td><input type="number" min="0.001" step="1" value="${parseFloat(item.cantidad)}" data-item="${item.id}" style="width:55px" class="cant-input"></td>
+      <td>${money(item.precio_unit)}</td>
+      <td>${money(item.subtotal)}</td>
+      <td><button class="danger" data-del="${item.id}">Sacar</button></td>
+    `;
+    tbody.appendChild(tr);
+  }
+  document.getElementById("carrito-total").textContent = money(data.total_estimado);
+
+  tbody.querySelectorAll(".cant-input").forEach(inp => {
+    inp.addEventListener("change", async () => {
+      try {
+        await api(`/api/pedidos/carrito/${token}/items/${inp.dataset.item}/`, {
+          method: "PATCH", body: JSON.stringify({ cantidad: inp.value })
+        });
+        await refrescarCarrito();
+      } catch (e) { showMsg("carrito-msg", errText(e), false); }
+    });
+  });
+  tbody.querySelectorAll("[data-del]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      try {
+        await api(`/api/pedidos/carrito/${token}/items/${btn.dataset.del}/`, { method: "DELETE" });
+        await refrescarCarrito();
+      } catch (e) { showMsg("carrito-msg", errText(e), false); }
+    });
+  });
+}
+
+// ---------- Menú semanal ----------
+
+async function cargarMenu() {
+  const cont = document.getElementById("menu-grid");
+  try {
+    menuActivo = await api("/api/catalogo/menu-semanal/activo/");
+  } catch (e) {
+    document.getElementById("seccion-menu").style.display = "block";
+    cont.innerHTML = `<div class="msg error">No hay menú semanal activo: ${errText(e)}</div>`;
+    return;
+  }
+  document.getElementById("seccion-menu").style.display = "block";
+  document.getElementById("menu-fecha").textContent = "Semana del " + menuActivo.fecha_inicio;
+  cont.innerHTML = "";
+  for (const [codigo, nombre] of DIAS) {
+    const col = document.createElement("div");
+    col.className = "dia-col";
+    let html = `<h3>${nombre}</h3>`;
+    for (const op of (menuActivo.dias[codigo] || [])) {
+      const cls = op.plato.es_vegetariano ? "veg" : (op.plato.requiere_consulta ? "consulta" : "");
+      html += `
+        <label class="opcion ${cls}">
+          <input type="radio" name="dia-${codigo}" value="${op.plato.codigo}">
+          ${op.plato.nombre}${op.plato.es_vegetariano ? " 🌱" : ""}
+        </label>`;
+    }
+    col.innerHTML = html;
+    cont.appendChild(col);
+  }
+}
+
+function leerSeleccionDia(codigoDia) {
+  const el = document.querySelector(`input[name="dia-${codigoDia}"]:checked`);
+  return el ? el.value : null;
+}
+
+async function agregarVianda(modalidad) {
+  if (!token) { showMsg("carrito-msg", "Primero creá un carrito.", false); return; }
+  let selecciones;
+  if (modalidad === "VIANDA_DIARIA") {
+    const elegido = DIAS.map(([c]) => [c, leerSeleccionDia(c)]).filter(([, v]) => v);
+    if (elegido.length !== 1) {
+      showMsg("carrito-msg", "Para vianda diaria, elegí exactamente 1 opción (de un solo día).", false);
+      return;
+    }
+    selecciones = [{ dia_semana: elegido[0][0], plato_codigo: elegido[0][1] }];
+  } else {
+    selecciones = DIAS.map(([c]) => [c, leerSeleccionDia(c)]);
+    if (selecciones.some(([, v]) => !v)) {
+      showMsg("carrito-msg", "Para vianda semanal, elegí una opción para cada uno de los 5 días.", false);
+      return;
+    }
+    selecciones = selecciones.map(([c, v]) => ({ dia_semana: c, plato_codigo: v }));
+  }
+  try {
+    await api(`/api/pedidos/carrito/${token}/items/`, {
+      method: "POST",
+      body: JSON.stringify({ modalidad_venta: modalidad, selecciones_dias: selecciones })
+    });
+    showMsg("carrito-msg", "Agregado al carrito.", true);
+    await refrescarCarrito();
+  } catch (e) { showMsg("carrito-msg", errText(e), false); }
+}
+
+// ---------- Catálogo (a la carta / catering) ----------
+
+async function cargarCatalogo(linea, contId) {
+  const cont = document.getElementById(contId);
+  let items;
+  try {
+    items = await api(`/api/catalogo/articulos/?linea_negocio=${linea}`);
+  } catch (e) {
+    cont.innerHTML = `<div class="msg error">${errText(e)}</div>`;
+    return;
+  }
+  items = items.filter(a => a.categoria_nombre !== "Modalidad de Venta");
+  if (items.length === 0) { cont.innerHTML = "Sin artículos publicados todavía."; return; }
+  cont.innerHTML = "";
+  for (const a of items) {
+    const row = document.createElement("div");
+    row.className = "catalogo-item";
+    row.innerHTML = `
+      <div class="nombre">${a.nombre}${a.requiere_consulta ? ' <span class="tag">a consultar</span>' : ""}</div>
+      <div class="precio">${a.requiere_consulta ? "a confirmar" : money(a.precio_venta)}</div>
+      <input type="number" min="1" step="1" value="1">
+      <button data-codigo="${a.codigo}" data-modalidad="${linea === "CATERING" ? "CATERING" : "A_LA_CARTA"}">Agregar</button>
+    `;
+    cont.appendChild(row);
+  }
+  cont.querySelectorAll("button[data-codigo]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      if (!token) { showMsg("carrito-msg", "Primero creá un carrito.", false); return; }
+      const cantidad = btn.parentElement.querySelector("input[type=number]").value;
+      try {
+        await api(`/api/pedidos/carrito/${token}/items/`, {
+          method: "POST",
+          body: JSON.stringify({ modalidad_venta: btn.dataset.modalidad, articulo_codigo: btn.dataset.codigo, cantidad })
+        });
+        showMsg("carrito-msg", "Agregado al carrito.", true);
+        await refrescarCarrito();
+      } catch (e) { showMsg("carrito-msg", errText(e), false); }
+    });
+  });
+}
+
+// ---------- Confirmar pedido ----------
+
+document.getElementById("f-tipo-entrega").addEventListener("change", (e) => {
+  document.getElementById("campos-direccion").style.display = e.target.value === "DELIVERY" ? "grid" : "none";
+});
+
+document.getElementById("btn-confirmar").addEventListener("click", async () => {
+  if (!token) { showMsg("confirmar-msg", "Primero creá un carrito y agregale algo.", false); return; }
+  const tipoEntrega = document.getElementById("f-tipo-entrega").value;
+  const body = {
+    cliente: {
+      nombre: document.getElementById("f-nombre").value,
+      apellido: document.getElementById("f-apellido").value,
+      telefono: document.getElementById("f-telefono").value,
+      email: document.getElementById("f-email").value,
+    },
+    tipo_entrega: tipoEntrega,
+    observaciones: document.getElementById("f-observaciones").value,
+  };
+  const fecha = document.getElementById("f-fecha").value;
+  if (fecha) body.fecha_retiro = fecha;
+  if (tipoEntrega === "DELIVERY") {
+    body.direccion = {
+      direccion: document.getElementById("f-direccion").value,
+      cp: document.getElementById("f-cp").value,
+    };
+  }
+  try {
+    const pedido = await api(`/api/pedidos/carrito/${token}/confirmar/`, { method: "POST", body: JSON.stringify(body) });
+    showMsg("confirmar-msg", `¡Pedido #${pedido.id} confirmado!`, true);
+    const pre = document.getElementById("pedido-resultado");
+    pre.style.display = "block";
+    pre.textContent = JSON.stringify(pedido, null, 2);
+    token = null;
+    localStorage.removeItem("aromas_carrito_token");
+    mostrarToken();
+  } catch (e) {
+    showMsg("confirmar-msg", errText(e), false);
+  }
+});
+
+document.getElementById("btn-nuevo-carrito").addEventListener("click", () => {
+  crearCarrito().catch(e => showMsg("carrito-msg", errText(e), false));
+});
+document.getElementById("btn-agregar-diaria").addEventListener("click", () => agregarVianda("VIANDA_DIARIA"));
+document.getElementById("btn-agregar-semanal").addEventListener("click", () => agregarVianda("VIANDA_SEMANAL"));
+
+// ---------- Arranque ----------
+
+(async function init() {
+  mostrarToken();
+  await cargarMenu();
+  await cargarCatalogo("VIANDAS", "lista-a-la-carta");
+  await cargarCatalogo("CATERING", "lista-catering");
+  if (token) await refrescarCarrito();
+})();
+</script>
+
+</body>
+</html>

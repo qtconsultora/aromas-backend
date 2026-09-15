@@ -1,0 +1,776 @@
+[
+  {
+    "codigo": 8015,
+    "categoria": "Vegetarianos",
+    "nombre": "Arrodallo de papa con espinaca queso y huevo",
+    "nota": ""
+  },
+  {
+    "codigo": 8016,
+    "categoria": "Vegetarianos",
+    "nombre": "Arroz especiado con torrejas de verdura",
+    "nota": ""
+  },
+  {
+    "codigo": 8017,
+    "categoria": "Vegetarianos",
+    "nombre": "Berenjena napolitana con papas bravas",
+    "nota": ""
+  },
+  {
+    "codigo": 8018,
+    "categoria": "Vegetarianos",
+    "nombre": "Calabaza rellena de humita con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8019,
+    "categoria": "Vegetarianos",
+    "nombre": "Chop Sui Vegetariano",
+    "nota": ""
+  },
+  {
+    "codigo": 8020,
+    "categoria": "Vegetarianos",
+    "nombre": "Chow fan de verduras",
+    "nota": ""
+  },
+  {
+    "codigo": 8021,
+    "categoria": "Vegetarianos",
+    "nombre": "Colchon de Arvejas",
+    "nota": ""
+  },
+  {
+    "codigo": 8022,
+    "categoria": "Vegetarianos",
+    "nombre": "ENSALADA completa con Tirabuzón TRICOLOR",
+    "nota": ""
+  },
+  {
+    "codigo": 8023,
+    "categoria": "Vegetarianos",
+    "nombre": "Guiso de fideo monitos vegetariano",
+    "nota": ""
+  },
+  {
+    "codigo": 8024,
+    "categoria": "Vegetarianos",
+    "nombre": "Mil hojas de Verduras con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8025,
+    "categoria": "Vegetarianos",
+    "nombre": "Milanesas de Zuchinis con Verduras al Horno",
+    "nota": ""
+  },
+  {
+    "codigo": 8026,
+    "categoria": "Vegetarianos",
+    "nombre": "Muffin de vegetales con zanahoria y huevo con papas al natural",
+    "nota": ""
+  },
+  {
+    "codigo": 8027,
+    "categoria": "Vegetarianos",
+    "nombre": "Omelette Capresse con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8028,
+    "categoria": "Vegetarianos",
+    "nombre": "Pastel de Calabaza, champi y muzza",
+    "nota": ""
+  },
+  {
+    "codigo": 8029,
+    "categoria": "Vegetarianos",
+    "nombre": "Revuelto de Zapallitos con calabza gratinada",
+    "nota": ""
+  },
+  {
+    "codigo": 8030,
+    "categoria": "Vegetarianos",
+    "nombre": "Risotto de Arroz y Verdura",
+    "nota": ""
+  },
+  {
+    "codigo": 8031,
+    "categoria": "Vegetarianos",
+    "nombre": "Roll de Berenjenas con papas natural",
+    "nota": ""
+  },
+  {
+    "codigo": 8032,
+    "categoria": "Vegetarianos",
+    "nombre": "Souffle de Zapallitos con pure de calabaza",
+    "nota": ""
+  },
+  {
+    "codigo": 8033,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Calabaza, Muzzarella y Choclo con ensalada",
+    "nota": ""
+  },
+  {
+    "codigo": 8034,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Brocoli y Muzzarella con ensalada",
+    "nota": ""
+  },
+  {
+    "codigo": 8035,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Espinaca con Muzzarella con Ensalada",
+    "nota": ""
+  },
+  {
+    "codigo": 8036,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Verdura y muzza con Huevos Revueltos",
+    "nota": ""
+  },
+  {
+    "codigo": 8037,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Verduras Braseadas con chips de camotes",
+    "nota": ""
+  },
+  {
+    "codigo": 8038,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Zapallitos con Huevos Revueltos",
+    "nota": ""
+  },
+  {
+    "codigo": 8039,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Zucchini con Calabaza Especiada",
+    "nota": ""
+  },
+  {
+    "codigo": 8040,
+    "categoria": "Vegetarianos",
+    "nombre": "Verduras asadas con Cremoso de espinacas y queso",
+    "nota": ""
+  },
+  {
+    "codigo": 8041,
+    "categoria": "Vegetarianos",
+    "nombre": "Wok de Lentejas y Verduras",
+    "nota": ""
+  },
+  {
+    "codigo": 8042,
+    "categoria": "Vegetarianos",
+    "nombre": "Zapallitos Rellenos con papas al natural",
+    "nota": ""
+  },
+  {
+    "codigo": 8043,
+    "categoria": "Vegetarianos",
+    "nombre": "Zuchinis Salteados con Hongos y Arroz Especiado",
+    "nota": ""
+  },
+  {
+    "codigo": 8044,
+    "categoria": "Carnes",
+    "nombre": "Albondigas de Ternera con papas en salsa roja",
+    "nota": ""
+  },
+  {
+    "codigo": 8045,
+    "categoria": "Carnes",
+    "nombre": "Arrolado de Papas con J y Q y ensalada",
+    "nota": ""
+  },
+  {
+    "codigo": 8046,
+    "categoria": "Carnes",
+    "nombre": "Arrollado de pollo a la crema con papas bravas",
+    "nota": ""
+  },
+  {
+    "codigo": 8047,
+    "categoria": "Carnes",
+    "nombre": "Arrollado de pollo con Ensalada rusa",
+    "nota": ""
+  },
+  {
+    "codigo": 8048,
+    "categoria": "Carnes",
+    "nombre": "Arroz con pollo",
+    "nota": ""
+  },
+  {
+    "codigo": 8049,
+    "categoria": "Carnes",
+    "nombre": "Atun a la marinera con pure de papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8050,
+    "categoria": "Carnes",
+    "nombre": "Atun Rebozado con pure de papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8051,
+    "categoria": "Carnes",
+    "nombre": "Brochet de Cerdo con Verduras y papas fritas",
+    "nota": ""
+  },
+  {
+    "codigo": 8052,
+    "categoria": "Carnes",
+    "nombre": "Carre a la Mostaza con pure de papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8053,
+    "categoria": "Carnes",
+    "nombre": "Carre de Cerdo Agridulce con papas al horno",
+    "nota": ""
+  },
+  {
+    "codigo": 8054,
+    "categoria": "Carnes",
+    "nombre": "Costillas de Cerdo al horno con verduras grilladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8055,
+    "categoria": "Carnes",
+    "nombre": "Chop sui",
+    "nota": ""
+  },
+  {
+    "codigo": 8056,
+    "categoria": "Carnes",
+    "nombre": "Chow Fan de Pollo",
+    "nota": ""
+  },
+  {
+    "codigo": 8057,
+    "categoria": "Carnes",
+    "nombre": "Costeletas de Cerdo al Disco con papas y camotes",
+    "nota": ""
+  },
+  {
+    "codigo": 8058,
+    "categoria": "Carnes",
+    "nombre": "Costeletitas Cerdo con pure mixto",
+    "nota": ""
+  },
+  {
+    "codigo": 8059,
+    "categoria": "Carnes",
+    "nombre": "Costillita de Cerdo Barcacoa con papas al natural",
+    "nota": ""
+  },
+  {
+    "codigo": 8060,
+    "categoria": "Carnes",
+    "nombre": "Filet de pollo al Puerro con papas al horno",
+    "nota": ""
+  },
+  {
+    "codigo": 8061,
+    "categoria": "Carnes",
+    "nombre": "Filet de pollo gratinado con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8062,
+    "categoria": "Carnes",
+    "nombre": "Guiso de fideos monitos con carne",
+    "nota": ""
+  },
+  {
+    "codigo": 8063,
+    "categoria": "Carnes",
+    "nombre": "Medallon Atun y espinaca con tortillas de papas y verdura",
+    "nota": ""
+  },
+  {
+    "codigo": 8064,
+    "categoria": "Carnes",
+    "nombre": "Medallon de pollo gratinado con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8065,
+    "categoria": "Carnes",
+    "nombre": "Merluza a la romana co pure de papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8066,
+    "categoria": "Carnes",
+    "nombre": "Milanesa pollo Napolitana con papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8067,
+    "categoria": "Carnes",
+    "nombre": "Milanesas Cerdo con ensalada de zanahoria, huevo",
+    "nota": ""
+  },
+  {
+    "codigo": 8068,
+    "categoria": "Carnes",
+    "nombre": "Pan de carne rellena con pure mixto",
+    "nota": ""
+  },
+  {
+    "codigo": 8069,
+    "categoria": "Carnes",
+    "nombre": "Pastel de calabaza con Jamón, queso y Champigñon",
+    "nota": ""
+  },
+  {
+    "codigo": 8070,
+    "categoria": "Carnes",
+    "nombre": "Pastel de Papas con Carne",
+    "nota": ""
+  },
+  {
+    "codigo": 8071,
+    "categoria": "Carnes",
+    "nombre": "Pollo a la portuguesa con papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8072,
+    "categoria": "Carnes",
+    "nombre": "Pollo a la Sidra con papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8073,
+    "categoria": "Carnes",
+    "nombre": "Pollo al disco con papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8074,
+    "categoria": "Carnes",
+    "nombre": "Pollo al horno con verduras asadas",
+    "nota": ""
+  },
+  {
+    "codigo": 8075,
+    "categoria": "Carnes",
+    "nombre": "Pollo al verdeo con papas fritas",
+    "nota": ""
+  },
+  {
+    "codigo": 8076,
+    "categoria": "Carnes",
+    "nombre": "Primavera con blanco de pollo",
+    "nota": ""
+  },
+  {
+    "codigo": 8077,
+    "categoria": "Carnes",
+    "nombre": "Revuelto Campero (Carne, Papas Españolas, Huevos y Arvejas)",
+    "nota": ""
+  },
+  {
+    "codigo": 8078,
+    "categoria": "Carnes",
+    "nombre": "Roll de Atun a la crema con calabaza especiada",
+    "nota": ""
+  },
+  {
+    "codigo": 8079,
+    "categoria": "Carnes",
+    "nombre": "Suprema de pollo con Tortilla verdura y papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8080,
+    "categoria": "Carnes",
+    "nombre": "Suprema gratinada con arroz a la crema",
+    "nota": ""
+  },
+  {
+    "codigo": 8081,
+    "categoria": "Carnes",
+    "nombre": "Tarta de atun con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8082,
+    "categoria": "Carnes",
+    "nombre": "Tarta de Jamón y queso con ensaladas",
+    "nota": ""
+  },
+  {
+    "codigo": 8083,
+    "categoria": "Carnes",
+    "nombre": "Tarta de Pollo con Zapallitos Revueltos",
+    "nota": ""
+  },
+  {
+    "codigo": 8084,
+    "categoria": "Carnes",
+    "nombre": "Tarta de Pollo y champignones con ensalada capresse",
+    "nota": ""
+  },
+  {
+    "codigo": 8085,
+    "categoria": "Pastas",
+    "nombre": "Canelones de verdura y carne con salsa rosa",
+    "nota": ""
+  },
+  {
+    "codigo": 8086,
+    "categoria": "Pastas",
+    "nombre": "Canelones de Verdura, champi y Ricotta con crema",
+    "nota": ""
+  },
+  {
+    "codigo": 8087,
+    "categoria": "Pastas",
+    "nombre": "Chop sui con spaguetti",
+    "nota": ""
+  },
+  {
+    "codigo": 8088,
+    "categoria": "Pastas",
+    "nombre": "Creppe de Jamon y Queso con salsa rosa",
+    "nota": ""
+  },
+  {
+    "codigo": 8089,
+    "categoria": "Pastas",
+    "nombre": "Creppe de Pollo con salsa rosa",
+    "nota": ""
+  },
+  {
+    "codigo": 8090,
+    "categoria": "Pastas",
+    "nombre": "Creppe de Ricotta y  quesos con tuco",
+    "nota": ""
+  },
+  {
+    "codigo": 8091,
+    "categoria": "Pastas",
+    "nombre": "Creppe de verduras braseadas con salsa rosa",
+    "nota": ""
+  },
+  {
+    "codigo": 8092,
+    "categoria": "Pastas",
+    "nombre": "Guiso Carrero (mostacholes, Ternera, Papas)",
+    "nota": ""
+  },
+  {
+    "codigo": 8093,
+    "categoria": "Pastas",
+    "nombre": "Guiso Vegetariano y mostacholes",
+    "nota": ""
+  },
+  {
+    "codigo": 8094,
+    "categoria": "Vegetarianos",
+    "nombre": "Lasagna de Berenjenas",
+    "nota": ""
+  },
+  {
+    "codigo": 8095,
+    "categoria": "Pastas",
+    "nombre": "Lasagna de Verdura, carne y Jamón",
+    "nota": ""
+  },
+  {
+    "codigo": 8096,
+    "categoria": "Pastas",
+    "nombre": "Mac & Cheese (Macarrones con Queso)",
+    "nota": ""
+  },
+  {
+    "codigo": 8097,
+    "categoria": "Pastas",
+    "nombre": "Medallones de espinacas con mostacholes",
+    "nota": ""
+  },
+  {
+    "codigo": 8098,
+    "categoria": "Carnes",
+    "nombre": "Milanesa de Cerdo y mostacholes",
+    "nota": ""
+  },
+  {
+    "codigo": 8099,
+    "categoria": "Pastas",
+    "nombre": "Noquis blancos con salsa tuco",
+    "nota": ""
+  },
+  {
+    "codigo": 8100,
+    "categoria": "Pastas",
+    "nombre": "Sorrentinos de Ricotta y Espinacas",
+    "nota": ""
+  },
+  {
+    "codigo": 8101,
+    "categoria": "Carnes",
+    "nombre": "Suprema de pollo con mostacholes a la crema",
+    "nota": ""
+  },
+  {
+    "codigo": 8102,
+    "categoria": "Pastas",
+    "nombre": "Tallarines a la carbonara",
+    "nota": ""
+  },
+  {
+    "codigo": 8103,
+    "categoria": "Pastas",
+    "nombre": "Tallarines a la crema de hongos de pino",
+    "nota": ""
+  },
+  {
+    "codigo": 8104,
+    "categoria": "Pastas",
+    "nombre": "Tallarines Caseros con tuco",
+    "nota": ""
+  },
+  {
+    "codigo": 8105,
+    "categoria": "Pastas",
+    "nombre": "Tallarines Caseros a los 4 quesos",
+    "nota": ""
+  },
+  {
+    "codigo": 8106,
+    "categoria": "Pastas",
+    "nombre": "Tallarines Caseros con Bolognesa",
+    "nota": ""
+  },
+  {
+    "codigo": 8107,
+    "categoria": "Pastas",
+    "nombre": "Tallarines con Albóndigas de Carne",
+    "nota": ""
+  },
+  {
+    "codigo": 8108,
+    "categoria": "Pastas",
+    "nombre": "Tallarines con Frutos de Mar",
+    "nota": ""
+  },
+  {
+    "codigo": 8109,
+    "categoria": "Pastas",
+    "nombre": "Tallarines de  Espinaca Salsa de Hongos",
+    "nota": ""
+  },
+  {
+    "codigo": 8110,
+    "categoria": "Pastas",
+    "nombre": "Tallarines integrales con salsa natural",
+    "nota": ""
+  },
+  {
+    "codigo": 8111,
+    "categoria": "Pastas",
+    "nombre": "Tapas Vegetarianas y croquetas",
+    "nota": ""
+  },
+  {
+    "codigo": 8112,
+    "categoria": "Pastas",
+    "nombre": "Ñoquis de Espinaca con crema",
+    "nota": ""
+  },
+  {
+    "codigo": 8113,
+    "categoria": "Pastas",
+    "nombre": "Ñoquis de Espinaca con Bolognesa",
+    "nota": ""
+  },
+  {
+    "codigo": 8114,
+    "categoria": "Minutas",
+    "nombre": "3 Emp. Vigilia",
+    "nota": ""
+  },
+  {
+    "codigo": 8115,
+    "categoria": "Minutas",
+    "nombre": "3 Empanadas Pollo",
+    "nota": ""
+  },
+  {
+    "codigo": 8116,
+    "categoria": "Minutas",
+    "nombre": "3 Empanadas Vegetarianas",
+    "nota": ""
+  },
+  {
+    "codigo": 8117,
+    "categoria": "Minutas",
+    "nombre": "Baguette vegetariano con berenjenas, cebollas, tomates y quesos",
+    "nota": ""
+  },
+  {
+    "codigo": 8118,
+    "categoria": "Minutas",
+    "nombre": "Brioche Desmenuzado de Cerdo",
+    "nota": ""
+  },
+  {
+    "codigo": 8119,
+    "categoria": "Minutas",
+    "nombre": "Burrito de pollo, champi y quesos",
+    "nota": ""
+  },
+  {
+    "codigo": 8120,
+    "categoria": "Minutas",
+    "nombre": "Calabaza a la Pizza con camotes",
+    "nota": ""
+  },
+  {
+    "codigo": 8121,
+    "categoria": "Minutas",
+    "nombre": "ChessBurguer & Bacon con papas",
+    "nota": ""
+  },
+  {
+    "codigo": 8122,
+    "categoria": "Minutas",
+    "nombre": "Choripan completo",
+    "nota": ""
+  },
+  {
+    "codigo": 8123,
+    "categoria": "Minutas",
+    "nombre": "Choripan especial",
+    "nota": ""
+  },
+  {
+    "codigo": 8124,
+    "categoria": "Minutas",
+    "nombre": "Ciabatta con pollo y ensalada fresca",
+    "nota": ""
+  },
+  {
+    "codigo": 8125,
+    "categoria": "Minutas",
+    "nombre": "Croquetas de Arroz y champi con tortilla primavera",
+    "nota": ""
+  },
+  {
+    "codigo": 8126,
+    "categoria": "Minutas",
+    "nombre": "Doble Chess Burguer con papas fritas",
+    "nota": ""
+  },
+  {
+    "codigo": 8127,
+    "categoria": "Minutas",
+    "nombre": "Empanada Gallega",
+    "nota": ""
+  },
+  {
+    "codigo": 8128,
+    "categoria": "Minutas",
+    "nombre": "Focaccia de Berenjenas, Tomates y Muzzarella",
+    "nota": ""
+  },
+  {
+    "codigo": 8129,
+    "categoria": "Minutas",
+    "nombre": "Focaccia Jamón Queso y Huevo",
+    "nota": ""
+  },
+  {
+    "codigo": 8130,
+    "categoria": "Minutas",
+    "nombre": "Hamburguesa casera c/ fideos",
+    "nota": ""
+  },
+  {
+    "codigo": 8131,
+    "categoria": "Minutas",
+    "nombre": "Hamburguesa de Pollo",
+    "nota": ""
+  },
+  {
+    "codigo": 8132,
+    "categoria": "Minutas",
+    "nombre": "Hamburguesa de Vegetales",
+    "nota": ""
+  },
+  {
+    "codigo": 8133,
+    "categoria": "Minutas",
+    "nombre": "Pizza de Carne",
+    "nota": ""
+  },
+  {
+    "codigo": 8134,
+    "categoria": "Minutas",
+    "nombre": "Pizza de carne Napo c/ Fideos",
+    "nota": ""
+  },
+  {
+    "codigo": 8135,
+    "categoria": "Minutas",
+    "nombre": "Pizza especial",
+    "nota": ""
+  },
+  {
+    "codigo": 8136,
+    "categoria": "Minutas",
+    "nombre": "Pizza vegetariana(Verd. Asadas)",
+    "nota": ""
+  },
+  {
+    "codigo": 8137,
+    "categoria": "Minutas",
+    "nombre": "Sandw de Milanesas Completo",
+    "nota": ""
+  },
+  {
+    "codigo": 8138,
+    "categoria": "Minutas",
+    "nombre": "Sandw de pechuga, queso, salsa golf y papas fritas",
+    "nota": ""
+  },
+  {
+    "codigo": 8139,
+    "categoria": "Minutas",
+    "nombre": "Sandw. Foccacia de Jamón y Queso",
+    "nota": ""
+  },
+  {
+    "codigo": 8140,
+    "categoria": "Minutas",
+    "nombre": "Sandwich Primavera de Verduras y papas fritas",
+    "nota": ""
+  },
+  {
+    "codigo": 8141,
+    "categoria": "Minutas",
+    "nombre": "Tempura de Mar y vegetales",
+    "nota": ""
+  },
+  {
+    "codigo": 8142,
+    "categoria": "Minutas",
+    "nombre": "Tempura de pollo y vegetales",
+    "nota": ""
+  },
+  {
+    "codigo": 8143,
+    "categoria": "Minutas",
+    "nombre": "Triple de miga primavera (1/2 plancha)",
+    "nota": ""
+  }
+]

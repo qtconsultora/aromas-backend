@@ -1,0 +1,306 @@
+[
+  {
+    "n": "01",
+    "categoria": "SAndwhich",
+    "nombre": "Miga Triple Jamon y Queso",
+    "descripcion": "Clásico sándwich triple de pan de miga con capas de jamón cocido y queso, apenas untado con mayonesa.",
+    "ingredientes": "Pan de miga, jamón cocido, queso, mayonesa",
+    "precio": ""
+  },
+  {
+    "n": "02",
+    "categoria": "SAndwhich",
+    "nombre": "Miga Triple Salame y Queso",
+    "descripcion": "Sándwich triple de pan de miga con salame y queso, con un toque de manteca y mostaza que realza el sabor.",
+    "ingredientes": "Pan de miga, salame, queso, manteca, mostaza",
+    "precio": ""
+  },
+  {
+    "n": "03",
+    "categoria": "SAndwhich",
+    "nombre": "Miga Triple Crudo y Ananá",
+    "descripcion": "Combinación agridulce de jamón crudo y ananá con queso crema y salsa golf, en pan de miga triple.",
+    "ingredientes": "Pan de miga, jamón crudo, queso crema, ananá, salsa golf",
+    "precio": ""
+  },
+  {
+    "n": "04",
+    "categoria": "SAndwhich",
+    "nombre": "Miga Triple Primavera",
+    "descripcion": "Sándwich triple fresco y liviano de lechuga y tomate, la opción vegetariana entre los sándwiches de miga.",
+    "ingredientes": "Pan de miga, lechuga, tomate, mayonesa",
+    "precio": ""
+  },
+  {
+    "n": "05",
+    "categoria": "Calientes",
+    "nombre": "Empanadita de Jamon y queso",
+    "descripcion": "Empanadita cóctel horneada, rellena de jamón cocido y queso cremoso, un clásico infalible.",
+    "ingredientes": "Masa criolla, jamón cocido, queso, crema de leche",
+    "precio": ""
+  },
+  {
+    "n": "06",
+    "categoria": "Calientes",
+    "nombre": "Empanadita de Carne",
+    "descripcion": "Empanadita criolla tradicional de carne cortada a cuchillo, con huevo duro y aceitunas, condimentada con comino y pimentón.",
+    "ingredientes": "Masa criolla, carne cortada a cuchillo, cebolla, huevo duro, aceitunas",
+    "precio": ""
+  },
+  {
+    "n": "07",
+    "categoria": "Calientes",
+    "nombre": "Empanadita de Espinaca, Muzzarella y Champignon",
+    "descripcion": "Empanadita vegetariana de espinaca salteada con champiñones y muzzarella, con un toque de nuez moscada.",
+    "ingredientes": "Masa criolla, espinaca, champiñones, muzzarella",
+    "precio": ""
+  },
+  {
+    "n": "08",
+    "categoria": "Calientes",
+    "nombre": "Empanaditas de osobuco desmenuzado al Malbec",
+    "descripcion": "Empanadita gourmet de osobuco desmenuzado, braseado a fuego lento con vino Malbec y verduras.",
+    "ingredientes": "Masa criolla, osobuco, vino Malbec, verduras",
+    "precio": ""
+  },
+  {
+    "n": "09",
+    "categoria": "Calientes",
+    "nombre": "Empanaditas de Choclo y Calabaza",
+    "descripcion": "Empanadita dulzona de choclo y calabaza en salsa blanca liviana, con un toque de queso.",
+    "ingredientes": "Masa criolla, choclo, calabaza, salsa blanca, queso",
+    "precio": ""
+  },
+  {
+    "n": "10",
+    "categoria": "Calientes",
+    "nombre": "Tortillitas individuales a la Española",
+    "descripcion": "Porción individual de tortilla española de papas y cebolla, con morrones y chorizo colorado.",
+    "ingredientes": "Papas, cebolla, morrón, chorizo colorado, huevo",
+    "precio": ""
+  },
+  {
+    "n": "11",
+    "categoria": "Calientes",
+    "nombre": "Tortillitas individuales de Verdura",
+    "descripcion": "Tortilla individual de espinaca salteada con cebolla y un toque de nuez moscada, opción vegetariana.",
+    "ingredientes": "Espinaca, cebolla, huevo",
+    "precio": ""
+  },
+  {
+    "n": "12",
+    "categoria": "Calientes",
+    "nombre": "Tortillitas individuales de papas",
+    "descripcion": "Tortilla individual clásica de papas y cebolla, en su versión más simple y tradicional.",
+    "ingredientes": "Papas, cebolla, huevo",
+    "precio": ""
+  },
+  {
+    "n": "13",
+    "categoria": "frio",
+    "nombre": "Pionono Agridulce de Roquefort y nuez",
+    "descripcion": "Arrollado de pionono relleno de queso crema y roquefort con nueces, para los amantes de los sabores intensos.",
+    "ingredientes": "Pionono, queso crema, mayonesa, roquefort, nueces",
+    "precio": ""
+  },
+  {
+    "n": "14",
+    "categoria": "frio",
+    "nombre": "Pionono Agridulce de Crudo, salsa golf y Anana",
+    "descripcion": "Arrollado de pionono con queso crema, jamón crudo y ananá bañado en salsa golf, de sabor agridulce.",
+    "ingredientes": "Pionono, queso crema, salsa golf, jamón crudo, ananá",
+    "precio": ""
+  },
+  {
+    "n": "15",
+    "categoria": "frio",
+    "nombre": "Pionono Morrones, jamón y Salsa Tartara",
+    "descripcion": "Arrollado de pionono con jamón cocido y morrones asados en salsa tártara casera.",
+    "ingredientes": "Pionono, queso crema, jamón cocido, morrones, salsa tártara",
+    "precio": ""
+  },
+  {
+    "n": "16",
+    "categoria": "SAndwhiches",
+    "nombre": "Brioche de Crudo, Rucula y Oliva",
+    "descripcion": "Mini brioche relleno de jamón crudo y rúcula fresca, con un hilo de aceite de oliva.",
+    "ingredientes": "Mini brioche, jamón crudo, rúcula, aceite de oliva",
+    "precio": ""
+  },
+  {
+    "n": "17",
+    "categoria": "SAndwhiches",
+    "nombre": "Pebetitos con jamon, queso, tomate",
+    "descripcion": "Pebetito clásico de jamón cocido, queso y tomate, con mayonesa.",
+    "ingredientes": "Pebetito, jamón cocido, queso, tomate",
+    "precio": ""
+  },
+  {
+    "n": "18",
+    "categoria": "SAndwhiches",
+    "nombre": "Pebetitos con Cerdo y salsa de puerros",
+    "descripcion": "Pebetito con finas fetas de cerdo horneado y una cremosa salsa de puerros.",
+    "ingredientes": "Pebetito, carré de cerdo, puerro, salsa blanca",
+    "precio": ""
+  },
+  {
+    "n": "19",
+    "categoria": "SAndwhiches",
+    "nombre": "Pebetitos con Vacio desmenusado",
+    "descripcion": "Pebetito con vacío desmenuzado a cocción lenta, coronado con salsa criolla casera.",
+    "ingredientes": "Pebetito, vacío desmenuzado, salsa criolla",
+    "precio": ""
+  },
+  {
+    "n": "20",
+    "categoria": "Pizzas",
+    "nombre": "Pizzetines de Muzzarella",
+    "descripcion": "Mini pizzeta casera clásica de salsa de tomate y muzzarella, con orégano.",
+    "ingredientes": "Masa de pizza casera, salsa de tomate, muzzarella",
+    "precio": ""
+  },
+  {
+    "n": "21",
+    "categoria": "Pizzas",
+    "nombre": "Pizzetines a los 4 quesos",
+    "descripcion": "Mini pizzeta \"blanca\" sin salsa, cubierta con cuatro quesos fundidos.",
+    "ingredientes": "Masa de pizza casera, muzzarella, provolone, roquefort, parmesano",
+    "precio": ""
+  },
+  {
+    "n": "22",
+    "categoria": "Pizzas",
+    "nombre": "Pizzetines Vegetarianos",
+    "descripcion": "Mini pizzeta de salsa de tomate y muzzarella, con morrón, cebolla, champiñones, berenjena y aceitunas.",
+    "ingredientes": "Masa de pizza casera, salsa de tomate, muzzarella, verduras salteadas",
+    "precio": ""
+  },
+  {
+    "n": "23",
+    "categoria": "frio",
+    "nombre": "Voulevant de roquefort y Nuez",
+    "descripcion": "Tapita de hojaldre rellena con una mousse de roquefort y queso crema, coronada con nuez.",
+    "ingredientes": "Masa de hojaldre, roquefort, queso crema, nueces",
+    "precio": ""
+  },
+  {
+    "n": "24",
+    "categoria": "frio",
+    "nombre": "Voulevant de Quesos y Ciboulette",
+    "descripcion": "Tapita de hojaldre con una mezcla cremosa de quesos y ciboulette fresca.",
+    "ingredientes": "Masa de hojaldre, queso crema, muzzarella, ciboulette",
+    "precio": ""
+  },
+  {
+    "n": "25",
+    "categoria": "frio",
+    "nombre": "Voulevant de Guacamole",
+    "descripcion": "Tapita de hojaldre crocante rellena con guacamole fresco de palta, cebolla, tomate y limón.",
+    "ingredientes": "Masa de hojaldre, palta, cebolla, tomate, limón",
+    "precio": ""
+  },
+  {
+    "n": "26",
+    "categoria": "Bakery",
+    "nombre": "Fosforitos de Hojaldre de jamón y Queso",
+    "descripcion": "Fosforito de hojaldre horneado, relleno de jamón cocido y queso, dorado y crocante.",
+    "ingredientes": "Masa de hojaldre, jamón cocido, queso",
+    "precio": ""
+  },
+  {
+    "n": "27",
+    "categoria": "Bakery",
+    "nombre": "Corissant de jamòn y Queso",
+    "descripcion": "Mini croissant relleno de jamón cocido y queso, listo para servir frío o tibio.",
+    "ingredientes": "Mini croissant, jamón cocido, queso",
+    "precio": ""
+  },
+  {
+    "n": "28",
+    "categoria": "Cheff",
+    "nombre": "Brochette individuales de Pollo",
+    "descripcion": "Brochette de pechuga de pollo marinada en aceite de oliva, ajo y hierbas, con morrón, cebolla y tomate cherry.",
+    "ingredientes": "Pechuga de pollo, morrón, cebolla, tomate cherry",
+    "precio": ""
+  },
+  {
+    "n": "29",
+    "categoria": "Cheff",
+    "nombre": "Brochette individuales de Lomo",
+    "descripcion": "Brochette de lomo marinado en aceite de oliva, ajo y hierbas, servido en su punto jugoso con morrón, cebolla y tomate cherry.",
+    "ingredientes": "Lomo, morrón, cebolla, tomate cherry",
+    "precio": ""
+  },
+  {
+    "n": "30",
+    "categoria": "Cheff",
+    "nombre": "Brochette individualesde Cerdo",
+    "descripcion": "Brochette de cerdo marinado en aceite de oliva, ajo y hierbas, con morrón, cebolla y tomate cherry.",
+    "ingredientes": "Cerdo (bondiola o carré), morrón, cebolla, tomate cherry",
+    "precio": ""
+  },
+  {
+    "n": "31",
+    "categoria": "Cheff",
+    "nombre": "Bruchettas de Frutos de Mar",
+    "descripcion": "Tostada de baguette con salteado de camarones, langostinos y mejillones al ajo, limón y perejil.",
+    "ingredientes": "Baguette, camarones, langostinos, mejillones",
+    "precio": ""
+  },
+  {
+    "n": "32",
+    "categoria": "Cheff",
+    "nombre": "Bruchettas a la Capresse",
+    "descripcion": "Tostada de baguette con tomate, muzzarella (o bocconcini) y albahaca fresca, con reducción de aceto balsámico.",
+    "ingredientes": "Baguette, tomate, muzzarella o bocconcini, albahaca",
+    "precio": ""
+  },
+  {
+    "n": "33",
+    "categoria": "frio",
+    "nombre": "Ensaladita Individuales Caesar",
+    "descripcion": "Ensalada Caesar individual con pollo grillado, lechuga romana, crutones, parmesano y aderezo casero.",
+    "ingredientes": "Pollo, lechuga romana, parmesano, crutones, aderezo Caesar",
+    "precio": ""
+  },
+  {
+    "n": "34",
+    "categoria": "frio",
+    "nombre": "Ensaladita Individuales Waldorf",
+    "descripcion": "Ensalada Waldorf individual de manzana verde, apio, nueces y uvas pasas con aderezo de mayonesa y limón.",
+    "ingredientes": "Manzana verde, apio, nueces, uvas pasas, mayonesa",
+    "precio": ""
+  },
+  {
+    "n": "35",
+    "categoria": "frio",
+    "nombre": "Ensaladita Individuales Santa Maria",
+    "descripcion": "Ensalada individual de zanahoria y apio con queso, rollitos de jamón crudo, ananá y nueces.",
+    "ingredientes": "Zanahoria, apio, queso, jamón crudo, ananá, nueces",
+    "precio": ""
+  },
+  {
+    "n": "36",
+    "categoria": "Cheff",
+    "nombre": "Pinchos individuales de Kabab",
+    "descripcion": "Mini pincho tipo kafta de cordero especiado con comino, pimentón dulce y ajo, estilo medio oriente.",
+    "ingredientes": "Cordero picado, comino, pimentón, ajo",
+    "precio": ""
+  },
+  {
+    "n": "37",
+    "categoria": "Cheff",
+    "nombre": "Pinchos individuales Capresse",
+    "descripcion": "Pincho frío de tomate cherry y bocconcini intercalados con albahaca fresca, con aceite de oliva y aceto balsámico.",
+    "ingredientes": "Tomate cherry, bocconcini, albahaca",
+    "precio": ""
+  },
+  {
+    "n": "38",
+    "categoria": "Cheff",
+    "nombre": "Pinchos individuales Frutos de Mar",
+    "descripcion": "Pincho de langostinos salteados al ajo, limón y perejil, servido recién hecho.",
+    "ingredientes": "Langostinos, ajo, limón, perejil",
+    "precio": ""
+  }
+]

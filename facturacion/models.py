@@ -1,0 +1,213 @@
+"""
+Facturación, calcada de GestQuand: comprobantes con numeración propia por
+tipo y punto de venta, preparados para ARCA (antes AFIP) el día que se
+implemente, turnos de caja para la venta mostrador en el local, y pagos
+por comprobante (soporta pagos mixtos).
+
+No se reimplementa acá el detalle de la integración con ARCA (WSAA/WSFEv1)
+— eso, como en GestQuand, se deja para cuando Pichón tenga los
+certificados. El campo `cae` queda vacío hasta entonces y `es_fiscal` en
+False: el sistema puede emitir "TK" (ticket no fiscal) y facturas
+manuales mientras tanto.
+"""
+
+from django.conf import settings
+from django.db import models
+
+from catalogo.models import Articulo
+from clientes.models import Cliente
+
+
+class TipoComprobante(models.TextChoices):
+    FA_A = "FA_A", "Factura A"
+    FA_B = "FA_B", "Factura B"
+    FA_C = "FA_C", "Factura C"
+    NC_A = "NC_A", "Nota de Crédito A"
+    NC_B = "NC_B", "Nota de Crédito B"
+    NC_C = "NC_C", "Nota de Crédito C"
+    ND_A = "ND_A", "Nota de Débito A"
+    ND_B = "ND_B", "Nota de Débito B"
+    ND_C = "ND_C", "Nota de Débito C"
+    NP = "NP", "Nota de Pedido (no fiscal)"
+    TK = "TK", "Ticket (no fiscal)"
+
+
+# Códigos ARCA por tipo (mismo mapeo que TIPO_COMPROBANTE en config.py de GestQuand)
+TIPO_COD_ARCA = {
+    "FA_A": 1, "FA_B": 6, "FA_C": 11,
+    "NC_A": 3, "NC_B": 8, "NC_C": 13,
+    "ND_A": 2, "ND_B": 7, "ND_C": 12,
+}
+
+
+class EstadoTurno(models.TextChoices):
+    ABIERTO = "ABIERTO", "Abierto"
+    CERRADO = "CERRADO", "Cerrado"
+
+
+class Turno(models.Model):
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="turnos")
+    fecha_apertura = models.DateTimeField(auto_now_add=True)
+    fecha_cierre = models.DateTimeField(null=True, blank=True)
+    monto_inicial = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    monto_cierre = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_efectivo = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_tarjeta = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_qr = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total_ventas = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    observaciones = models.TextField(blank=True)
+    estado = models.CharField(max_length=10, choices=EstadoTurno.choices, default=EstadoTurno.ABIERTO)
+
+    class Meta:
+        verbose_name = "Turno de caja"
+        verbose_name_plural = "Turnos de caja"
+        ordering = ["-fecha_apertura"]
+
+    def __str__(self):
+        return f"Turno #{self.pk} — {self.usuario} ({self.get_estado_display()})"
+
+
+class Comprobante(models.Model):
+    tipo = models.CharField(max_length=10, choices=TipoComprobante.choices)
+    punto_venta = models.PositiveSmallIntegerField(default=1)
+    numero = models.BigIntegerField()
+    fecha = models.DateField(auto_now_add=True)
+
+    cliente = models.ForeignKey(
+        Cliente, on_delete=models.PROTECT, null=True, blank=True, related_name="comprobantes"
+    )
+    cliente_tipo_doc = models.CharField(max_length=10, default="CF")
+    cliente_nro_doc = models.CharField(max_length=20, default="0")
+    cliente_nombre = models.CharField(max_length=200, default="Consumidor Final")
+
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    descuento_pct = models.DecimalField(max_digits=5, decimal_places=2, default=0)
+    descuento_monto = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    neto_gravado = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    iva_105 = models.DecimalField("IVA 10.5%", max_digits=12, decimal_places=2, default=0)
+    iva_21 = models.DecimalField("IVA 21%", max_digits=12, decimal_places=2, default=0)
+    iva_27 = models.DecimalField("IVA 27%", max_digits=12, decimal_places=2, default=0)
+    otros_tributos = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+
+    # ARCA (antes AFIP) — se completa cuando se implemente la integración fiscal
+    cae = models.CharField(max_length=20, blank=True)
+    cae_vto = models.DateField(null=True, blank=True)
+    es_fiscal = models.BooleanField(default=False)
+
+    comp_asociado = models.ForeignKey(
+        "self", on_delete=models.PROTECT, null=True, blank=True, related_name="notas_asociadas",
+        help_text="Comprobante original al que corresponde esta NC/ND",
+    )
+
+    turno = models.ForeignKey(
+        Turno, on_delete=models.PROTECT, null=True, blank=True, related_name="comprobantes"
+    )
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="comprobantes")
+    anulado = models.BooleanField(default=False)
+    observaciones = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Comprobante"
+        verbose_name_plural = "Comprobantes"
+        ordering = ["-fecha", "-numero"]
+        unique_together = ("tipo", "punto_venta", "numero")
+
+    def __str__(self):
+        return f"{self.get_tipo_display()} {self.punto_venta:04d}-{self.numero:08d}"
+
+    @property
+    def tipo_cod_arca(self):
+        return TIPO_COD_ARCA.get(self.tipo)
+
+
+class ComprobanteItem(models.Model):
+    comprobante = models.ForeignKey(Comprobante, on_delete=models.CASCADE, related_name="items")
+    articulo = models.ForeignKey(Articulo, on_delete=models.PROTECT, null=True, blank=True)
+    codigo = models.CharField(max_length=50, blank=True)
+    descripcion = models.CharField(max_length=255)
+    cantidad = models.DecimalField(max_digits=12, decimal_places=3, default=1)
+    precio_unit = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    alicuota_iva = models.DecimalField(max_digits=5, decimal_places=2, default=21)
+    subtotal = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    iva_monto = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    total = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    observaciones = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = "Ítem de comprobante"
+        verbose_name_plural = "Ítems de comprobante"
+
+    def __str__(self):
+        return f"{self.cantidad} × {self.descripcion}"
+
+
+class MedioPago(models.TextChoices):
+    EFECTIVO = "EFECTIVO", "Efectivo"
+    TARJETA_DEBITO = "TARJETA_DEBITO", "Tarjeta de débito"
+    TARJETA_CREDITO = "TARJETA_CREDITO", "Tarjeta de crédito"
+    QR = "QR", "QR / Mercado Pago"
+    CUENTA_CORRIENTE = "CUENTA_CORRIENTE", "Cuenta corriente"
+
+
+class Pago(models.Model):
+    comprobante = models.ForeignKey(Comprobante, on_delete=models.CASCADE, related_name="pagos")
+    medio = models.CharField(max_length=20, choices=MedioPago.choices)
+    monto = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    referencia = models.CharField(
+        max_length=100, blank=True, help_text="Nro de tarjeta, nro de operación de MP, etc."
+    )
+    cuotas = models.PositiveSmallIntegerField(default=1)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Pago"
+        verbose_name_plural = "Pagos"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.get_medio_display()} — ${self.monto}"
+
+
+class Numeracion(models.Model):
+    tipo = models.CharField(max_length=10, choices=TipoComprobante.choices)
+    punto_venta = models.PositiveSmallIntegerField(default=1)
+    ultimo_numero = models.BigIntegerField(default=0)
+
+    class Meta:
+        verbose_name = "Numeración"
+        verbose_name_plural = "Numeraciones"
+        unique_together = ("tipo", "punto_venta")
+
+    def __str__(self):
+        return f"{self.get_tipo_display()} PV{self.punto_venta:04d} — último: {self.ultimo_numero}"
+
+    def siguiente_numero(self):
+        """Reserva y devuelve el próximo número. Usar dentro de una transacción
+        con select_for_update() para evitar números duplicados en concurrencia."""
+        self.ultimo_numero += 1
+        self.save(update_fields=["ultimo_numero"])
+        return self.ultimo_numero
+
+
+class TipoMovimientoCaja(models.TextChoices):
+    INGRESO = "INGRESO", "Ingreso"
+    EGRESO = "EGRESO", "Egreso"
+
+
+class CajaMovimiento(models.Model):
+    turno = models.ForeignKey(Turno, on_delete=models.PROTECT, related_name="movimientos")
+    tipo = models.CharField(max_length=10, choices=TipoMovimientoCaja.choices)
+    monto = models.DecimalField(max_digits=12, decimal_places=2)
+    concepto = models.CharField(max_length=255, blank=True)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Movimiento de caja"
+        verbose_name_plural = "Movimientos de caja"
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.get_tipo_display()} ${self.monto} — {self.concepto}"

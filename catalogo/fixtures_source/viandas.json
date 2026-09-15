@@ -1,0 +1,655 @@
+{
+  "catalogo_a_la_carta": [
+    {
+      "id": 1,
+      "categoria": "TARTAS Y EMPANADAS",
+      "nombre": "Empanadas de Carne (3 unidades)",
+      "descripcion": "Empanadas caseras horneadas, rellenas con un clásico picadillo de carne, cebolla y huevo duro, sazonado con pimentón y comino. El sabor tradicional argentino en su punto justo. Se sirven 3 unidades por porción.",
+      "ingredientes": "Carne picada, cebolla, cebolla de verdeo, huevo duro, aceitunas verdes, pimentón dulce, comino, sal y pimienta, tapa de empanada.",
+      "veg": false
+    },
+    {
+      "id": 2,
+      "categoria": "TARTAS Y EMPANADAS",
+      "nombre": "Empanadas de Jamón y Queso (3 unidades)",
+      "descripcion": "Empanadas rellenas de jamón y muzzarella bien fundida, con un toque de salsa blanca y nuez moscada. Ideales para quienes buscan un sabor suave y reconfortante. Se sirven 3 unidades por porción.",
+      "ingredientes": "Jamón cocido, muzzarella, salsa blanca, nuez moscada, tapa de empanada, huevo.",
+      "veg": false
+    },
+    {
+      "id": 3,
+      "categoria": "TARTAS Y EMPANADAS",
+      "nombre": "Tarta de Calabaza, Espinaca y Choclo",
+      "descripcion": "Tarta casera de vegetales de estación: calabaza, espinaca y choclo, ligados con huevo y queso. Una opción liviana, colorida y llena de sabor. Se sirve con guarnición.",
+      "ingredientes": "Tapa de tarta, calabaza, espinaca, choclo, huevo, queso rallado, sal, pimienta y nuez moscada.",
+      "veg": true
+    },
+    {
+      "id": 4,
+      "categoria": "TARTAS Y EMPANADAS",
+      "nombre": "Tarta de Verduras y Muzzarella",
+      "descripcion": "Una tarta bien completa con mix de verduras frescas y muzzarella cremosa. Perfecta para quienes buscan una comida rica y balanceada. Se sirve con guarnición.",
+      "ingredientes": "Tapa de tarta, mix de verduras (acelga, zanahoria, zapallito), muzzarella, cebolla, huevo, sal y pimienta.",
+      "veg": true
+    },
+    {
+      "id": 5,
+      "categoria": "TARTAS Y EMPANADAS",
+      "nombre": "Tarta de Zapallitos",
+      "descripcion": "Tarta casera de zapallitos, suave y jugosa, con el toque justo de queso. Simple, liviana y siempre bien recibida. Se sirve con guarnición.",
+      "ingredientes": "Tapa de tarta, zapallitos, cebolla, huevo, queso rallado, sal y pimienta.",
+      "veg": true
+    },
+    {
+      "id": 6,
+      "categoria": "PASTAS",
+      "nombre": "Canelones de Verdura y Carne con salsa mixta",
+      "descripcion": "Canelones caseros rellenos de carne y verdura, bañados con salsa mixta (tomate y crema) y gratinados con queso. Un clásico reconfortante de la cocina casera.",
+      "ingredientes": "Canelones, carne picada, espinaca o acelga, cebolla, salsa de tomate, salsa blanca (mixta), queso rallado, sal, pimienta y nuez moscada.",
+      "veg": false
+    },
+    {
+      "id": 7,
+      "categoria": "PASTAS",
+      "nombre": "Canelones de Verdura y Ricotta con salsa Rosa",
+      "descripcion": "Canelones de ricotta y espinaca, suaves y cremosos, cubiertos con una delicada salsa rosa. Una alternativa vegetariana que no resigna sabor.",
+      "ingredientes": "Canelones, ricotta, espinaca, queso rallado, salsa rosa (tomate y crema), huevo, sal, pimienta y nuez moscada.",
+      "veg": true
+    },
+    {
+      "id": 8,
+      "categoria": "PASTAS",
+      "nombre": "Tallarines Con bolognesa",
+      "descripcion": "Tallarines caseros con una salsa bolognesa a fuego lento, bien tradicional. El infaltable de las comidas familiares, ahora en formato vianda.",
+      "ingredientes": "Tallarines caseros, carne picada, salsa de tomate, cebolla, zanahoria, apio, ajo, sal, pimienta y queso rallado.",
+      "veg": false
+    },
+    {
+      "id": 9,
+      "categoria": "PASTAS",
+      "nombre": "Tallarines Caseros con salsa Parissienne",
+      "descripcion": "Tallarines frescos con una cremosa salsa parissienne de jamón y champiñones. Un plato con onda bistró, ideal para consentirse entre semana.",
+      "ingredientes": "Tallarines caseros, jamón cocido, champiñones, crema de leche, cebolla, manteca, queso rallado.",
+      "veg": false
+    },
+    {
+      "id": 10,
+      "categoria": "PASTAS",
+      "nombre": "Ñoquis Blancos con salsa Fileto",
+      "descripcion": "Ñoquis caseros de papa, tiernos por dentro, bañados en una salsa fileto de tomate y albahaca bien fresca. Un clásico de los días 29.",
+      "ingredientes": "Papa, harina, huevo, salsa fileto (tomate y albahaca), queso rallado, sal.",
+      "veg": true
+    },
+    {
+      "id": 11,
+      "categoria": "PASTAS",
+      "nombre": "Ñoquis Verdes con salsa de Crema",
+      "descripcion": "Ñoquis verdes de papa, espinaca y acelga, con una suave salsa de crema y manteca. Color, sabor y una textura irresistible.",
+      "ingredientes": "Papa, espinaca, acelga, harina, huevo, manteca, salvia, crema de leche, queso rallado.",
+      "veg": true
+    },
+    {
+      "id": 12,
+      "categoria": "MINUTAS",
+      "nombre": "Burrito Bondiola Braseada",
+      "descripcion": "Un burrito bien relleno de bondiola braseada, arroz, porotos y queso fundido, con salsa criolla y un toque ahumado. Sabor intenso en cada bocado.",
+      "ingredientes": "Tortilla de trigo, bondiola de cerdo braseada y desmenuzada, arroz o puré de batata, porotos negros o choclo, queso cheddar o muzzarella, salsa criolla, crema agria o mayonesa, comino y pimentón.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 13,
+      "categoria": "MINUTAS",
+      "nombre": "Burrito Vegetariano Champignones y Espinacas",
+      "descripcion": "Burrito vegetariano con champiñones salteados, espinaca fresca y queso derretido. Una opción sabrosa y liviana para cualquier día de la semana.",
+      "ingredientes": "Tortilla de trigo, champiñones, espinaca fresca, porotos negros, arroz, queso muzzarella o cheddar, salsa criolla o pico de gallo, ajo, comino.",
+      "veg": true,
+      "consultar": true
+    },
+    {
+      "id": 14,
+      "categoria": "MINUTAS",
+      "nombre": "Doble Cheeseburguer con papas fritas",
+      "descripcion": "Doble hamburguesa casera con queso bien fundido, acompañada de papas fritas crocantes. Para los que quieren ir a lo grande.",
+      "ingredientes": "Doble medallón de carne vacuna, pan de hamburguesa, queso cheddar o muzzarella, mayonesa, ketchup o salsa especial, tomate, lechuga, cebolla, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 15,
+      "categoria": "MINUTAS",
+      "nombre": "Choripan Especial con papas fritas",
+      "descripcion": "Choripán a la parrilla con chimichurri casero, panceta y queso provolone fundido, servido con papas fritas. Un clásico argentino elevado.",
+      "ingredientes": "Chorizo parrillero, pan, chimichurri casero, queso provolone o muzzarella, morrones asados, panceta, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 16,
+      "categoria": "MINUTAS",
+      "nombre": "Ciabatta de Solomillo de Cerdo",
+      "descripcion": "Ciabatta con solomillo de cerdo tierno, rúcula fresca, tomate y un toque de mostaza. Sabor gourmet en formato sándwich.",
+      "ingredientes": "Pan ciabatta, solomillo o bondiola de cerdo, mostaza, rúcula, tomate, queso provolone, sal y pimienta.",
+      "veg": false
+    },
+    {
+      "id": 17,
+      "categoria": "MINUTAS",
+      "nombre": "Focaccia de Berenjenas y Tomates",
+      "descripcion": "Focaccia casera con berenjenas grilladas y tomate fresco, aromatizada con ajo y orégano. Simple, mediterránea y muy sabrosa.",
+      "ingredientes": "Focaccia, berenjena, tomate, ajo, aceite de oliva, orégano, sal y pimienta.",
+      "veg": true,
+      "consultar": true
+    },
+    {
+      "id": 18,
+      "categoria": "MINUTAS",
+      "nombre": "Pizza de Carne Napolitana con pure de papas",
+      "descripcion": "Pizza individual de carne a la napolitana, con abundante muzzarella y tomate fresco, acompañada de puré de papas casero.",
+      "ingredientes": "Masa de pizza, salsa de tomate, carne picada saborizada, muzzarella, tomate, ajo, orégano, aceite de oliva, puré de papas.",
+      "veg": false
+    },
+    {
+      "id": 19,
+      "categoria": "MINUTAS",
+      "nombre": "Sandwich de Milanesas Completo con papas fritas",
+      "descripcion": "El clásico sándwich de milanesa completo, con lechuga, tomate, queso y mayonesa, servido con papas fritas bien crocantes.",
+      "ingredientes": "Milanesa de nalga o peceto, pan, huevo, pan rallado, lechuga, tomate, queso de máquina, mayonesa, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 20,
+      "categoria": "MINUTAS",
+      "nombre": "Sandwich de Pollo gratinado con queso y salsa golf, con papas fritas",
+      "descripcion": "Filet de pollo gratinado con queso y crema, servido en pan con salsa golf y papas fritas. Cremoso, sabroso y bien completo.",
+      "ingredientes": "Filet de pollo, crema de leche o salsa blanca, queso rallado o en fetas, pan, salsa golf, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 21,
+      "categoria": "MINUTAS",
+      "nombre": "Triple de Miga Primavera jamon, queso, lechuga y tomate",
+      "descripcion": "Triple de miga fresco con jamón, queso, lechuga, tomate y huevo. Liviano, práctico y siempre bien recibido.",
+      "ingredientes": "Pan de miga, jamón cocido, queso de máquina, lechuga, tomate, huevo duro, mayonesa.",
+      "veg": false
+    },
+    {
+      "id": 22,
+      "categoria": "CREPPES",
+      "nombre": "Creppe de Verduras Asadas con salsa mixta",
+      "descripcion": "Creppes rellenos de vegetales asados y muzzarella, bañados con salsa mixta y gratinados. Una opción vegetariana con mucho sabor ahumado.",
+      "ingredientes": "Panqueques, zapallitos asados, berenjena asada, morrón asado, muzzarella, salsa mixta (tomate y crema), sal y pimienta.",
+      "veg": true
+    },
+    {
+      "id": 23,
+      "categoria": "POLLO",
+      "nombre": "Chop Suai de Pollo",
+      "descripcion": "Chop suey de pollo bien oriental, con vegetales salteados al wok y salsa de soja. Fresco, liviano y lleno de textura.",
+      "ingredientes": "Pechuga de pollo, repollo, zanahoria, morrón, cebolla, brotes de soja, salsa de soja, maicena, ajo, aceite neutro.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 24,
+      "categoria": "POLLO",
+      "nombre": "Milanesa Pollo Napolitana con papas fritas",
+      "descripcion": "Milanesa de pollo a la napolitana, gratinada con jamón, muzzarella y salsa de tomate, acompañada de papas fritas.",
+      "ingredientes": "Milanesa de pollo, salsa de tomate, jamón cocido, muzzarella, orégano, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 25,
+      "categoria": "POLLO",
+      "nombre": "Pollo a la Portuguesa con papas cubeteadas",
+      "descripcion": "Pollo a la portuguesa, cocido a fuego lento en salsa de tomate con papas y arvejas. Un guiso casero de sabor profundo.",
+      "ingredientes": "Pollo (pata-muslo o supremo), papa, arvejas, salsa de tomate, cebolla, ajo, sal, pimienta y azúcar.",
+      "veg": false
+    },
+    {
+      "id": 26,
+      "categoria": "POLLO",
+      "nombre": "Pollo al Verdeo con papas españolas",
+      "descripcion": "Pollo al verdeo en una salsa cremosa con un toque de vino blanco, acompañado de papas españolas. Suave, aromático y muy sabroso.",
+      "ingredientes": "Pollo (supremo o pata-muslo), cebolla de verdeo, crema de leche, manteca, vino blanco, papas españolas, sal y pimienta.",
+      "veg": false
+    },
+    {
+      "id": 27,
+      "categoria": "POLLO",
+      "nombre": "Suprema Gratinada con guarnicion de ensaladas",
+      "descripcion": "Suprema de pollo gratinada con jamón y muzzarella, acompañada de una fresca guarnición de ensaladas. Clásica y siempre efectiva.",
+      "ingredientes": "Suprema de pollo, jamón cocido, muzzarella, orégano, ensaladas de guarnición.",
+      "veg": false
+    },
+    {
+      "id": 28,
+      "categoria": "CERDO",
+      "nombre": "Bondiola al disco con papas",
+      "descripcion": "Bondiola de cerdo cocinada a fuego lento con ajo, mostaza y vino blanco, acompañada de papas. Tierna, jugosa y con mucho carácter.",
+      "ingredientes": "Bondiola de cerdo, ajo, mostaza, vino blanco, aceite, papas, sal, pimienta y orégano.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 29,
+      "categoria": "CERDO",
+      "nombre": "Carré de Cerdo a la Mostaza con pure de calabaza",
+      "descripcion": "Carré de cerdo en salsa de mostaza y crema, acompañado de un suave puré de calabaza. Una combinación clásica que nunca falla.",
+      "ingredientes": "Carré de cerdo, mostaza, crema de leche, caldo, aceite, puré de calabaza, sal y pimienta.",
+      "veg": false
+    },
+    {
+      "id": 30,
+      "categoria": "CERDO",
+      "nombre": "Costeletitas de Cerdo con pure de papas",
+      "descripcion": "Costeletitas de cerdo doradas, con un toque de ajo y limón, servidas con puré de papas casero. Sencillo y muy sabroso.",
+      "ingredientes": "Costeletitas de cerdo, ajo, jugo de limón, aceite, puré de papas, sal, pimienta y orégano.",
+      "veg": false
+    },
+    {
+      "id": 31,
+      "categoria": "CERDO",
+      "nombre": "Milanesa de Cerdo con ensaladas",
+      "descripcion": "Milanesa de cerdo crocante por fuera y tierna por dentro, acompañada de una fresca guarnición de ensaladas.",
+      "ingredientes": "Filet de cerdo, huevo, pan rallado, ajo, perejil, ensaladas de guarnición.",
+      "veg": false
+    },
+    {
+      "id": 32,
+      "categoria": "TERNERA",
+      "nombre": "Pastel de Papas y ternera",
+      "descripcion": "Pastel de papas tradicional, con un relleno jugoso de carne de ternera, aceitunas y huevo, gratinado con queso. Comida casera por excelencia.",
+      "ingredientes": "Papa, manteca, leche, carne picada de ternera, cebolla, huevo duro, aceitunas verdes, pasas de uva, queso rallado, sal, pimienta y pimentón.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 33,
+      "categoria": "PESCADOS Y MARISCOS",
+      "nombre": "Atun a la Marinera con pure de papas",
+      "descripcion": "Atún fresco a la marinera, cocido en una salsa de tomate con vino blanco y un toque de mariscos, servido con puré de papas.",
+      "ingredientes": "Lomo de atún fresco, cebolla, morrón rojo, ajo, tomate triturado, vino blanco, mejillones o camarones, aceite de oliva, perejil, puré de papas.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 34,
+      "categoria": "PESCADOS Y MARISCOS",
+      "nombre": "Medallon de Lomo de Atun con ensaladas",
+      "descripcion": "Medallón de atún sellado en su punto justo, con un toque de sésamo y limón, acompañado de ensaladas frescas. Liviano y elegante.",
+      "ingredientes": "Lomo de atún, aceite de oliva, semillas de sésamo, sal gruesa, pimienta negra, jugo de limón, ensaladas de guarnición.",
+      "veg": false
+    },
+    {
+      "id": 35,
+      "categoria": "VEGETARIANOS",
+      "nombre": "Pastel de Calabaza, Espinaca, Choclo, Pimientos y Muzza",
+      "descripcion": "Pastel de vegetales de estación gratinado con muzzarella. Colorido, nutritivo y con mucho sabor casero.",
+      "ingredientes": "Calabaza, espinaca, choclo, morrón, cebolla, huevo, queso muzzarella, sal, pimienta y nuez moscada.",
+      "veg": true
+    },
+    {
+      "id": 36,
+      "categoria": "VEGETARIANOS",
+      "nombre": "Roll de Berenjenas con ensaladas",
+      "descripcion": "Rolls de berenjena rellenos de ricota y espinaca, gratinados con salsa de tomate y muzzarella, acompañados de ensaladas frescas.",
+      "ingredientes": "Berenjena, ricota, espinaca, queso rallado, salsa de tomate, queso muzzarella, aceite de oliva, ensaladas de guarnición.",
+      "veg": true,
+      "consultar": true
+    },
+    {
+      "id": 37,
+      "categoria": "ENSALADAS",
+      "nombre": "Ensalada Completa",
+      "descripcion": "Ensalada bien completa con todo lo necesario para una comida liviana y nutritiva: verdes frescos, proteína, queso y un toque de choclo.",
+      "ingredientes": "Lechuga variada, tomate, huevo duro, atún o jamón cocido, queso, zanahoria rallada, choclo, aceite de oliva y vinagre.",
+      "veg": false
+    },
+    {
+      "id": 38,
+      "categoria": "GUISOS / POTAJES",
+      "nombre": "Guiso de Lenteja Vegetariano",
+      "descripcion": "Guiso de lentejas vegetariano, bien abundante en vegetales y con el condimento justo. Reconfortante y nutritivo.",
+      "ingredientes": "Lentejas, cebolla, zanahoria, morrón, ajo, zapallo, papa, tomate triturado, pimentón dulce, laurel, comino, caldo de verdura.",
+      "veg": true,
+      "consultar": true
+    },
+    {
+      "id": 39,
+      "categoria": "GUISOS / POTAJES",
+      "nombre": "Guiso de Lentejas",
+      "descripcion": "El clásico guiso de lentejas con panceta y chorizo colorado, cocido a fuego lento. Sabor intenso para los días fríos.",
+      "ingredientes": "Lentejas, panceta ahumada, chorizo colorado, cebolla, zanahoria, ajo, papa, tomate triturado, pimentón, laurel, caldo de carne o verdura.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 40,
+      "categoria": "GUISOS / POTAJES",
+      "nombre": "Guiso de Mondongo",
+      "descripcion": "Guiso de mondongo bien tradicional, cocido lentamente con panceta, chorizo y porotos. Un plato de cuchara con mucho sabor casero.",
+      "ingredientes": "Mondongo, panceta ahumada, chorizo colorado, cebolla, morrón rojo, zanahoria, ajo, porotos, tomate triturado, caldo de verdura, pimentón y comino.",
+      "veg": false,
+      "consultar": true
+    },
+    {
+      "id": 41,
+      "categoria": "MINUTAS",
+      "nombre": "Carlitos",
+      "descripcion": "Carlito clásico de pan de miga prensado y tostado, con mayonesa, queso, ketchup y jamón, cortado en bastones parejos. Se sirve con papas fritas bastón.",
+      "ingredientes": "Pan de miga, mayonesa, queso de máquina, ketchup, jamón cocido.",
+      "veg": false
+    },
+    {
+      "id": 42,
+      "categoria": "MINUTAS",
+      "nombre": "1/2 Carlito de Pollo",
+      "descripcion": "Versión doble del Carlito: a las capas de jamón y queso se le suma una segunda capa de pollo desmenuzado con huevo rallado, tomate y queso. Prensado, tostado y cortado en bastones. Se sirve con papas fritas bastón.",
+      "ingredientes": "Pan de miga, mayonesa, queso de máquina, ketchup, jamón cocido, pollo desmenuzado, huevo duro rallado, tomate.",
+      "veg": false
+    },
+    {
+      "id": 43,
+      "categoria": "MINUTAS",
+      "nombre": "Hamburguesas de Vegetales (2 unidades) con ensalada variada",
+      "descripcion": "Dos medallones caseros de vegetales y legumbres, dorados por fuera y jugosos por dentro, servidos al plato (sin pan) con una ensalada variada de guarnición.",
+      "ingredientes": "Zanahoria, zapallito, cebolla, garbanzos o lentejas, ensalada variada de guarnición.",
+      "veg": true
+    },
+    {
+      "id": 44,
+      "categoria": "MINUTAS",
+      "nombre": "1/2 Pizza de Pollo a la Crema",
+      "descripcion": "Media pizza individual con una cremosa cobertura de pollo, champiñones y salsa blanca, gratinada con abundante muzzarella.",
+      "ingredientes": "Masa de pizza, pollo desmenuzado, crema de leche o salsa blanca, muzzarella, champiñones, ajo.",
+      "veg": false
+    },
+    {
+      "id": 45,
+      "categoria": "MINUTAS",
+      "nombre": "Frankfurt de Salchichas Paladini con Jamón y Queso",
+      "descripcion": "Salchichas Frankfurt de la marca Paladini envueltas en jamón y queso, y luego en pan de miga, tostadas y prensadas hasta dorar. Un clásico simple, rendidor y sabroso.",
+      "ingredientes": "Salchichas tipo Frankfurt (Paladini), jamón cocido, queso de máquina, pan de miga.",
+      "veg": false
+    },
+    {
+      "id": 46,
+      "categoria": "MINUTAS",
+      "nombre": "Hamburguesa de Ternera Especial con papas fritas",
+      "descripcion": "Hamburguesa casera de carne vacuna jugosa, con aderezo especial de la casa, servida con papas fritas crocantes.",
+      "ingredientes": "Carne vacuna, pan de hamburguesa, lechuga, tomate, queso, salsa especial de la casa, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 47,
+      "categoria": "MINUTAS",
+      "nombre": "Tortillita de Papas con guarnición de ensaladas",
+      "descripcion": "Tortilla individual clásica de papas y cebolla, jugosa por dentro y dorada por fuera, servida con una fresca guarnición de ensaladas.",
+      "ingredientes": "Papas, cebolla, huevo, ensaladas de guarnición.",
+      "veg": true
+    }
+  ],
+  "menu_semanal_platos": [
+    {
+      "id": 1000,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Pollo al horno con Verduras al horno",
+      "descripcion": "Pollo al horno con piel bien dorada, acompañado de una selección de vegetales asados de estación.",
+      "ingredientes": "Pollo, calabaza, zanahoria, cebolla morada, morrón, aceite de oliva, hierbas.",
+      "veg": false
+    },
+    {
+      "id": 1001,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Wok de Verduras y Pechugas",
+      "descripcion": "Tiras de pechuga de pollo salteadas al wok con vegetales bien crocantes, en salsa liviana de soja, sobre arroz.",
+      "ingredientes": "Pechuga de pollo, morrón, zanahoria, cebolla, brócoli, salsa de soja, arroz.",
+      "veg": false
+    },
+    {
+      "id": 1002,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Calabaza Gratinada con Arroz c/crema",
+      "descripcion": "Gratín de calabaza asada con una corteza dorada de queso derretido, servido con arroz en salsa de crema.",
+      "ingredientes": "Calabaza, queso, arroz, crema de leche.",
+      "veg": true
+    },
+    {
+      "id": 1003,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Milanesa de Cerdo con Pure Calabaza",
+      "descripcion": "Milanesa de cerdo dorada y crocante, acompañada de un suave puré de calabaza.",
+      "ingredientes": "Filet de cerdo, pan rallado, huevo, calabaza.",
+      "veg": false
+    },
+    {
+      "id": 1004,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Milanesa de Pollo gratinada con Pure Mixto",
+      "descripcion": "Milanesa de pollo gratinada con abundante queso derretido, servida con puré mixto de papa y calabaza.",
+      "ingredientes": "Filet de pollo, pan rallado, huevo, queso, papa, calabaza.",
+      "veg": false
+    },
+    {
+      "id": 1005,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Milanesas de Berenjenas Horno Gratinada",
+      "descripcion": "Milanesas de berenjena al horno, gratinadas con queso derretido y salsa de tomate.",
+      "ingredientes": "Berenjena, pan rallado, huevo, queso, salsa de tomate.",
+      "veg": true
+    },
+    {
+      "id": 1006,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Arroz amarillo con pollo",
+      "descripcion": "Arroz amarillo bien sabroso con trozos de pollo y vegetales, un clásico casero de cuchara.",
+      "ingredientes": "Arroz, pollo, cúrcuma, zanahoria, morrón, cebolla.",
+      "veg": false
+    },
+    {
+      "id": 1007,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Bondiola al horno con Vegetales Grillados",
+      "descripcion": "Bondiola de cerdo al horno con bordes caramelizados, acompañada de vegetales grillados.",
+      "ingredientes": "Bondiola de cerdo, zucchini, morrón, cebolla morada.",
+      "veg": false
+    },
+    {
+      "id": 1008,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Lasagna de Berenjenas con salsa tuco",
+      "descripcion": "Lasaña casera de berenjenas en capas, con salsa tuco y gratinado de queso.",
+      "ingredientes": "Berenjena, salsa de tomate (tuco), queso.",
+      "veg": true
+    },
+    {
+      "id": 1009,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Tallarines con Salsa de Champignones y Pollo",
+      "descripcion": "Tallarines frescos con una cremosa salsa de champiñones y pollo.",
+      "ingredientes": "Tallarines, champiñones, pollo, crema de leche.",
+      "veg": false
+    },
+    {
+      "id": 1010,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Creppes de pollo y Champignon con salsa Rosa",
+      "descripcion": "Crêpes caseros rellenos de pollo y champiñones, bañados en salsa rosa.",
+      "ingredientes": "Panqueques, pollo, champiñones, salsa rosa (tomate y crema).",
+      "veg": false
+    },
+    {
+      "id": 1011,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Canelones de Verdura y Ricotta con salsa mixta",
+      "descripcion": "Canelones caseros de verdura y ricota, bañados con salsa mixta y gratinados.",
+      "ingredientes": "Canelones, ricota, espinaca, salsa mixta (tomate y crema), queso.",
+      "veg": true
+    },
+    {
+      "id": 1012,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Burrito Bondiola Braseada con papas fritas",
+      "descripcion": "Burrito relleno de bondiola braseada, servido con papas fritas bastón.",
+      "ingredientes": "Tortilla de trigo, bondiola braseada, arroz, porotos, queso, papas fritas.",
+      "veg": false
+    },
+    {
+      "id": 1013,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Omellet Capresse con Ensalada Multicolor",
+      "descripcion": "Omelette esponjoso relleno de tomate, muzzarella y albahaca, con ensalada multicolor.",
+      "ingredientes": "Huevo, tomate, muzzarella, albahaca, ensalada variada.",
+      "veg": false
+    },
+    {
+      "id": 1014,
+      "categoria": "MENÚ SEMANAL",
+      "nombre": "Tarta de Verduras y Muzzarella con Ensalada Variada",
+      "descripcion": "Tarta casera de vegetales y muzzarella, con base bien dorada, servida con ensalada variada.",
+      "ingredientes": "Tapa de tarta, mix de verduras, muzzarella, ensalada variada.",
+      "veg": true
+    }
+  ],
+  "menu_semanal_dias": [
+    {
+      "dia": "Lunes",
+      "platos": [
+        1000,
+        1001,
+        1002
+      ]
+    },
+    {
+      "dia": "Martes",
+      "platos": [
+        1003,
+        1004,
+        1005
+      ]
+    },
+    {
+      "dia": "Miércoles",
+      "platos": [
+        1006,
+        1007,
+        1008
+      ]
+    },
+    {
+      "dia": "Jueves",
+      "platos": [
+        1009,
+        1010,
+        1011
+      ]
+    },
+    {
+      "dia": "Viernes",
+      "platos": [
+        1012,
+        1013,
+        1014
+      ]
+    }
+  ],
+  "bebidas": [
+    {
+      "id": "agua-sg-500",
+      "nombre": "Agua mineral sin gas 500 cc",
+      "descripcion": "Botella individual de 500 cc",
+      "precio": 3000,
+      "imagen": "assets/img/bebidas/agua-500.jpg"
+    },
+    {
+      "id": "agua-sg-15",
+      "nombre": "Agua mineral sin gas 1.5 L",
+      "descripcion": "Botella de 1.5 litros",
+      "precio": 5000,
+      "imagen": "assets/img/bebidas/agua-15.jpg"
+    },
+    {
+      "id": "agua-cg-500",
+      "nombre": "Agua mineral con gas 500 cc",
+      "descripcion": "Botella individual de 500 cc",
+      "precio": 3000,
+      "imagen": "assets/img/bebidas/agua-500.jpg"
+    },
+    {
+      "id": "agua-cg-15",
+      "nombre": "Agua mineral con gas 1.5 L",
+      "descripcion": "Botella de 1.5 litros",
+      "precio": 5000,
+      "imagen": "assets/img/bebidas/agua-15.jpg"
+    },
+    {
+      "id": "pepsi-500",
+      "nombre": "Pepsi 500 cc",
+      "descripcion": "Botella individual de 500 cc",
+      "precio": 4000,
+      "imagen": "assets/img/bebidas/pepsi-500.jpg"
+    },
+    {
+      "id": "pepsi-15",
+      "nombre": "Pepsi 1.5 L",
+      "descripcion": "Botella de 1.5 litros",
+      "precio": 7000,
+      "imagen": "assets/img/bebidas/pepsi-15.jpg"
+    },
+    {
+      "id": "seven-500",
+      "nombre": "Seven Up 500 cc",
+      "descripcion": "Botella individual de 500 cc",
+      "precio": 4000,
+      "imagen": "assets/img/bebidas/seven-up-500.jpg"
+    },
+    {
+      "id": "seven-15",
+      "nombre": "Seven Up 1.5 L",
+      "descripcion": "Botella de 1.5 litros",
+      "precio": 7000,
+      "imagen": "assets/img/bebidas/seven-up-15.jpg"
+    },
+    {
+      "id": "fresh-pomelo-600",
+      "nombre": "Fresh Pomelo 600 cc",
+      "descripcion": "Saborizada de pomelo, botella individual de 600 cc",
+      "precio": 3500,
+      "imagen": "assets/img/bebidas/fresh-pomelo-600.jpg"
+    },
+    {
+      "id": "fresh-pomelo-15",
+      "nombre": "Fresh Pomelo 1.5 L",
+      "descripcion": "Saborizada de pomelo, botella de 1.5 litros",
+      "precio": 5000,
+      "imagen": "assets/img/bebidas/fresh-pomelo-15.jpg"
+    },
+    {
+      "id": "fresh-naranja-600",
+      "nombre": "Fresh Naranja 600 cc",
+      "descripcion": "Saborizada de naranja, botella individual de 600 cc",
+      "precio": 3500,
+      "imagen": "assets/img/bebidas/fresh-naranja-600.jpg"
+    },
+    {
+      "id": "fresh-naranja-15",
+      "nombre": "Fresh Naranja 1.5 L",
+      "descripcion": "Saborizada de naranja, botella de 1.5 litros",
+      "precio": 5000,
+      "imagen": "assets/img/bebidas/fresh-naranja-15.jpg"
+    },
+    {
+      "id": "fresh-manzana-600",
+      "nombre": "Fresh Manzana 600 cc",
+      "descripcion": "Saborizada de manzana, botella individual de 600 cc",
+      "precio": 3500,
+      "imagen": "assets/img/bebidas/fresh-manzana-600.jpg"
+    },
+    {
+      "id": "fresh-manzana-15",
+      "nombre": "Fresh Manzana 1.5 L",
+      "descripcion": "Saborizada de manzana, botella de 1.5 litros",
+      "precio": 5000,
+      "imagen": "assets/img/bebidas/fresh-manzana-15.jpg"
+    }
+  ]
+}

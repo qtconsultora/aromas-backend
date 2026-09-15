@@ -1,0 +1,268 @@
+[
+  {
+    "codigo": "4000",
+    "plato": "Sandwiches de Miga Triple Jamon y Queso",
+    "porciones": 12,
+    "precio": 14000,
+    "consultar": false
+  },
+  {
+    "codigo": "4001",
+    "plato": "Sandwiches de Miga Triple Salame y Queso",
+    "porciones": 12,
+    "precio": 15000,
+    "consultar": false
+  },
+  {
+    "codigo": "4002",
+    "plato": "Sandwiches de Miga Triple Crudo y Ananá",
+    "porciones": 12,
+    "precio": 19000,
+    "consultar": false
+  },
+  {
+    "codigo": "4003",
+    "plato": "Sandwiches de Miga Triple Primavera",
+    "porciones": 12,
+    "precio": 16000,
+    "consultar": false
+  },
+  {
+    "codigo": "4004",
+    "plato": "Empanadita de Jamon y queso",
+    "porciones": 12,
+    "precio": 13000,
+    "consultar": false
+  },
+  {
+    "codigo": "4005",
+    "plato": "Empanadita de Carne",
+    "porciones": 12,
+    "precio": 13000,
+    "consultar": false
+  },
+  {
+    "codigo": "4006",
+    "plato": "Empanadita de Espinaca, Muzzarella y Champignon",
+    "porciones": 12,
+    "precio": 14000,
+    "consultar": false
+  },
+  {
+    "codigo": "4007",
+    "plato": "Empanaditas de osobuco desmenuzado al Malbec",
+    "porciones": 12,
+    "precio": 14000,
+    "consultar": false
+  },
+  {
+    "codigo": "4008",
+    "plato": "Empanaditas de Choclo y Calabaza",
+    "porciones": 12,
+    "precio": 14000,
+    "consultar": false
+  },
+  {
+    "codigo": "4009",
+    "plato": "Tortillitas individuales a la Española",
+    "porciones": 10,
+    "precio": 15000,
+    "consultar": false
+  },
+  {
+    "codigo": "4010",
+    "plato": "Tortillitas individuales de Verdura",
+    "porciones": 10,
+    "precio": 15000,
+    "consultar": false
+  },
+  {
+    "codigo": "4011",
+    "plato": "Tortillitas individuales de papas",
+    "porciones": 10,
+    "precio": 13000,
+    "consultar": false
+  },
+  {
+    "codigo": "4012",
+    "plato": "Pionono Agridulce de Roquefort y nuez",
+    "porciones": 10,
+    "precio": 13000,
+    "consultar": false
+  },
+  {
+    "codigo": "4013",
+    "plato": "Pionono Agridulce de Crudo, salsa golf y Anana",
+    "porciones": 10,
+    "precio": 13000,
+    "consultar": false
+  },
+  {
+    "codigo": "4014",
+    "plato": "Pionono Morrones, jamón y Salsa Tartara",
+    "porciones": 10,
+    "precio": 12000,
+    "consultar": false
+  },
+  {
+    "codigo": "4015",
+    "plato": "Brioche de Crudo, Rucula y Oliva",
+    "porciones": 10,
+    "precio": 16000,
+    "consultar": false
+  },
+  {
+    "codigo": "4016",
+    "plato": "Pebetitos con jamon, queso, tomate",
+    "porciones": 10,
+    "precio": 15000,
+    "consultar": false
+  },
+  {
+    "codigo": "4017",
+    "plato": "Pebetitos con Cerdo y salsa de puerros",
+    "porciones": 10,
+    "precio": 16000,
+    "consultar": false
+  },
+  {
+    "codigo": "4018",
+    "plato": "Pebetitos con Vacio desmenusado",
+    "porciones": 10,
+    "precio": 18000,
+    "consultar": false
+  },
+  {
+    "codigo": "4019",
+    "plato": "Pizzetines de Muzzarella",
+    "porciones": 10,
+    "precio": 11000,
+    "consultar": false
+  },
+  {
+    "codigo": "4020",
+    "plato": "Pizzetines a los 4 quesos",
+    "porciones": 10,
+    "precio": 12000,
+    "consultar": false
+  },
+  {
+    "codigo": "4021",
+    "plato": "Pizzetines Vegetarianos",
+    "porciones": 10,
+    "precio": 11000,
+    "consultar": false
+  },
+  {
+    "codigo": "4022",
+    "plato": "Voulevant de roquefort y Nuez",
+    "porciones": 10,
+    "precio": 18000,
+    "consultar": false
+  },
+  {
+    "codigo": "4023",
+    "plato": "Voulevant de Quesos y Ciboulette",
+    "porciones": 10,
+    "precio": 18000,
+    "consultar": false
+  },
+  {
+    "codigo": "4024",
+    "plato": "Voulevant de Guacamole",
+    "porciones": 10,
+    "precio": 18000,
+    "consultar": false
+  },
+  {
+    "codigo": "4025",
+    "plato": "Fosforitos de Hojaldre de jamón y Queso",
+    "porciones": 10,
+    "precio": 20000,
+    "consultar": false
+  },
+  {
+    "codigo": "4026",
+    "plato": "Corissant de jamòn y Queso",
+    "porciones": 10,
+    "precio": 22000,
+    "consultar": false
+  },
+  {
+    "codigo": "4027",
+    "plato": "Brochette individuales de Pollo",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4028",
+    "plato": "Brochette individuales de Lomo",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4029",
+    "plato": "Brochette individualesde Cerdo",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4030",
+    "plato": "Bruchettas de Frutos de Mar",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4031",
+    "plato": "Bruchettas a la Capresse",
+    "porciones": 5,
+    "precio": 10000,
+    "consultar": false
+  },
+  {
+    "codigo": "4032",
+    "plato": "Ensaladita Individuales Caesar",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4033",
+    "plato": "Ensaladita Individuales Waldorf",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4034",
+    "plato": "Ensaladita Individuales Santa Maria",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4035",
+    "plato": "Pinchos individuales de Kabab",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  },
+  {
+    "codigo": "4036",
+    "plato": "Pinchos individuales Capresse",
+    "porciones": 5,
+    "precio": 11000,
+    "consultar": false
+  },
+  {
+    "codigo": "4037",
+    "plato": "Pinchos individuales Frutos de Mar",
+    "porciones": 5,
+    "precio": null,
+    "consultar": true
+  }
+]
