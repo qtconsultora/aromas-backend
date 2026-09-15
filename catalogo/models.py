@@ -152,7 +152,14 @@ class Articulo(models.Model):
     controla_stock = models.BooleanField(default=True)
 
     imagen = models.ImageField(upload_to="articulos/", blank=True, null=True)
-    visible_web = models.BooleanField(default=False)
+    visible_web = models.BooleanField(
+        "Publicado (visible en la web)",
+        default=False,
+        help_text="Con esto tildado y 'Activo' tildado, el artículo aparece en el catálogo "
+                   "público (Catering / Viandas a la carta) apenas guardás. No aplica a la "
+                   "vianda del día/semana -- eso se controla agregando el plato como opción "
+                   "dentro de un Menú Semanal marcado 'Activo'.",
+    )
     descripcion_web = models.TextField(blank=True)
 
     requiere_consulta = models.BooleanField(

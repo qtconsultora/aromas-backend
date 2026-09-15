@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 
 from .models import (
     Articulo,
@@ -40,13 +41,18 @@ class RecetaInline(admin.TabularInline):
 @admin.register(Articulo)
 class ArticuloAdmin(admin.ModelAdmin):
     list_display = (
-        "codigo", "nombre", "categoria", "tipo", "precio_costo", "costo_uso_fmt",
-        "precio_venta", "precio_sugerido_fmt", "stock_actual", "activo",
+        "foto_mini", "codigo", "nombre", "categoria", "linea_negocio_fmt", "tipo",
+        "precio_venta", "stock_actual", "visible_web", "activo",
     )
-    list_filter = ("tipo", "categoria", "activo", "visible_web", "es_vegetariano")
+    list_display_links = ("codigo", "nombre")
+    list_editable = ("visible_web", "activo")
+    list_filter = ("categoria__linea_negocio", "categoria", "activo", "visible_web", "es_vegetariano", "tipo")
     search_fields = ("codigo", "nombre", "codigo_barras")
+    autocomplete_fields = ("categoria", "marca")
+    ordering = ("codigo",)
+    list_per_page = 50
     inlines = [RecetaInline]
-    readonly_fields = ("costo_uso_fmt", "costo_receta_fmt", "precio_sugerido_fmt")
+    readonly_fields = ("costo_uso_fmt", "costo_receta_fmt", "precio_sugerido_fmt", "foto_preview")
     search_help_text = "Buscar por código o nombre"
     fieldsets = (
         (None, {"fields": ("codigo", "codigo_barras", "nombre", "descripcion", "categoria", "marca", "tipo")}),
@@ -57,8 +63,8 @@ class ArticuloAdmin(admin.ModelAdmin):
             "requiere_consulta",
         )}),
         ("Stock", {"fields": ("stock_actual", "stock_minimo", "controla_stock")}),
-        ("Web", {"fields": ("imagen", "visible_web", "descripcion_web")}),
-        ("Viandas (si aplica)", {"fields": ("es_vegetariano", "ingredientes_texto")}),
+        ("Web", {"fields": ("foto_preview", "imagen", "visible_web", "descripcion_web")}),
+        ("Viandas / Catering (si aplica)", {"fields": ("es_vegetariano", "unidades_por_presentacion", "ingredientes_texto")}),
         ("Estado", {"fields": ("activo",)}),
     )
 
@@ -73,6 +79,28 @@ class ArticuloAdmin(admin.ModelAdmin):
     @admin.display(description="Precio sugerido")
     def precio_sugerido_fmt(self, obj):
         return f"$ {obj.precio_sugerido:,.2f}"
+
+    @admin.display(description="Línea", ordering="categoria__linea_negocio")
+    def linea_negocio_fmt(self, obj):
+        return obj.categoria.get_linea_negocio_display() if obj.categoria else "-"
+
+    @admin.display(description="Foto")
+    def foto_mini(self, obj):
+        if not obj.imagen:
+            return "—"
+        return format_html(
+            '<img src="{}" style="width:40px;height:40px;object-fit:cover;border-radius:4px;">',
+            obj.imagen.url,
+        )
+
+    @admin.display(description="Vista previa de la foto actual")
+    def foto_preview(self, obj):
+        if not obj.imagen:
+            return "Todavía no tiene foto cargada."
+        return format_html(
+            '<img src="{}" style="max-width:220px;max-height:220px;object-fit:cover;border-radius:8px;">',
+            obj.imagen.url,
+        )
 
 
 class OpcionMenuDiaInline(admin.TabularInline):
