@@ -12,3 +12,5 @@ python manage.py migrate
 # volver a cargar las fotos reales de los platos en cada build. Es
 # idempotente -- si la foto ya está en el disco, no hace nada.
 python manage.py cargar_fotos_articulos
+python manage.py cargar_fotos_catering
+python manage.py cargar_unidades_catering

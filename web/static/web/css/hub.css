@@ -1,0 +1,89 @@
+/* ============================================================
+   AROMAS · Hub — estilos propios de la página principal
+   (usa las variables y componentes compartidos de style.css:
+   .hero, .franja, .nosotros-*, .boton, etc.)
+   ============================================================ */
+
+.hub-lineas { background: var(--crema); padding: 90px 0; }
+
+.grilla-ramas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 26px;
+  margin-top: 44px;
+}
+
+.tarjeta-rama {
+  position: relative;
+  border-radius: var(--radio);
+  overflow: hidden;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: var(--sombra);
+  transition: var(--transicion);
+  background: var(--negro);
+  color: var(--crema);
+}
+.tarjeta-rama.disponible:hover { transform: translateY(-6px); }
+.tarjeta-rama.disponible { cursor: pointer; }
+.tarjeta-rama.proximamente { cursor: default; opacity: 0.94; }
+
+.rama-fondo { position: absolute; inset: 0; z-index: 0; }
+.rama-fondo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.tarjeta-rama.disponible:hover .rama-fondo img { transform: scale(1.06); }
+.rama-fondo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(23,19,16,0.1) 0%, rgba(23,19,16,0.9) 88%);
+}
+.tarjeta-rama.proximamente .rama-fondo {
+  background: linear-gradient(135deg, var(--negro-suave), var(--negro));
+}
+
+.rama-contenido { position: relative; z-index: 1; padding: 28px 26px; }
+.rama-etiqueta {
+  display: inline-block;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.tarjeta-rama.disponible .rama-etiqueta { background: var(--dorado); color: var(--negro); }
+.tarjeta-rama.proximamente .rama-etiqueta { background: rgba(250,246,238,0.14); color: var(--dorado-claro); }
+
+.rama-contenido h3 { color: var(--crema); font-size: 1.5rem; margin-bottom: 8px; }
+.rama-contenido p { color: rgba(250,246,238,0.78); font-size: 0.92rem; margin-bottom: 18px; }
+
+.rama-boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.88rem;
+  background: var(--dorado);
+  color: var(--negro);
+}
+.rama-boton.deshabilitado { background: rgba(250,246,238,0.12); color: rgba(250,246,238,0.6); }
+
+.hub-contacto {
+  text-align: center;
+  margin-top: 54px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(23,19,16,0.08);
+}
+.hub-contacto p { color: var(--texto-suave); margin-bottom: 16px; }
+.hub-contacto-botones { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.hub-contacto-botones .boton-whatsapp { width: auto; }
+
+@media (max-width: 640px) {
+  .hub-lineas { padding: 60px 0; }
+  .tarjeta-rama { min-height: 260px; }
+}

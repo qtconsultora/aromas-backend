@@ -26,6 +26,7 @@ class ArticuloSerializer(serializers.ModelSerializer):
             "id", "codigo", "nombre", "descripcion", "descripcion_web",
             "categoria_nombre", "linea_negocio", "precio_venta",
             "es_vegetariano", "requiere_consulta", "imagen",
+            "unidades_por_presentacion",
         ]
 
 

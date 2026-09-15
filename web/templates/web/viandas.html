@@ -37,7 +37,7 @@
 <!-- ============ HEADER ============ -->
 <header class="encabezado" id="encabezado">
   <div class="contenedor">
-    <a href="#inicio" class="marca">
+    <a href="{% url 'web:hub' %}" class="marca">
       <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
       <span class="marca-texto">
         <strong>AROMAS</strong>
@@ -45,7 +45,7 @@
       </span>
     </a>
     <nav class="nav-principal">
-      <a href="#inicio">Inicio</a>
+      <a href="{% url 'web:hub' %}">Inicio</a>
       <a href="#modalidades">Cómo comprar</a>
       <a href="#menu-semana">Menú de la semana</a>
       <a href="#a-la-carta">A la carta</a>
@@ -64,7 +64,7 @@
 <!-- Menú móvil -->
 <nav class="nav-movil" id="nav-movil">
   <button class="cerrar-nav-movil" id="cerrar-nav-movil" aria-label="Cerrar menú">✕</button>
-  <a href="#inicio">Inicio</a>
+  <a href="{% url 'web:hub' %}">Inicio</a>
   <a href="#modalidades">Cómo comprar</a>
   <a href="#menu-semana">Menú de la semana</a>
   <a href="#a-la-carta">A la carta</a>

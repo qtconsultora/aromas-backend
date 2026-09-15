@@ -1,0 +1,1064 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AROMAS · Catering — Finger Food para Eventos</title>
+<meta name="description" content="Finger food artesanal para tus eventos en Rosario. Sándwiches de miga, empanaditas, pizzetines, brochettes y más. Armá tu pedido y coordinalo por WhatsApp.">
+<link rel="icon" type="image/png" href="{% static 'web/img/favicon.png' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+<style>
+  /* Ajustes propios de esta página (no estaban en el sitio viejo, que era estático) */
+  .cargando { text-align:center; padding: 40px 20px; color: var(--texto-suave); }
+  .error-carga { text-align:center; padding: 30px 20px; color: var(--bordo); background: var(--crema-oscura); border-radius: var(--radio-chico); }
+  .tarjeta-foto.sin-foto { display:flex; align-items:center; justify-content:center; font-size:2rem; color: rgba(23,19,16,0.18); }
+  .campo-error { color: var(--bordo); font-size: 0.76rem; margin-top: -6px; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--negro); color: var(--crema); padding: 12px 22px;
+    border-radius: 999px; font-size: 0.88rem; z-index: 300; box-shadow: var(--sombra);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+  }
+  .toast.visible { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+  .toast.error { background: var(--bordo); }
+  .requiere-consulta-tag {
+    display:inline-block; font-size:0.68rem; font-weight:700; color: var(--bordo);
+    background: var(--crema-oscura); border-radius: 999px; padding: 2px 8px; margin-left: 6px;
+  }
+  .tarjeta-agregar.en-carrito { background: var(--dorado); color: var(--negro); }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="encabezado" id="encabezado">
+  <div class="contenedor">
+    <a href="{% url 'web:hub' %}" class="marca">
+      <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
+      <span class="marca-texto">
+        <strong>AROMAS</strong>
+        <span>Catering</span>
+      </span>
+    </a>
+    <nav class="nav-principal">
+      <a href="{% url 'web:hub' %}">Inicio</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#catalogo">Catálogo</a>
+      <a href="#como-pedir">Cómo pedir</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="acciones-header">
+      <button class="boton-carrito" data-abrir-carrito aria-label="Abrir carrito">
+        🧺
+        <span class="contador-carrito" data-badge-carrito>0</span>
+      </button>
+      <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- Menú móvil -->
+<nav class="nav-movil" id="nav-movil">
+  <button class="cerrar-nav-movil" id="cerrar-nav-movil" aria-label="Cerrar menú">✕</button>
+  <a href="{% url 'web:hub' %}">Inicio</a>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#calculadora">Calculadora</a>
+  <a href="#catalogo">Catálogo</a>
+  <a href="#como-pedir">Cómo pedir</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-fondo">
+    <img src="/media/articulos/4019.jpg" alt="" aria-hidden="true">
+    <img src="/media/articulos/4004.jpg" alt="" aria-hidden="true">
+    <img src="/media/articulos/4030.jpg" alt="" aria-hidden="true">
+    <img src="/media/articulos/4012.jpg" alt="" aria-hidden="true">
+  </div>
+  <div class="hero-velo"></div>
+  <div class="hero-contenido">
+    <img class="logo-hero" src="{% static 'web/img/logo.png' %}" alt="Aromas Catering">
+    <span class="etiqueta-seccion">Catering &amp; Finger Food para eventos · Rosario</span>
+    <h1>Finger food artesanal para momentos memorables</h1>
+    <p class="frase">“Porque no buscamos ser GRANDES, buscamos ser MEMORABLES”</p>
+    <p class="descripcion">38 opciones de sándwiches, empanaditas, pizzetines, brochettes y mucho más — armadas a mano, en bandejas listas para tu evento. Elegí, sumá al pedido y coordiná todo por WhatsApp.</p>
+    <div class="hero-botones">
+      <a href="#catalogo" class="boton boton-dorado">Ver el catálogo</a>
+      <a href="#como-pedir" class="boton boton-contorno">¿Cómo se pide?</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Descubrí más</span><span class="linea"></span></div>
+</section>
+
+<!-- Franja de confianza -->
+<div class="franja">
+  <div class="contenedor">
+    <div class="franja-item"><span class="icono">🍽️</span> 38 opciones de finger food</div>
+    <div class="franja-item"><span class="icono">📲</span> Pedidos por WhatsApp</div>
+    <div class="franja-item"><span class="icono">🚚</span> Envío en Rosario y alrededores</div>
+    <div class="franja-item"><span class="icono">🖐️</span> Elaboración artesanal</div>
+  </div>
+</div>
+
+<!-- ============ NOSOTROS ============ -->
+<section class="nosotros" id="nosotros">
+  <div class="contenedor nosotros-grid">
+    <div class="nosotros-texto">
+      <span class="etiqueta-seccion">Nosotros</span>
+      <h2 class="titulo-seccion">Cocina de cariño, pensada para tu mesa</h2>
+      <p>En Aromas armamos el finger food de tu evento como lo haríamos para nuestra propia mesa: con producto fresco, técnica prolija y ese detalle final que hace que un bocado se recuerde. Sándwiches de miga cortados a mano, empanaditas de repulgue criollo, hojaldres armados al momento — todo pensado para que vos te ocupes de disfrutar el evento, no de la cocina.</p>
+      <p>Trabajamos a pedido, bandeja por bandeja, para que cada evento tenga exactamente la selección que necesita: desde una reunión chica hasta una mesa dulce y salada completa para muchos invitados.</p>
+      <p class="nosotros-firma">— El equipo de Aromas Catering</p>
+    </div>
+    <div class="nosotros-imagenes">
+      <div class="nosotros-imagen-principal">
+        <img src="{% static 'web/img/nosotros/equipo.jpg' %}" alt="Equipo de Aromas preparando pedidos en la cocina">
+      </div>
+      <div class="nosotros-galeria">
+        <figure><img src="{% static 'web/img/nosotros/chef.jpg' %}" alt="Preparación en cocina de Aromas"></figure>
+        <figure><img src="{% static 'web/img/nosotros/pastelera.jpg' %}" alt="Elaboración artesanal en Aromas"></figure>
+        <figure><img src="{% static 'web/img/nosotros/presentacion.jpg' %}" alt="Armado de finger food en Aromas"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALCULADORA ============ -->
+<section class="calculadora" id="calculadora">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="etiqueta-seccion">Calculadora</span>
+      <h2 class="titulo-seccion">¿Cuánto pedir para tu evento?</h2>
+      <p class="subtitulo-seccion">Contanos cuántos son y qué tipo de evento tenés en mente: te proponemos tres opciones ya calculadas, con la bebida incluida. Después podés ajustar todo a mano en el catálogo.</p>
+    </div>
+
+    <div class="calc-formulario">
+      <div class="calc-campo-comensales">
+        <label for="calc-comensales">Cantidad de comensales</label>
+        <input type="number" id="calc-comensales" min="1" step="1" placeholder="Ej: 30" inputmode="numeric">
+      </div>
+
+      <div class="calc-eventos" id="calc-eventos" role="radiogroup" aria-label="Tipo de evento"></div>
+
+      <div class="calc-formulario-pie">
+        <button type="button" class="boton boton-dorado" id="calc-boton-calcular">Calcular cantidades</button>
+        <p class="calc-aviso" id="calc-aviso"></p>
+      </div>
+    </div>
+
+    <div class="calc-resultados" id="calc-resultados" hidden>
+      <div class="calc-tarjetas" id="calc-tarjetas"></div>
+      <div class="calc-bebidas" id="calc-bebidas"></div>
+      <p class="calc-nota">* Estimación orientativa según estándares habituales de catering para finger food. Armamos cada propuesta para que todo plato incluido tenga bandejas suficientes como para que, al menos, la mitad de los comensales pueda probarlo — por eso con grupos chicos puede haber menos variedad de la que se ve en el catálogo, pero en porciones reales. Los pedidos se arman en bandejas completas (unidad mínima de venta), por eso el total puede superar un poco lo calculado. La propuesta automática no incluye los platos marcados "Consultar" en el catálogo (existencia y precio a confirmar) — se pueden sumar aparte por WhatsApp. Te ayudamos a ajustar la selección exacta por WhatsApp.</p>
+    </div>
+
+    <div class="calc-manual">
+      <p>¿Preferís elegir plato por plato?</p>
+      <a href="#catalogo" class="boton boton-contorno-oscuro">Armar mi pedido manualmente</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATÁLOGO ============ -->
+<section class="catalogo" id="catalogo">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="etiqueta-seccion">Catálogo</span>
+      <h2 class="titulo-seccion">Elegí tu selección</h2>
+      <p class="subtitulo-seccion">Cada opción se vende por bandeja, en la presentación mínima indicada. Sumá las que quieras: el carrito te va mostrando el total en pesos y en unidades.</p>
+    </div>
+
+    <div class="catalogo-controles">
+      <div class="buscador">
+        <span class="icono-buscar">🔍</span>
+        <input type="text" id="campo-busqueda" placeholder="Buscar un plato o ingrediente…">
+      </div>
+      <div class="filtros" id="filtros"></div>
+    </div>
+
+    <div class="grilla-catalogo" id="grilla-catalogo"><div class="cargando">Cargando el catálogo…</div></div>
+    <div class="aviso-sin-resultados" id="aviso-sin-resultados">
+      <p>No encontramos platos que coincidan con tu búsqueda. Probá con otra palabra o categoría.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CÓMO PEDIR ============ -->
+<section class="como-pedir" id="como-pedir">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="etiqueta-seccion">Cómo pedir</span>
+      <h2 class="titulo-seccion">De la carta a tu evento, en 4 pasos</h2>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <div class="numero">1</div>
+        <h3>Armá tu pedido</h3>
+        <p>Elegí las bandejas que quieras del catálogo (o usá la calculadora) y sumalas a tu carrito.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">2</div>
+        <h3>Enviá por WhatsApp</h3>
+        <p>Confirmás tus datos y, con un clic, tu pedido queda guardado y se arma como mensaje de WhatsApp.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">3</div>
+        <h3>Coordinamos y confirmás</h3>
+        <p>Te confirmamos precio final, fecha y forma de pago. El pedido queda confirmado cuando nos mandás el comprobante por el mismo chat.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">4</div>
+        <h3>Retirás o te lo llevamos</h3>
+        <p>Pasás por el local o coordinamos el envío a domicilio en Rosario y alrededores.</p>
+      </div>
+    </div>
+
+    <div class="info-practica">
+      <div class="info-item">
+        <h4>Horario de pedidos</h4>
+        <p>Lunes a viernes de 8 a 19 hs</p>
+        <p>⏱️ Los pedidos requieren entre 24 y 48 hs de anticipación según el servicio y la cantidad de personas — lo confirmamos en el primer contacto por WhatsApp.</p>
+      </div>
+      <div class="info-item">
+        <h4>Envío a domicilio</h4>
+        <p>A coordinar según zona y cantidad del pedido — te confirmamos el costo por WhatsApp.</p>
+        <p>Zona de reparto: Rosario y alrededores.</p>
+      </div>
+      <div class="info-item">
+        <h4>Retiro en el local</h4>
+        <p>En Dorrego 1519, Rosario — día y horario a convenir.</p>
+      </div>
+      <div class="info-item">
+        <h4>Vajilla y descartables</h4>
+        <p>🍽️ Las bandejas se entregan con servilletas y vajilla descartable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO / FOOTER ============ -->
+<footer class="pie" id="contacto">
+  <div class="contenedor pie-grid">
+    <div class="pie-marca">
+      <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
+      <div>
+        <h3>Aromas Catering</h3>
+        <p>Catering y finger food artesanal para eventos, en Rosario.</p>
+      </div>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/5493416825740" target="_blank" rel="noopener">📲 WhatsApp: 3416825740</a></li>
+        <li><span>📍 Dorrego 1519, Rosario</span></li>
+        <li><a href="https://instagram.com/aromas.dulces.cafe" target="_blank" rel="noopener">📷 @aromas.dulces.cafe</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#catalogo">Catálogo</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#como-pedir">Cómo pedir</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pie-inferior contenedor">
+    © <span id="anio"></span> Aromas Catering · Rosario, Argentina
+  </div>
+</footer>
+
+<!-- ============ BOTÓN FLOTANTE DE CARRITO ============ -->
+<button class="boton-carrito-flotante" data-abrir-carrito>
+  🧺 <span class="texto">Ver pedido</span>
+  <span class="contador" data-badge-carrito>0</span>
+</button>
+
+<!-- ============ CARRITO (drawer) ============ -->
+<div class="superposicion-carrito" id="superposicion-carrito"></div>
+<aside class="panel-carrito" id="panel-carrito" aria-label="Carrito de compras">
+  <div class="carrito-header">
+    <h2>Tu pedido</h2>
+    <button class="cerrar-carrito" id="cerrar-carrito" aria-label="Cerrar carrito">✕</button>
+  </div>
+
+  <div class="carrito-cuerpo">
+    <div id="carrito-lineas"><div class="carrito-vacio"><span class="icono">🧺</span>Todavía no agregaste nada.</div></div>
+
+    <div class="carrito-formulario">
+      <div>
+        <label>¿Retirás o te lo enviamos?</label>
+        <div class="grupo-entrega">
+          <label class="opcion-entrega activa" data-valor="retiro">
+            <input type="radio" name="entrega" value="retiro" checked> Retiro en el local
+          </label>
+          <label class="opcion-entrega" data-valor="envio">
+            <input type="radio" name="entrega" value="envio"> Envío a domicilio
+          </label>
+        </div>
+      </div>
+      <div id="campo-direccion-contenedor" style="display:none;">
+        <label for="campo-direccion">Dirección de entrega</label>
+        <input type="text" id="campo-direccion" placeholder="Calle, número, barrio">
+      </div>
+      <div>
+        <label for="campo-nombre">Tu nombre</label>
+        <input type="text" id="campo-nombre" placeholder="¿Cómo te llamás?">
+      </div>
+      <div>
+        <label for="campo-telefono">Tu WhatsApp / teléfono</label>
+        <input type="text" id="campo-telefono" placeholder="341...">
+      </div>
+      <div>
+        <label for="campo-fecha">Fecha del evento</label>
+        <input type="date" id="campo-fecha">
+        <p class="nota-campo">Se necesitan entre 24 y 48 hs de anticipación según el servicio y la cantidad de personas — lo confirmamos por WhatsApp.</p>
+      </div>
+      <div>
+        <label for="campo-notas">Notas (opcional)</label>
+        <textarea id="campo-notas" rows="2" placeholder="Alguna aclaración para tu pedido…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="carrito-resumen">
+    <div class="fila-resumen"><span>Bandejas</span><span id="resumen-bandejas">0</span></div>
+    <div class="fila-resumen"><span>Unidades totales</span><span id="resumen-unidades">0</span></div>
+    <div class="fila-resumen total"><span>Total</span><span id="resumen-total">$0</span></div>
+    <div class="aviso-envio" id="carrito-msg"></div>
+    <button class="boton boton-whatsapp" id="boton-enviar-pedido" disabled>💬 Enviar pedido por WhatsApp</button>
+    <p class="nota-confirmacion">El pedido queda confirmado cuando enviás el comprobante de pago por el mismo chat de WhatsApp.</p>
+  </div>
+</aside>
+
+<div id="toast" class="toast"></div>
+
+<script>
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+/* ============================================================
+   AROMAS · Catering — lógica del sitio (catálogo real + carrito real)
+   Consume la API ya probada: /api/catalogo/... y /api/pedidos/...
+   ============================================================ */
+
+const WHATSAPP_NEGOCIO = "5493416825740";
+
+/* El catálogo real (Articulo, códigos 4000-4037) todavía no tiene
+   subcategorías cargadas en la base (todos comparten la categoría
+   genérica "Cat. Aromas"). Mientras eso no se ordene en el catálogo,
+   mantenemos acá la misma agrupación del sitio viejo (por rango de
+   código, en el mismo orden en que se cargaron) sólo para poder
+   filtrar/organizar la vista y para que la calculadora arme sus
+   propuestas por categoría -- no afecta precio ni stock. */
+const CODIGO_BASE_CATERING = 4000;
+const CATEGORIAS_POR_RANGO = [
+  ["Sándwiches de Miga", 0, 3],
+  ["Empanaditas", 4, 8],
+  ["Tortillitas Individuales", 9, 11],
+  ["Piononos y Brioche", 12, 15],
+  ["Pebetitos", 16, 18],
+  ["Pizzetines", 19, 21],
+  ["Volovanes", 22, 24],
+  ["Bakery", 25, 26],
+  ["Brochettes", 27, 29],
+  ["Bruschettas", 30, 31],
+  ["Ensaladitas Individuales", 32, 34],
+  ["Pinchos", 35, 37],
+];
+const CATEGORIA_PRIORIDAD = CATEGORIAS_POR_RANGO.map(c => c[0]);
+
+function categoriaDeCodigo(codigo) {
+  const n = parseInt(codigo, 10) - CODIGO_BASE_CATERING;
+  for (const [nombre, desde, hasta] of CATEGORIAS_POR_RANGO) {
+    if (n >= desde && n <= hasta) return nombre;
+  }
+  return "Otros";
+}
+
+let token = localStorage.getItem("aromas_carrito_token_catering") || null;
+let carritoActual = null;
+let catalogo = []; // artículos crudos de la API + categoria calculada
+let categoriaActiva = "Todos";
+let textoBusqueda = "";
+let entrega = "retiro";
+
+function money(v) {
+  return "$" + Number(v).toLocaleString("es-AR", { minimumFractionDigits: 0 });
+}
+
+function toast(msg, esError) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.className = "toast visible" + (esError ? " error" : "");
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove("visible"), 3500);
+}
+
+async function api(path, opts) {
+  const res = await fetch(path, Object.assign({ headers: { "Content-Type": "application/json" } }, opts));
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error("api_error");
+    err.data = data;
+    err.status = res.status;
+    throw err;
+  }
+  return data;
+}
+
+function errText(e) {
+  if (!e.data) return e.message;
+  if (typeof e.data === "string") return e.data;
+  if (e.data.detail) return e.data.detail;
+  return Object.entries(e.data).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : v}`).join(" · ");
+}
+
+/* ---------- Header: fondo al hacer scroll ---------- */
+const encabezado = document.getElementById("encabezado");
+window.addEventListener("scroll", () => {
+  encabezado.classList.toggle("con-fondo", window.scrollY > 40);
+});
+
+/* ---------- Menú móvil ---------- */
+const navMovil = document.getElementById("nav-movil");
+document.getElementById("boton-menu").addEventListener("click", () => navMovil.classList.add("abierto"));
+document.getElementById("cerrar-nav-movil").addEventListener("click", () => navMovil.classList.remove("abierto"));
+navMovil.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navMovil.classList.remove("abierto")));
+
+/* ---------- Carrito: abrir/cerrar ---------- */
+const panelCarrito = document.getElementById("panel-carrito");
+const superposicion = document.getElementById("superposicion-carrito");
+function abrirCarrito() {
+  panelCarrito.classList.add("abierto");
+  superposicion.classList.add("abierta");
+}
+function cerrarCarritoFn() {
+  panelCarrito.classList.remove("abierto");
+  superposicion.classList.remove("abierta");
+}
+document.querySelectorAll("[data-abrir-carrito]").forEach(b => b.addEventListener("click", abrirCarrito));
+document.getElementById("cerrar-carrito").addEventListener("click", cerrarCarritoFn);
+superposicion.addEventListener("click", cerrarCarritoFn);
+
+/* ---------- Entrega: retiro / envío ---------- */
+document.querySelectorAll(".opcion-entrega").forEach(op => {
+  op.addEventListener("click", () => {
+    document.querySelectorAll(".opcion-entrega").forEach(o => o.classList.remove("activa"));
+    op.classList.add("activa");
+    op.querySelector("input").checked = true;
+    entrega = op.dataset.valor;
+    document.getElementById("campo-direccion-contenedor").style.display = entrega === "envio" ? "block" : "none";
+  });
+});
+
+/* ---------- Carrito: crear / obtener ---------- */
+async function asegurarCarrito() {
+  if (token) return token;
+  const data = await api("/api/pedidos/carrito/", { method: "POST" });
+  token = data.token;
+  localStorage.setItem("aromas_carrito_token_catering", token);
+  return token;
+}
+
+function actualizarBadge(cantidadItems) {
+  document.querySelectorAll("[data-badge-carrito]").forEach(el => el.textContent = cantidadItems);
+}
+
+async function refrescarCarrito() {
+  if (!token) {
+    actualizarBadge(0);
+    return;
+  }
+  try {
+    carritoActual = await api(`/api/pedidos/carrito/${token}/`);
+  } catch (e) {
+    token = null;
+    localStorage.removeItem("aromas_carrito_token_catering");
+    actualizarBadge(0);
+    return;
+  }
+  pintarCarrito();
+  pintarBotonesCatalogo();
+}
+
+function totalesCarrito() {
+  const items = (carritoActual && carritoActual.items) || [];
+  let bandejas = 0, unidades = 0;
+  for (const item of items) {
+    const cant = parseFloat(item.cantidad);
+    bandejas += cant;
+    unidades += cant * (item.articulo.unidades_por_presentacion || 1);
+  }
+  return { bandejas, unidades };
+}
+
+function pintarCarrito() {
+  const cont = document.getElementById("carrito-lineas");
+  const items = (carritoActual && carritoActual.items) || [];
+  actualizarBadge(items.length);
+
+  if (items.length === 0) {
+    cont.innerHTML = `<div class="carrito-vacio"><span class="icono">🧺</span>Todavía no agregaste nada.</div>`;
+  } else {
+    cont.innerHTML = "";
+    for (const item of items) {
+      const linea = document.createElement("div");
+      linea.className = "linea-carrito";
+      const foto = item.articulo.imagen
+        ? `<img src="${item.articulo.imagen}" alt="">`
+        : `<div class="linea-icono">🍽️</div>`;
+      const cant = parseFloat(item.cantidad);
+      const unidadesLinea = cant * (item.articulo.unidades_por_presentacion || 1);
+      let detalle = `${cant} bandeja${cant > 1 ? "s" : ""} × ${item.articulo.unidades_por_presentacion || 1} u. = ${unidadesLinea} unidades`;
+      if (item.requiere_consulta) detalle += ` <span class="requiere-consulta-tag">a consultar</span>`;
+      linea.innerHTML = `
+        ${foto}
+        <div class="linea-info">
+          <h4>${item.articulo.nombre}</h4>
+          <div class="detalle">${detalle}</div>
+          <div class="linea-controles">
+            <div class="selector-cantidad">
+              <button type="button" data-menos="${item.id}">−</button>
+              <span>${cant}</span>
+              <button type="button" data-mas="${item.id}">+</button>
+            </div>
+            <div class="linea-precio">${item.requiere_consulta ? "a consultar" : money(item.subtotal)}</div>
+          </div>
+          <button type="button" class="quitar-linea" data-quitar="${item.id}">Quitar</button>
+        </div>
+      `;
+      cont.appendChild(linea);
+    }
+  }
+
+  const { bandejas, unidades } = totalesCarrito();
+  document.getElementById("resumen-bandejas").textContent = bandejas;
+  document.getElementById("resumen-unidades").textContent = unidades;
+  document.getElementById("resumen-total").textContent = money(carritoActual ? carritoActual.total_estimado : 0);
+  document.getElementById("boton-enviar-pedido").disabled = items.length === 0;
+
+  cont.querySelectorAll("[data-mas]").forEach(b => b.addEventListener("click", () => cambiarCantidad(b.dataset.mas, 1)));
+  cont.querySelectorAll("[data-menos]").forEach(b => b.addEventListener("click", () => cambiarCantidad(b.dataset.menos, -1)));
+  cont.querySelectorAll("[data-quitar]").forEach(b => b.addEventListener("click", () => quitarItem(b.dataset.quitar)));
+}
+
+async function cambiarCantidad(itemId, delta) {
+  const item = carritoActual.items.find(i => String(i.id) === String(itemId));
+  if (!item) return;
+  const nueva = parseFloat(item.cantidad) + delta;
+  if (nueva <= 0) return quitarItem(itemId);
+  try {
+    await api(`/api/pedidos/carrito/${token}/items/${itemId}/`, { method: "PATCH", body: JSON.stringify({ cantidad: nueva }) });
+    await refrescarCarrito();
+  } catch (e) { toast(errText(e), true); }
+}
+
+async function quitarItem(itemId) {
+  try {
+    await api(`/api/pedidos/carrito/${token}/items/${itemId}/`, { method: "DELETE" });
+    await refrescarCarrito();
+    toast("Se quitó del pedido.");
+  } catch (e) { toast(errText(e), true); }
+}
+
+async function agregarAlCarrito(body, mensajeOk, silencioso) {
+  try {
+    await asegurarCarrito();
+    await api(`/api/pedidos/carrito/${token}/items/`, { method: "POST", body: JSON.stringify(body) });
+    await refrescarCarrito();
+    if (!silencioso) {
+      toast(mensajeOk || "Se agregó a tu pedido.");
+      abrirCarrito();
+    }
+  } catch (e) {
+    toast(errText(e), true);
+  }
+}
+
+/* ---------- Catálogo ---------- */
+async function cargarCatalogo() {
+  const cont = document.getElementById("grilla-catalogo");
+  try {
+    const data = await api("/api/catalogo/articulos/?linea_negocio=CATERING");
+    catalogo = data.map(a => Object.assign({}, a, { categoria: categoriaDeCodigo(a.codigo) }));
+    catalogo.sort((a, b) => parseInt(a.codigo, 10) - parseInt(b.codigo, 10));
+  } catch (e) {
+    cont.innerHTML = `<div class="error-carga">No se pudo cargar el catálogo: ${errText(e)}</div>`;
+    return;
+  }
+  construirFiltros();
+  pintarCatalogo();
+}
+
+function construirFiltros() {
+  const cont = document.getElementById("filtros");
+  cont.innerHTML = `<button type="button" class="filtro activo" data-cat="Todos">Todos</button>` +
+    CATEGORIA_PRIORIDAD.map(c => `<button type="button" class="filtro" data-cat="${c}">${c}</button>`).join("");
+  cont.querySelectorAll(".filtro").forEach(btn => {
+    btn.addEventListener("click", () => {
+      cont.querySelectorAll(".filtro").forEach(b => b.classList.remove("activo"));
+      btn.classList.add("activo");
+      categoriaActiva = btn.dataset.cat;
+      pintarCatalogo();
+    });
+  });
+}
+
+document.getElementById("campo-busqueda").addEventListener("input", (e) => {
+  textoBusqueda = e.target.value.trim().toLowerCase();
+  pintarCatalogo();
+});
+
+function cantidadEnCarrito(codigo) {
+  if (!carritoActual) return 0;
+  const item = carritoActual.items.find(i => i.articulo.codigo === codigo);
+  return item ? parseFloat(item.cantidad) : 0;
+}
+
+function pintarCatalogo() {
+  const cont = document.getElementById("grilla-catalogo");
+  const avisoVacio = document.getElementById("aviso-sin-resultados");
+  let items = catalogo;
+  if (categoriaActiva !== "Todos") items = items.filter(a => a.categoria === categoriaActiva);
+  if (textoBusqueda) {
+    items = items.filter(a =>
+      a.nombre.toLowerCase().includes(textoBusqueda) ||
+      (a.descripcion || "").toLowerCase().includes(textoBusqueda) ||
+      a.categoria.toLowerCase().includes(textoBusqueda)
+    );
+  }
+  if (items.length === 0) {
+    cont.innerHTML = "";
+    avisoVacio.classList.add("visible");
+    return;
+  }
+  avisoVacio.classList.remove("visible");
+  cont.innerHTML = "";
+  for (const a of items) {
+    const enCarrito = cantidadEnCarrito(a.codigo);
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "tarjeta-plato";
+    tarjeta.dataset.codigo = a.codigo;
+    tarjeta.innerHTML = `
+      <div class="tarjeta-foto ${a.imagen ? "" : "sin-foto"}">
+        ${a.imagen ? `<img src="${a.imagen}" alt="${a.nombre}">` : "🍽️"}
+        ${a.es_vegetariano ? '<span class="insignia-veg">🌱 Vegetariano</span>' : ""}
+        <span class="insignia-numero">#${a.codigo}</span>
+      </div>
+      <div class="tarjeta-cuerpo">
+        <span class="tarjeta-categoria">${a.categoria}</span>
+        <h3>${a.nombre}</h3>
+        <p class="tarjeta-descripcion">${a.descripcion_web || a.descripcion || ""}</p>
+        <div class="tarjeta-pie">
+          <div class="tarjeta-precio">
+            <strong class="${a.requiere_consulta ? "precio-consultar" : ""}">${a.requiere_consulta ? "Consultar" : money(a.precio_venta)}</strong>
+            <span>bandeja de ${a.unidades_por_presentacion} u.</span>
+          </div>
+          <div class="selector-cantidad">
+            <button type="button" data-restar="${a.codigo}">−</button>
+            <span id="cant-${a.codigo}">1</span>
+            <button type="button" data-sumar="${a.codigo}">+</button>
+          </div>
+        </div>
+        <button type="button" class="boton tarjeta-agregar ${enCarrito > 0 ? "en-carrito" : ""}" data-agregar="${a.codigo}">
+          ${enCarrito > 0 ? `En tu pedido ✓ (${enCarrito})` : "Agregar al pedido"}
+        </button>
+      </div>
+    `;
+    cont.appendChild(tarjeta);
+  }
+  cont.querySelectorAll("[data-restar]").forEach(b => b.addEventListener("click", () => {
+    const span = document.getElementById(`cant-${b.dataset.restar}`);
+    span.textContent = Math.max(1, parseInt(span.textContent) - 1);
+  }));
+  cont.querySelectorAll("[data-sumar]").forEach(b => b.addEventListener("click", () => {
+    const span = document.getElementById(`cant-${b.dataset.sumar}`);
+    span.textContent = parseInt(span.textContent) + 1;
+  }));
+  cont.querySelectorAll("[data-agregar]").forEach(b => b.addEventListener("click", () => {
+    const codigo = b.dataset.agregar;
+    const cantidad = document.getElementById(`cant-${codigo}`).textContent;
+    agregarAlCarrito({ modalidad_venta: "CATERING", articulo_codigo: codigo, cantidad }, "Se agregó a tu pedido.");
+  }));
+}
+
+function pintarBotonesCatalogo() {
+  document.querySelectorAll(".tarjeta-plato").forEach(tarjeta => {
+    const codigo = tarjeta.dataset.codigo;
+    const enCarrito = cantidadEnCarrito(codigo);
+    const btn = tarjeta.querySelector("[data-agregar]");
+    if (!btn) return;
+    btn.textContent = enCarrito > 0 ? `En tu pedido ✓ (${enCarrito})` : "Agregar al pedido";
+    btn.classList.toggle("en-carrito", enCarrito > 0);
+  });
+}
+
+/* ---------- Calculadora de eventos ---------- */
+const ICONOS_EVENTO = {
+  cafe: "☕", aperitivo: "🥂", tarde: "🍰", noche: "🌙", cena: "🍽️", "evento-largo": "🎉",
+};
+
+const EVENTOS = [
+  { id: "cafe", nombre: "Café / reunión breve", descripcion: "Mediodía laboral, encuentro corto", piezasBajo: 3, piezasAlto: 4, bebida: { agua: 0.3, vino: 0, cerveza: 0, espumante: 0, brindis: false } },
+  { id: "aperitivo", nombre: "Aperitivo antes de una comida", descripcion: "Brindis previo al almuerzo o la cena", piezasBajo: 4, piezasAlto: 5, bebida: { agua: 0.25, vino: 0.15, cerveza: 0.15, espumante: 0.12, brindis: true } },
+  { id: "tarde", nombre: "Tarde / merienda", descripcion: "Evento de tarde, sin comida después", piezasBajo: 5, piezasAlto: 6, bebida: { agua: 0.5, vino: 0, cerveza: 0, espumante: 0, brindis: false } },
+  { id: "noche", nombre: "Noche con picoteo", descripcion: "2 a 3 horas, sin cena formal", piezasBajo: 10, piezasAlto: 12, bebida: { agua: 0.35, vino: 0.25, cerveza: 0.35, espumante: 0.12, brindis: true } },
+  { id: "cena", nombre: "Cena a pura picada", descripcion: "El finger food reemplaza la cena", piezasBajo: 12, piezasAlto: 14, bebida: { agua: 0.45, vino: 0.35, cerveza: 0.45, espumante: 0.12, brindis: true } },
+  { id: "evento-largo", nombre: "Evento largo / catering", descripcion: "Boda, cumpleaños, mesa dulce y salada", piezasBajo: 12, piezasAlto: 15, bebida: { agua: 0.55, vino: 0.45, cerveza: 0.55, espumante: 0.15, brindis: true } },
+];
+
+const TIERS = [
+  { id: "economica", nombre: "Económica", ajusteCategorias: -1, usarPiezas: (ev) => ev.piezasBajo },
+  { id: "recomendada", nombre: "Recomendada", ajusteCategorias: 0, usarPiezas: (ev) => Math.round((ev.piezasBajo + ev.piezasAlto) / 2) },
+  { id: "premium", nombre: "Premium", ajusteCategorias: 2, usarPiezas: (ev) => Math.ceil(ev.piezasAlto * 1.15) },
+];
+
+const PORCENTAJE_MINIMO_COBERTURA = 0.5;
+const formatoNum = (n) => n.toLocaleString("es-AR", { maximumFractionDigits: 1, minimumFractionDigits: 0 });
+
+function numCategoriasBase(totalPiezasObjetivo) {
+  return Math.min(12, Math.max(3, Math.round(totalPiezasObjetivo / 15)));
+}
+
+function calcularPropuesta(evento, tier, comensales) {
+  const piezasPorPersona = tier.usarPiezas(evento);
+  const totalPiezasObjetivo = piezasPorPersona * comensales;
+  const nCategoriasDeseadas = Math.min(12, Math.max(3, numCategoriasBase(totalPiezasObjetivo) + tier.ajusteCategorias));
+  const minPiezasPorPlato = Math.max(1, Math.ceil(comensales * PORCENTAJE_MINIMO_COBERTURA));
+
+  // Los platos "a consultar" (existencia y precio a confirmar por WhatsApp)
+  // quedan afuera de la selección automática.
+  const categoriasCandidatas = CATEGORIA_PRIORIDAD.map((cat) => ({
+    cat,
+    platos: catalogo.filter((p) => p.categoria === cat && !p.requiere_consulta),
+  })).filter((c) => c.platos.length);
+
+  const seleccion = [];
+  let piezasComprometidas = 0;
+  for (const { platos } of categoriasCandidatas) {
+    if (seleccion.length >= nCategoriasDeseadas) break;
+    const unidadesRef = platos[0].unidades_por_presentacion;
+    const bandejasMin = Math.ceil(minPiezasPorPlato / unidadesRef);
+    const piezasMin = bandejasMin * unidadesRef;
+    if (seleccion.length >= 3 && piezasComprometidas + piezasMin > totalPiezasObjetivo) break;
+    seleccion.push({ platos, unidadesRef, bandejasMin, piezasMin, activos: [0], rotacion: 0 });
+    piezasComprometidas += piezasMin;
+  }
+
+  const cantidades = {}; // codigo de plato -> cantidad de bandejas
+  let piezasAcumuladas = 0;
+
+  seleccion.forEach(({ platos, bandejasMin }) => {
+    const plato = platos[0];
+    cantidades[plato.codigo] = (cantidades[plato.codigo] || 0) + bandejasMin;
+    piezasAcumuladas += bandejasMin * plato.unidades_por_presentacion;
+  });
+
+  let iter = 0;
+  const maxIter = 1000;
+  let avanzo = true;
+  while (piezasAcumuladas < totalPiezasObjetivo && avanzo && iter < maxIter) {
+    avanzo = false;
+    iter++;
+    for (const entry of seleccion) {
+      if (piezasAcumuladas >= totalPiezasObjetivo) break;
+      const { platos, activos, unidadesRef, bandejasMin } = entry;
+      const restante = totalPiezasObjetivo - piezasAcumuladas;
+      const siguienteIdx = activos.length;
+
+      if (siguienteIdx < platos.length && bandejasMin * unidadesRef <= restante) {
+        const nuevo = platos[siguienteIdx];
+        activos.push(siguienteIdx);
+        cantidades[nuevo.codigo] = (cantidades[nuevo.codigo] || 0) + bandejasMin;
+        piezasAcumuladas += bandejasMin * unidadesRef;
+      } else {
+        const idxActivo = activos[entry.rotacion % activos.length];
+        const plato = platos[idxActivo];
+        cantidades[plato.codigo] = (cantidades[plato.codigo] || 0) + 1;
+        piezasAcumuladas += plato.unidades_por_presentacion;
+        entry.rotacion++;
+      }
+      avanzo = true;
+    }
+  }
+
+  const items = Object.keys(cantidades).map((codigo) => ({ codigo, cantidad: cantidades[codigo] }));
+  let bandejas = 0, unidades = 0, precio = 0;
+  items.forEach(({ codigo, cantidad }) => {
+    const plato = catalogo.find((p) => p.codigo === codigo);
+    bandejas += cantidad;
+    unidades += cantidad * plato.unidades_por_presentacion;
+    precio += cantidad * parseFloat(plato.precio_venta);
+  });
+
+  return {
+    piezasPorPersona,
+    totalPiezasObjetivo,
+    categoriasIncluidas: seleccion.length,
+    items,
+    totales: { bandejas, unidades, precio },
+  };
+}
+
+function calcularBebidas(evento, comensales) {
+  const b = evento.bebida;
+  const aguaL = b.agua * comensales;
+  const vinoL = b.vino * comensales;
+  const cervezaL = b.cerveza * comensales;
+  const espumanteL = b.brindis ? b.espumante * comensales : 0;
+  return {
+    agua: { litros: aguaL, envases: Math.ceil(aguaL / 2) },
+    vino: { litros: vinoL, botellas: Math.ceil(vinoL / 0.75) },
+    cerveza: { litros: cervezaL, envases: Math.ceil(cervezaL / 1) },
+    espumante: b.brindis ? { litros: espumanteL, botellas: Math.ceil(espumanteL / 0.75) } : null,
+  };
+}
+
+function eventoTarjetaHTML(evento) {
+  return `
+    <label class="calc-evento" data-evento="${evento.id}">
+      <input type="radio" name="calc-evento" value="${evento.id}">
+      <span class="calc-evento-icono">${ICONOS_EVENTO[evento.id]}</span>
+      <span class="calc-evento-nombre">${evento.nombre}</span>
+      <span class="calc-evento-desc">${evento.descripcion}</span>
+      <span class="calc-evento-piezas">${evento.piezasBajo}–${evento.piezasAlto} piezas/pers.</span>
+    </label>`;
+}
+
+function renderEventos() {
+  document.getElementById("calc-eventos").innerHTML = EVENTOS.map(eventoTarjetaHTML).join("");
+}
+
+function formatoPrecioCalc(n) { return "$" + Math.round(n).toLocaleString("es-AR", { maximumFractionDigits: 0 }); }
+
+function tarjetaTierHTML(tier, propuesta) {
+  const { totales, piezasPorPersona, categoriasIncluidas, items } = propuesta;
+  const itemsHTML = items
+    .map(({ codigo, cantidad }) => {
+      const plato = catalogo.find((p) => p.codigo === codigo);
+      return `<li><span>${plato.nombre}</span><span>${cantidad} band. <em>(${cantidad * plato.unidades_por_presentacion} u.)</em></span></li>`;
+    })
+    .join("");
+
+  return `
+    <article class="calc-tarjeta calc-tarjeta-${tier.id}">
+      <div class="calc-tarjeta-header">
+        <span class="calc-tarjeta-badge">${tier.nombre}</span>
+        <span class="calc-tarjeta-piezas">${piezasPorPersona} piezas/persona</span>
+      </div>
+      <div class="calc-tarjeta-cifras">
+        <div><strong>${totales.bandejas}</strong><span>bandejas</span></div>
+        <div><strong>${totales.unidades}</strong><span>unidades</span></div>
+        <div><strong>${categoriasIncluidas}</strong><span>categorías</span></div>
+      </div>
+      <div class="calc-tarjeta-precio">${formatoPrecioCalc(totales.precio)} <span>(precio provisorio)</span></div>
+      <ul class="calc-tarjeta-lista">${itemsHTML}</ul>
+      <button type="button" class="boton boton-oscuro calc-tarjeta-usar" data-tier="${tier.id}">Usar esta opción</button>
+    </article>`;
+}
+
+function bebidasHTML(evento, comensales) {
+  const b = calcularBebidas(evento, comensales);
+  const filas = [
+    { etiqueta: "Agua / gaseosa / jugo", litros: b.agua.litros, envase: `≈ ${b.agua.envases} botellas de 2 L` },
+    { etiqueta: "Vino", litros: b.vino.litros, envase: `≈ ${b.vino.botellas} botellas de 750 ml` },
+    { etiqueta: "Cerveza", litros: b.cerveza.litros, envase: `≈ ${b.cerveza.envases} botellas/latas de 1 L` },
+  ];
+  if (b.espumante) filas.push({ etiqueta: "Espumante para el brindis", litros: b.espumante.litros, envase: `≈ ${b.espumante.botellas} botellas de 750 ml` });
+
+  const filasHTML = filas
+    .filter((f) => f.litros > 0)
+    .map(
+      (f) => `
+      <div class="calc-bebida-fila">
+        <span class="calc-bebida-etiqueta">${f.etiqueta}</span>
+        <span class="calc-bebida-litros">${formatoNum(f.litros)} L</span>
+        <span class="calc-bebida-envase">${f.envase}</span>
+      </div>`
+    )
+    .join("");
+
+  return `
+    <h3>Bebida estimada para ${comensales} comensales</h3>
+    <div class="calc-bebida-filas">
+      ${filasHTML || '<p class="calc-bebida-vacio">Este tipo de evento no suele llevar bebida con alcohol — sumá agua, gaseosa o jugo a gusto.</p>'}
+    </div>`;
+}
+
+let ultimaPropuestas = [];
+
+function obtenerEventoSeleccionado() {
+  const input = document.querySelector('input[name="calc-evento"]:checked');
+  return input ? EVENTOS.find((e) => e.id === input.value) : null;
+}
+
+function calcular() {
+  const aviso = document.getElementById("calc-aviso");
+  const comensalesInput = document.getElementById("calc-comensales");
+  const comensales = parseInt(comensalesInput.value, 10);
+  const evento = obtenerEventoSeleccionado();
+
+  if (!catalogo.length) {
+    aviso.textContent = "Esperá que termine de cargar el catálogo y volvé a intentar.";
+    return;
+  }
+  if (!comensales || comensales < 1) {
+    aviso.textContent = "Ingresá la cantidad de comensales para calcular.";
+    comensalesInput.focus();
+    return;
+  }
+  if (!evento) {
+    aviso.textContent = "Elegí el tipo de evento que más se parece al tuyo.";
+    return;
+  }
+  aviso.textContent = "";
+
+  ultimaPropuestas = TIERS.map((tier) => ({ tier, propuesta: calcularPropuesta(evento, tier, comensales) }));
+
+  document.getElementById("calc-tarjetas").innerHTML = ultimaPropuestas
+    .map(({ tier, propuesta }) => tarjetaTierHTML(tier, propuesta))
+    .join("");
+  document.getElementById("calc-bebidas").innerHTML = bebidasHTML(evento, comensales);
+
+  const resultados = document.getElementById("calc-resultados");
+  resultados.hidden = false;
+  resultados.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+async function usarPropuesta(tierId) {
+  const entry = ultimaPropuestas.find((p) => p.tier.id === tierId);
+  if (!entry) return;
+  try {
+    await asegurarCarrito();
+    // Vaciamos lo que hubiera antes en el carrito de catering y cargamos
+    // la propuesta completa, uno por uno (la API valida y calcula cada
+    // precio del lado del servidor).
+    if (carritoActual && carritoActual.items.length) {
+      for (const item of carritoActual.items) {
+        await api(`/api/pedidos/carrito/${token}/items/${item.id}/`, { method: "DELETE" });
+      }
+    }
+    for (const { codigo, cantidad } of entry.propuesta.items) {
+      await api(`/api/pedidos/carrito/${token}/items/`, {
+        method: "POST",
+        body: JSON.stringify({ modalidad_venta: "CATERING", articulo_codigo: codigo, cantidad }),
+      });
+    }
+    await refrescarCarrito();
+    toast(`Propuesta "${entry.tier.nombre}" cargada en tu pedido.`);
+    abrirCarrito();
+  } catch (e) {
+    toast(errText(e), true);
+  }
+}
+
+document.getElementById("calc-boton-calcular").addEventListener("click", calcular);
+document.getElementById("calc-tarjetas").addEventListener("click", (e) => {
+  const btn = e.target.closest(".calc-tarjeta-usar");
+  if (!btn) return;
+  usarPropuesta(btn.dataset.tier);
+});
+
+/* ---------- Confirmar pedido (backend + WhatsApp) ---------- */
+function armarMensajeWhatsapp(pedido, tipoEntrega, direccion, nombre, fecha, notas) {
+  const lineas = [];
+  lineas.push(`¡Hola Aromas! 👋 Quiero confirmar este pedido de catering #${pedido.id}:`);
+  lineas.push("");
+  let algunoAConsultar = false;
+  for (const item of pedido.items) {
+    const cant = parseFloat(item.cantidad);
+    const unidades = cant * (item.articulo.unidades_por_presentacion || 1);
+    let linea = `• ${item.articulo.nombre} — ${cant} bandeja${cant > 1 ? "s" : ""} (${unidades} u.)`;
+    if (item.requiere_consulta) {
+      linea += " — existencia y precio a confirmar";
+      algunoAConsultar = true;
+    } else {
+      linea += ` — ${money(item.subtotal)}`;
+    }
+    lineas.push(linea);
+  }
+  lineas.push("");
+  const { bandejas, unidades } = totalesCarrito();
+  lineas.push(`Total: ${bandejas} bandejas / ${unidades} unidades — ${money(pedido.total_estimado)}`);
+  if (algunoAConsultar) lineas.push('(precio provisorio: no incluye los platos marcados "a consultar")');
+  lineas.push(tipoEntrega === "DELIVERY" ? `Envío a: ${direccion}` : "Retiro en el local");
+  lineas.push(`Nombre: ${nombre}`);
+  if (fecha) lineas.push(`Fecha del evento: ${fecha}`);
+  if (notas) lineas.push(`Notas: ${notas}`);
+  lineas.push("");
+  lineas.push("⏱️ Sé que se necesitan entre 24 y 48 hs de anticipación según el servicio y la cantidad de personas — quedo atento/a para coordinarlo.");
+  lineas.push("Te mando el comprobante de pago por acá mismo para confirmar. ¡Gracias!");
+  return lineas.join("\n");
+}
+
+document.getElementById("boton-enviar-pedido").addEventListener("click", async () => {
+  if (!token || !carritoActual || !carritoActual.items.length) {
+    toast("Tu pedido está vacío.", true);
+    return;
+  }
+  const nombre = document.getElementById("campo-nombre").value.trim();
+  const telefono = document.getElementById("campo-telefono").value.trim();
+  const tipoEntrega = document.querySelector('input[name="entrega"]:checked').value === "envio" ? "DELIVERY" : "RETIRO";
+  const direccion = document.getElementById("campo-direccion").value.trim();
+  const fecha = document.getElementById("campo-fecha").value;
+  const notas = document.getElementById("campo-notas").value.trim();
+
+  if (!nombre) { toast("Falta tu nombre.", true); return; }
+  if (!telefono) { toast("Falta tu WhatsApp o teléfono.", true); return; }
+  if (tipoEntrega === "DELIVERY" && !direccion) { toast("Falta la dirección de entrega.", true); return; }
+
+  const notasFinal = fecha ? `Fecha del evento: ${fecha}${notas ? " · " + notas : ""}` : notas;
+
+  const body = {
+    cliente: { nombre, telefono, whatsapp: telefono },
+    tipo_entrega: tipoEntrega,
+    observaciones: notasFinal,
+  };
+  if (tipoEntrega === "DELIVERY") body.direccion = { direccion };
+
+  const boton = document.getElementById("boton-enviar-pedido");
+  boton.disabled = true;
+  boton.textContent = "Confirmando…";
+  try {
+    const pedido = await api(`/api/pedidos/carrito/${token}/confirmar/`, { method: "POST", body: JSON.stringify(body) });
+    const mensaje = armarMensajeWhatsapp(pedido, tipoEntrega, direccion, nombre, fecha, notas);
+    window.open(`https://wa.me/${WHATSAPP_NEGOCIO}?text=${encodeURIComponent(mensaje)}`, "_blank");
+    token = null;
+    localStorage.removeItem("aromas_carrito_token_catering");
+    carritoActual = null;
+    pintarCarrito();
+    pintarBotonesCatalogo();
+    cerrarCarritoFn();
+    toast(`¡Pedido #${pedido.id} confirmado! Te llevamos a WhatsApp para que nos mandes el comprobante.`);
+  } catch (e) {
+    toast(errText(e), true);
+  } finally {
+    boton.disabled = false;
+    boton.textContent = "💬 Enviar pedido por WhatsApp";
+  }
+});
+
+/* ---------- Fecha mínima = mañana ---------- */
+(function () {
+  const campoFecha = document.getElementById("campo-fecha");
+  const manana = new Date();
+  manana.setDate(manana.getDate() + 1);
+  campoFecha.min = manana.toISOString().split("T")[0];
+})();
+
+/* ---------- Arranque ---------- */
+(async function init() {
+  renderEventos();
+  await cargarCatalogo();
+  await refrescarCarrito();
+})();
+</script>
+
+</body>
+</html>

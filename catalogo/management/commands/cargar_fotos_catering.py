@@ -1,27 +1,19 @@
 """
-Carga las fotos reales de los platos en `Articulo.imagen`, para los rangos
-de código que ya tienen fotos sacadas y nombradas por código:
-
-    7000-7046  Viandas a la Carta (47 platos)
-    8000-8014  Menú de la Semana ya publicado (15 platos)
-
-Las fotos ya vienen redimensionadas/comprimidas (máx. 1000px de ancho,
+Carga las fotos reales de los productos de catering (códigos 4000-4037)
+en `Articulo.imagen`. Mismo patrón que `cargar_fotos_articulos` (Viandas):
+las fotos ya vienen redimensionadas/comprimidas (máx. 1000px de ancho,
 JPEG calidad 82) en `catalogo/fixtures_source/fotos_articulos/<codigo>.jpg`
--- se procesaron una sola vez a partir de los .jfif originales de la
-cámara/celular (que pesaban ~50MB en total) para que el sitio cargue
-rápido y no infle el repo (quedaron en ~6MB).
+-- se procesaron una sola vez a partir de las fotos originales (numeradas
+1.jfif..38.jfif, el N° del catálogo viejo) para que el sitio cargue rápido.
 
 Es IDEMPOTENTE: si un Articulo ya tiene `imagen` cargada Y el archivo
-todavía existe en el disco, lo salta (no la pisa), salvo que se pase
-`--forzar`. Si el archivo desapareció (disco efímero de Render, que se
-borra en cada deploy) la vuelve a cargar aunque el campo ya tuviera un
-valor. Nunca toca ni borra nada fuera de estos dos rangos (los 129 platos
-nuevos 8015-8143 todavía no tienen fotos reales; el catering 4000-4037 se
-carga aparte con `cargar_fotos_catering`).
+todavía existe en el disco, lo salta. Si el archivo desapareció (disco
+efímero de Render, que se borra en cada deploy) lo vuelve a cargar aunque
+el campo ya tuviera un valor. Nunca toca códigos fuera de 4000-4037.
 
 Uso:
-    python manage.py cargar_fotos_articulos
-    python manage.py cargar_fotos_articulos --forzar
+    python manage.py cargar_fotos_catering
+    python manage.py cargar_fotos_catering --forzar
 """
 
 from pathlib import Path
@@ -33,17 +25,17 @@ from catalogo.models import Articulo
 
 FOTOS_DIR = Path(__file__).resolve().parent.parent.parent / "fixtures_source" / "fotos_articulos"
 
-CODIGOS = [str(c) for c in range(7000, 7047)] + [str(c) for c in range(8000, 8015)]
+CODIGOS = [str(c) for c in range(4000, 4038)]
 
 
 class Command(BaseCommand):
-    help = "Carga las fotos reales de Viandas (7000-7046, 8000-8014) en Articulo.imagen"
+    help = "Carga las fotos reales de catering (4000-4037) en Articulo.imagen"
 
     def add_arguments(self, parser):
         parser.add_argument(
             "--forzar",
             action="store_true",
-            help="Reemplaza la imagen aunque el artículo ya tenga una cargada.",
+            help="Reemplaza la imagen aunque el artículo ya tenga una cargada y el archivo exista.",
         )
 
     def handle(self, *args, **options):

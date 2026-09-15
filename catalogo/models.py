@@ -162,6 +162,11 @@ class Articulo(models.Model):
     es_vegetariano = models.BooleanField(
         default=False, help_text="Sólo relevante para platos de la línea Viandas"
     )
+    unidades_por_presentacion = models.PositiveIntegerField(
+        default=1,
+        help_text="Para catering: cuántas piezas trae la presentación mínima de venta "
+                   "(ej. una bandeja de 12 empanaditas). En el resto de las líneas queda en 1.",
+    )
     ingredientes_texto = models.TextField(
         blank=True,
         help_text="Referencia libre (ingredientes tal como figuraban en el catálogo viejo, "

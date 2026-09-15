@@ -1,0 +1,198 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AROMAS — Viandas, Catering y más</title>
+<meta name="description" content="Aromas Rosario: viandas artesanales de lunes a viernes y catering / finger food para eventos. Elegí tu línea y pedí por WhatsApp.">
+<link rel="icon" type="image/png" href="{% static 'web/img/favicon.png' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/hub.css' %}">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="encabezado" id="encabezado">
+  <div class="contenedor">
+    <a href="{% url 'web:hub' %}" class="marca">
+      <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
+      <span class="marca-texto">
+        <strong>AROMAS</strong>
+        <span>Dulces &amp; Café</span>
+      </span>
+    </a>
+    <nav class="nav-principal">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#lineas">Nuestras líneas</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="acciones-header">
+      <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- Menú móvil -->
+<nav class="nav-movil" id="nav-movil">
+  <button class="cerrar-nav-movil" id="cerrar-nav-movil" aria-label="Cerrar menú">✕</button>
+  <a href="#nosotros">Nosotros</a>
+  <a href="#lineas">Nuestras líneas</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-fondo">
+    <img src="{% static 'web/img/nosotros/equipo.jpg' %}" alt="" aria-hidden="true">
+  </div>
+  <div class="hero-velo"></div>
+  <div class="hero-contenido">
+    <img class="logo-hero" src="{% static 'web/img/logo.png' %}" alt="Aromas">
+    <span class="etiqueta-seccion">Cocina artesanal · Rosario</span>
+    <h1>Comida casera hecha con cariño, para cada momento</h1>
+    <p class="frase">“Porque no buscamos ser GRANDES, buscamos ser MEMORABLES”</p>
+    <p class="descripcion">Somos el mismo equipo detrás de cada plato: viandas caseras para tu semana y catering artesanal para tus eventos. Elegí qué necesitás hoy.</p>
+    <div class="hero-botones">
+      <a href="#lineas" class="boton boton-dorado">Ver nuestras líneas</a>
+      <a href="#nosotros" class="boton boton-contorno">Conocenos</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Descubrí más</span><span class="linea"></span></div>
+</section>
+
+<!-- Franja de confianza -->
+<div class="franja">
+  <div class="contenedor">
+    <div class="franja-item"><span class="icono">🖐️</span> Elaboración artesanal</div>
+    <div class="franja-item"><span class="icono">📲</span> Pedidos por WhatsApp</div>
+    <div class="franja-item"><span class="icono">🚚</span> Envío en Rosario y alrededores</div>
+    <div class="franja-item"><span class="icono">📍</span> Dorrego 1519, Rosario</div>
+  </div>
+</div>
+
+<!-- ============ NOSOTROS ============ -->
+<section class="nosotros" id="nosotros">
+  <div class="contenedor nosotros-grid">
+    <div class="nosotros-texto">
+      <span class="etiqueta-seccion">Nosotros</span>
+      <h2 class="titulo-seccion">El mismo cariño, en cada línea de Aromas</h2>
+      <p>Aromas nació de las ganas de cocinar como en casa: con producto fresco, técnica prolija y ese detalle final que hace que un plato se recuerde. Ese mismo equipo es el que arma tu vianda de todos los días y el que prepara el finger food de tu próximo evento.</p>
+      <p>Cocinamos a pedido, plato por plato o bandeja por bandeja, para que siempre recibas exactamente lo que elegiste.</p>
+      <p class="nosotros-firma">— El equipo de Aromas</p>
+    </div>
+    <div class="nosotros-imagenes">
+      <div class="nosotros-imagen-principal">
+        <img src="{% static 'web/img/nosotros/presentacion.jpg' %}" alt="Presentación de platos de Aromas">
+      </div>
+      <div class="nosotros-galeria">
+        <figure><img src="{% static 'web/img/nosotros/chef.jpg' %}" alt="Preparación en cocina de Aromas"></figure>
+        <figure><img src="{% static 'web/img/nosotros/pastelera.jpg' %}" alt="Elaboración artesanal en Aromas"></figure>
+        <figure><img src="{% static 'web/img/nosotros/equipo.jpg' %}" alt="Equipo de Aromas trabajando"></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NUESTRAS LÍNEAS ============ -->
+<section class="hub-lineas" id="lineas">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="etiqueta-seccion">Nuestras líneas</span>
+      <h2 class="titulo-seccion">Elegí qué necesitás</h2>
+      <p class="subtitulo-seccion">Cada línea tiene su propio catálogo, su propio carrito y su propio pedido por WhatsApp.</p>
+    </div>
+
+    <div class="grilla-ramas">
+      <a class="tarjeta-rama disponible" href="{% url 'web:viandas' %}">
+        <div class="rama-fondo"><img src="/media/articulos/7017.jpg" alt=""></div>
+        <div class="rama-contenido">
+          <span class="rama-etiqueta">Disponible</span>
+          <h3>Viandas Artesanales</h3>
+          <p>Vianda del día, semana completa o a la carta — comida casera de lunes a viernes.</p>
+          <span class="rama-boton">Ver viandas →</span>
+        </div>
+      </a>
+
+      <a class="tarjeta-rama disponible" href="{% url 'web:catering' %}">
+        <div class="rama-fondo"><img src="/media/articulos/4019.jpg" alt=""></div>
+        <div class="rama-contenido">
+          <span class="rama-etiqueta">Disponible</span>
+          <h3>Catering &amp; Finger Food</h3>
+          <p>Sándwiches de miga, empanaditas, pizzetines, brochettes y más, para tus eventos.</p>
+          <span class="rama-boton">Ver catálogo →</span>
+        </div>
+      </a>
+
+      <div class="tarjeta-rama proximamente">
+        <div class="rama-fondo"></div>
+        <div class="rama-contenido">
+          <span class="rama-etiqueta">Próximamente</span>
+          <h3>Congelados</h3>
+          <p>Platos caseros congelados, listos para calentar cuando los necesites.</p>
+          <span class="rama-boton deshabilitado">En preparación</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hub-contacto" id="contacto">
+      <p>¿Tenés dudas o querés algo a medida? Escribinos, con gusto te ayudamos a elegir.</p>
+      <div class="hub-contacto-botones">
+        <a href="https://wa.me/5493416825740" target="_blank" rel="noopener" class="boton boton-whatsapp">💬 WhatsApp: 3416825740</a>
+        <a href="https://instagram.com/aromas.dulces.cafe" target="_blank" rel="noopener" class="boton boton-contorno-oscuro">📷 @aromas.dulces.cafe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="pie">
+  <div class="contenedor pie-grid">
+    <div class="pie-marca">
+      <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
+      <div>
+        <h3>Aromas</h3>
+        <p>Comida casera y catering artesanal, en Rosario.</p>
+      </div>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/5493416825740" target="_blank" rel="noopener">📲 WhatsApp: 3416825740</a></li>
+        <li><span>📍 Dorrego 1519, Rosario</span></li>
+        <li><a href="https://instagram.com/aromas.dulces.cafe" target="_blank" rel="noopener">📷 @aromas.dulces.cafe</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Nuestras líneas</h4>
+      <ul>
+        <li><a href="{% url 'web:viandas' %}">Viandas Artesanales</a></li>
+        <li><a href="{% url 'web:catering' %}">Catering &amp; Finger Food</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pie-inferior contenedor">
+    © <span id="anio"></span> Aromas · Rosario, Argentina
+  </div>
+</footer>
+
+<script>
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+/* Header con fondo al hacer scroll */
+const encabezado = document.getElementById("encabezado");
+window.addEventListener("scroll", () => {
+  encabezado.classList.toggle("con-fondo", window.scrollY > 40);
+});
+
+/* Menú móvil */
+const navMovil = document.getElementById("nav-movil");
+document.getElementById("boton-menu").addEventListener("click", () => navMovil.classList.add("abierto"));
+document.getElementById("cerrar-nav-movil").addEventListener("click", () => navMovil.classList.remove("abierto"));
+navMovil.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navMovil.classList.remove("abierto")));
+</script>
+
+</body>
+</html>

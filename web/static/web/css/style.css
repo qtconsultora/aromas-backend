@@ -1,5 +1,5 @@
 /* ============================================================
-   AROMAS · Dulces & Café — Hoja de estilos
+   AROMAS — Hoja de estilos (compartida entre Viandas, Catering, etc.)
    ============================================================ */
 
 :root {
@@ -730,6 +730,37 @@ section { padding: 84px 0; }
 }
 .aviso-sin-resultados.visible { display: block; }
 
+/* ---------- Bebidas ---------- */
+.bebidas { background: var(--crema); }
+.grilla-bebidas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+.tarjeta-bebida {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  padding: 18px;
+  box-shadow: var(--sombra);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tarjeta-bebida-foto {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--crema-oscura);
+}
+.tarjeta-bebida-foto img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tarjeta-bebida-info { flex: 1; min-width: 0; }
+.tarjeta-bebida-info h4 { font-size: 0.98rem; margin: 0 0 2px; }
+.tarjeta-bebida-info p { font-size: 0.8rem; color: var(--texto-suave); margin: 0 0 6px; }
+.tarjeta-bebida-info strong { color: var(--bordo); font-size: 1rem; }
+
 /* ---------- Cómo pedir ---------- */
 .como-pedir { background: var(--crema); }
 .pasos {
@@ -972,6 +1003,11 @@ section { padding: 84px 0; }
   color: var(--texto-suave);
   text-align: center;
   margin-top: 10px;
+}
+.nota-campo {
+  font-size: 0.76rem;
+  color: var(--texto-suave);
+  margin: 6px 0 0;
 }
 
 .boton-carrito-flotante {
