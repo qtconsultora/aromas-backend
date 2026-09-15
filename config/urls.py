@@ -15,9 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
+from django.conf import settings
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import TemplateView
+from django.views.static import serve as static_serve
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,4 +30,14 @@ urlpatterns = [
         TemplateView.as_view(template_name="pedidos/carrito_test.html"),
         name="probar-carrito",
     ),
+    path("", include("web.urls")),
+]
+
+# Fotos de platos (Articulo.imagen). Render Starter no tiene un bucket S3
+# aparte -- Django las sirve directo acá. Ojo: el disco de Render es
+# efímero (se borra en cada deploy), por eso build.sh vuelve a correr
+# `cargar_fotos_articulos` en cada build (es idempotente, así que no hace
+# nada si las fotos ya están).
+urlpatterns += [
+    path(f"{settings.MEDIA_URL.lstrip('/')}<path:path>", static_serve, {"document_root": settings.MEDIA_ROOT}),
 ]

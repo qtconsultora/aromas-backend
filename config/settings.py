@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     "facturacion",
     "stock",
     "reservas",
+    "web",
 ]
 
 # API pública para el futuro sitio (carrito de compras, catálogo, etc.).

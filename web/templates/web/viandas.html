@@ -1,0 +1,840 @@
+{% load static %}<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AROMAS · Viandas Artesanales — Comida casera semanal</title>
+<meta name="description" content="Viandas caseras artesanales en Rosario: elegí tu vianda del día, armá tu semana completa o pedí a la carta. Pedidos por WhatsApp.">
+<link rel="icon" type="image/png" href="{% static 'web/img/favicon.png' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'web/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'web/css/viandas.css' %}">
+<style>
+  /* Ajustes propios de esta página (no estaban en el sitio viejo, que era estático) */
+  .cargando { text-align:center; padding: 40px 20px; color: var(--texto-suave); }
+  .error-carga { text-align:center; padding: 30px 20px; color: var(--bordo); background: var(--crema-oscura); border-radius: var(--radio-chico); }
+  .tarjeta-foto.sin-foto { display:flex; align-items:center; justify-content:center; font-size:2rem; color: rgba(23,19,16,0.18); }
+  .opcion-plato-mini.sin-foto-mini img { display:none; }
+  .campo-error { color: var(--bordo); font-size: 0.76rem; margin-top: -6px; }
+  .toast {
+    position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--negro); color: var(--crema); padding: 12px 22px;
+    border-radius: 999px; font-size: 0.88rem; z-index: 300; box-shadow: var(--sombra);
+    opacity: 0; pointer-events: none; transition: opacity .25s ease, transform .25s ease;
+  }
+  .toast.visible { opacity: 1; transform: translateX(-50%) translateY(-6px); }
+  .toast.error { background: var(--bordo); }
+  .requiere-consulta-tag {
+    display:inline-block; font-size:0.68rem; font-weight:700; color: var(--bordo);
+    background: var(--crema-oscura); border-radius: 999px; padding: 2px 8px; margin-left: 6px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="encabezado" id="encabezado">
+  <div class="contenedor">
+    <a href="#inicio" class="marca">
+      <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
+      <span class="marca-texto">
+        <strong>AROMAS</strong>
+        <span>Viandas Artesanales</span>
+      </span>
+    </a>
+    <nav class="nav-principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#modalidades">Cómo comprar</a>
+      <a href="#menu-semana">Menú de la semana</a>
+      <a href="#a-la-carta">A la carta</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="acciones-header">
+      <button class="boton-carrito" data-abrir-carrito aria-label="Abrir carrito">
+        🧺
+        <span class="contador-carrito" data-badge-carrito>0</span>
+      </button>
+      <button class="boton-menu" id="boton-menu" aria-label="Abrir menú">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- Menú móvil -->
+<nav class="nav-movil" id="nav-movil">
+  <button class="cerrar-nav-movil" id="cerrar-nav-movil" aria-label="Cerrar menú">✕</button>
+  <a href="#inicio">Inicio</a>
+  <a href="#modalidades">Cómo comprar</a>
+  <a href="#menu-semana">Menú de la semana</a>
+  <a href="#a-la-carta">A la carta</a>
+  <a href="#contacto">Contacto</a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+  <div class="hero-fondo">
+    <img src="/media/articulos/7017.jpg" alt="" aria-hidden="true">
+    <img src="/media/articulos/7028.jpg" alt="" aria-hidden="true">
+    <img src="/media/articulos/7006.jpg" alt="" aria-hidden="true">
+    <img src="/media/articulos/7036.jpg" alt="" aria-hidden="true">
+  </div>
+  <div class="hero-velo"></div>
+  <div class="hero-contenido">
+    <img class="logo-hero" src="{% static 'web/img/logo.png' %}" alt="Aromas Viandas Artesanales">
+    <span class="etiqueta-seccion">Viandas caseras · Rosario</span>
+    <h1>Comida casera, lista para tu semana</h1>
+    <p class="frase">“Porque no buscamos ser GRANDES, buscamos ser MEMORABLES”</p>
+    <p class="descripcion">Pedí tu vianda del día, armá tu semana completa con anticipación, o elegí libremente del catálogo a la carta. Vos decidís cómo, nosotros cocinamos.</p>
+    <div class="hero-botones">
+      <a href="#modalidades" class="boton boton-dorado">Ver cómo comprar</a>
+      <a href="#a-la-carta" class="boton boton-contorno">Ver el catálogo</a>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Descubrí más</span><span class="linea"></span></div>
+</section>
+
+<!-- Franja de confianza -->
+<div class="franja">
+  <div class="contenedor">
+    <div class="franja-item"><span class="icono">🍲</span> Platos caseros a elección</div>
+    <div class="franja-item"><span class="icono">📅</span> Vianda diaria o semana completa</div>
+    <div class="franja-item"><span class="icono">📲</span> Pedidos por WhatsApp</div>
+    <div class="franja-item"><span class="icono">🚚</span> Envío en Rosario y alrededores</div>
+  </div>
+</div>
+
+<!-- ============ MODALIDADES ============ -->
+<section class="modalidades" id="modalidades">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="etiqueta-seccion">Cómo comprar</span>
+      <h2 class="titulo-seccion">Elegí la modalidad que más te sirva</h2>
+      <p class="subtitulo-seccion">Tenés tres formas de pedir tus viandas. Podés combinarlas como quieras en el mismo carrito.</p>
+    </div>
+
+    <div class="tarjetas-modalidad">
+      <button type="button" class="tarjeta-modalidad activa" data-tab="diaria">
+        <span class="modalidad-icono">🍽️</span>
+        <h3>Vianda diaria</h3>
+        <p>Elegís 1 plato entre las 3 opciones publicadas para ese día.</p>
+        <span class="modalidad-precio" id="precio-diaria">…</span>
+      </button>
+      <button type="button" class="tarjeta-modalidad" data-tab="semanal">
+        <span class="modalidad-icono">📅</span>
+        <h3>Vianda semanal</h3>
+        <p>Elegís 1 plato por día para lunes a viernes, con anticipación.</p>
+        <span class="modalidad-precio" id="precio-semanal">…</span>
+      </button>
+      <button type="button" class="tarjeta-modalidad" data-tab="carta">
+        <span class="modalidad-icono">📖</span>
+        <h3>A la carta</h3>
+        <p>Elegís libremente entre todos los platos del catálogo completo.</p>
+        <span class="modalidad-precio">Precio por plato</span>
+      </button>
+    </div>
+
+    <!-- ---- PANEL: VIANDA DIARIA ---- -->
+    <div class="panel-modalidad" id="panel-diaria" data-panel="diaria">
+      <div class="panel-modalidad-intro">
+        <h3>Vianda diaria</h3>
+        <p>Cada día publicamos 3 opciones de menú. Elegí una para el día que quieras y sumala a tu pedido.</p>
+        <p class="aviso-plazo">📌 Pedido hasta las 10:30 hs · entrega el mismo día de 11:00 a 13:00 hs, en orden de reparto.</p>
+      </div>
+      <div class="dias-grilla" id="dias-grilla-diaria"><div class="cargando">Cargando el menú de la semana…</div></div>
+      <div style="text-align:center; margin-top: 10px;">
+        <button type="button" class="boton boton-dorado" id="boton-agregar-diaria">Agregar vianda diaria</button>
+      </div>
+    </div>
+
+    <!-- ---- PANEL: VIANDA SEMANAL ---- -->
+    <div class="panel-modalidad" id="panel-semanal" data-panel="semanal" hidden>
+      <div class="panel-modalidad-intro">
+        <h3>Vianda semanal</h3>
+        <p>Elegí 1 plato por día (lunes a viernes) entre las 3 opciones de cada día. Con las 5 elecciones armamos tu semana completa.</p>
+        <p class="aviso-plazo">📌 Envío bonificado, sin cargo, para la vianda semanal.</p>
+      </div>
+      <div class="dias-grilla" id="dias-grilla-semanal"><div class="cargando">Cargando el menú de la semana…</div></div>
+      <div class="resumen-semana">
+        <div class="resumen-semana-lista" id="resumen-semana-lista"></div>
+        <button type="button" class="boton boton-dorado" id="boton-confirmar-semana" disabled>Agregar semana completa</button>
+      </div>
+    </div>
+
+    <!-- ---- PANEL: A LA CARTA ---- -->
+    <div class="panel-modalidad" id="panel-carta" data-panel="carta" hidden>
+      <div class="panel-modalidad-intro">
+        <h3>A la carta</h3>
+        <p>Elegí libremente entre todos los platos del catálogo (algunos, a consultar por WhatsApp).</p>
+        <p class="aviso-plazo">📌 Con envío: pedido hasta las 10:30 hs · retirando en el local: hasta las 14:00 hs.</p>
+      </div>
+      <div class="catalogo-controles">
+        <div class="buscador">
+          <span class="icono-buscar">🔍</span>
+          <input type="text" id="campo-busqueda" placeholder="Buscar un plato…">
+        </div>
+        <div class="filtros" id="filtros"></div>
+      </div>
+      <div class="grilla-catalogo" id="grilla-catalogo"><div class="cargando">Cargando el catálogo…</div></div>
+      <div class="aviso-sin-resultados" id="aviso-sin-resultados">
+        <p>No encontramos platos que coincidan con tu búsqueda. Probá con otra palabra o categoría.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="menu-semana"></div>
+<div id="a-la-carta"></div>
+
+<!-- ============ CÓMO PEDIR ============ -->
+<section class="como-pedir" id="como-pedir">
+  <div class="contenedor">
+    <div class="encabezado-seccion">
+      <span class="etiqueta-seccion">Cómo pedir</span>
+      <h2 class="titulo-seccion">De tu elección a tu mesa, en 4 pasos</h2>
+    </div>
+
+    <div class="pasos">
+      <div class="paso">
+        <div class="numero">1</div>
+        <h3>Elegí tu modalidad</h3>
+        <p>Vianda diaria, semana completa o a la carta — sumá lo que quieras a tu carrito.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">2</div>
+        <h3>Enviá por WhatsApp</h3>
+        <p>Confirmás tus datos y, con un clic, tu pedido queda guardado y se arma como mensaje de WhatsApp.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">3</div>
+        <h3>Coordinamos y confirmás</h3>
+        <p>Te confirmamos precio final, día de entrega y forma de pago. El pedido queda confirmado cuando nos mandás el comprobante por el mismo chat.</p>
+      </div>
+      <div class="paso">
+        <div class="numero">4</div>
+        <h3>Retirás o te lo llevamos</h3>
+        <p>Pasás por el local o coordinamos el envío a domicilio en Rosario y alrededores.</p>
+      </div>
+    </div>
+
+    <div class="info-practica">
+      <div class="info-item">
+        <h4>Horarios por modalidad</h4>
+        <p>🍽️ <strong>Vianda diaria:</strong> pedido hasta las 10:30 hs · entrega el mismo día de 11:00 a 13:00 hs, en orden de reparto.</p>
+        <p>📅 <strong>Vianda semanal:</strong> pedido desde que publicamos el menú hasta el lunes 10:30 hs · entregas de lunes a viernes de 11:00 a 13:00 hs.</p>
+        <p>📖 <strong>A la carta:</strong> con envío, hasta las 10:30 hs · retirando en el local, hasta las 14:00 hs.</p>
+      </div>
+      <div class="info-item">
+        <h4>Envío a domicilio</h4>
+        <p>📅 <strong>Vianda semanal:</strong> envío bonificado, sin cargo.</p>
+        <p>🍽️ <strong>Vianda diaria y a la carta:</strong> a consultar según zona.</p>
+        <p>Zona de reparto: Rosario y alrededores.</p>
+      </div>
+      <div class="info-item">
+        <h4>Retiro en el local</h4>
+        <p>En Dorrego 1519, Rosario — día y horario a convenir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACTO / FOOTER ============ -->
+<footer class="pie" id="contacto">
+  <div class="contenedor pie-grid">
+    <div class="pie-marca">
+      <img src="{% static 'web/img/logo.png' %}" alt="Logo Aromas">
+      <div>
+        <h3>Aromas Viandas Artesanales</h3>
+        <p>Comida casera semanal, en Rosario.</p>
+      </div>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <ul>
+        <li><a href="https://wa.me/5493416825740" target="_blank" rel="noopener">📲 WhatsApp: 3416825740</a></li>
+        <li><span>📍 Dorrego 1519, Rosario</span></li>
+        <li><a href="https://instagram.com/aromas.dulces.cafe" target="_blank" rel="noopener">📷 @aromas.dulces.cafe</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#modalidades">Cómo comprar</a></li>
+        <li><a href="#a-la-carta">A la carta</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pie-inferior contenedor">
+    © <span id="anio"></span> Aromas Viandas Artesanales · Rosario, Argentina
+  </div>
+</footer>
+
+<!-- ============ BOTÓN FLOTANTE DE CARRITO ============ -->
+<button class="boton-carrito-flotante" data-abrir-carrito>
+  🧺 <span class="texto">Ver pedido</span>
+  <span class="contador" data-badge-carrito>0</span>
+</button>
+
+<!-- ============ CARRITO (drawer) ============ -->
+<div class="superposicion-carrito" id="superposicion-carrito"></div>
+<aside class="panel-carrito" id="panel-carrito" aria-label="Carrito de compras">
+  <div class="carrito-header">
+    <h2>Tu pedido</h2>
+    <button class="cerrar-carrito" id="cerrar-carrito" aria-label="Cerrar carrito">✕</button>
+  </div>
+
+  <div class="carrito-cuerpo">
+    <div id="carrito-lineas"><div class="carrito-vacio"><span class="icono">🧺</span>Todavía no agregaste nada.</div></div>
+
+    <div class="carrito-formulario">
+      <div>
+        <label>¿Retirás o te lo enviamos?</label>
+        <div class="grupo-entrega">
+          <label class="opcion-entrega activa" data-valor="retiro">
+            <input type="radio" name="entrega" value="retiro" checked> Retiro en el local
+          </label>
+          <label class="opcion-entrega" data-valor="envio">
+            <input type="radio" name="entrega" value="envio"> Envío a domicilio
+          </label>
+        </div>
+      </div>
+      <div id="campo-direccion-contenedor" style="display:none;">
+        <label for="campo-direccion">Dirección de entrega</label>
+        <input type="text" id="campo-direccion" placeholder="Calle, número, barrio">
+      </div>
+      <div>
+        <label for="campo-nombre">Tu nombre</label>
+        <input type="text" id="campo-nombre" placeholder="¿Cómo te llamás?">
+      </div>
+      <div>
+        <label for="campo-telefono">Tu WhatsApp / teléfono</label>
+        <input type="text" id="campo-telefono" placeholder="341...">
+      </div>
+      <div>
+        <label for="campo-notas">Notas (opcional)</label>
+        <textarea id="campo-notas" rows="2" placeholder="Alguna aclaración para tu pedido…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="carrito-resumen">
+    <div class="fila-resumen total"><span>Total</span><span id="resumen-total">$0</span></div>
+    <div class="aviso-envio" id="carrito-msg"></div>
+    <button class="boton boton-whatsapp" id="boton-enviar-pedido" disabled>💬 Enviar pedido por WhatsApp</button>
+    <p class="nota-confirmacion">El pedido queda confirmado cuando enviás el comprobante de pago por el mismo chat de WhatsApp.</p>
+  </div>
+</aside>
+
+<div id="toast" class="toast"></div>
+
+<script>
+document.getElementById("anio").textContent = new Date().getFullYear();
+
+/* ============================================================
+   AROMAS · Viandas — lógica del sitio (catálogo real + carrito real)
+   Consume la API ya probada: /api/catalogo/... y /api/pedidos/...
+   ============================================================ */
+
+const WHATSAPP_NEGOCIO = "5493416825740";
+const DIAS = [["LUN","Lunes"],["MAR","Martes"],["MIE","Miércoles"],["JUE","Jueves"],["VIE","Viernes"]];
+
+let token = localStorage.getItem("aromas_carrito_token") || null;
+let menuActivo = null;
+let carritoActual = null;
+let catalogoALaCarta = [];
+let categoriaActiva = "todas";
+let textoBusqueda = "";
+
+function money(v) {
+  return "$" + Number(v).toLocaleString("es-AR", { minimumFractionDigits: 0 });
+}
+
+function toast(msg, esError) {
+  const el = document.getElementById("toast");
+  el.textContent = msg;
+  el.className = "toast visible" + (esError ? " error" : "");
+  clearTimeout(el._t);
+  el._t = setTimeout(() => el.classList.remove("visible"), 3500);
+}
+
+async function api(path, opts) {
+  const res = await fetch(path, Object.assign({ headers: { "Content-Type": "application/json" } }, opts));
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const err = new Error("api_error");
+    err.data = data;
+    err.status = res.status;
+    throw err;
+  }
+  return data;
+}
+
+function errText(e) {
+  if (!e.data) return e.message;
+  if (typeof e.data === "string") return e.data;
+  if (e.data.detail) return e.data.detail;
+  return Object.entries(e.data).map(([k, v]) => `${k}: ${Array.isArray(v) ? v.join(", ") : v}`).join(" · ");
+}
+
+/* ---------- Header: fondo al hacer scroll ---------- */
+const encabezado = document.getElementById("encabezado");
+window.addEventListener("scroll", () => {
+  encabezado.classList.toggle("con-fondo", window.scrollY > 40);
+});
+
+/* ---------- Menú móvil ---------- */
+const navMovil = document.getElementById("nav-movil");
+document.getElementById("boton-menu").addEventListener("click", () => navMovil.classList.add("abierto"));
+document.getElementById("cerrar-nav-movil").addEventListener("click", () => navMovil.classList.remove("abierto"));
+navMovil.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navMovil.classList.remove("abierto")));
+
+/* ---------- Tabs de modalidad ---------- */
+document.querySelectorAll(".tarjeta-modalidad").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tarjeta-modalidad").forEach(b => b.classList.remove("activa"));
+    btn.classList.add("activa");
+    const tab = btn.dataset.tab;
+    document.querySelectorAll(".panel-modalidad").forEach(p => {
+      p.hidden = p.dataset.panel !== tab;
+    });
+  });
+});
+
+/* ---------- Carrito: abrir/cerrar ---------- */
+const panelCarrito = document.getElementById("panel-carrito");
+const superposicion = document.getElementById("superposicion-carrito");
+function abrirCarrito() {
+  panelCarrito.classList.add("abierto");
+  superposicion.classList.add("abierta");
+}
+function cerrarCarritoFn() {
+  panelCarrito.classList.remove("abierto");
+  superposicion.classList.remove("abierta");
+}
+document.querySelectorAll("[data-abrir-carrito]").forEach(b => b.addEventListener("click", abrirCarrito));
+document.getElementById("cerrar-carrito").addEventListener("click", cerrarCarritoFn);
+superposicion.addEventListener("click", cerrarCarritoFn);
+
+/* ---------- Entrega: retiro / envío ---------- */
+document.querySelectorAll(".opcion-entrega").forEach(op => {
+  op.addEventListener("click", () => {
+    document.querySelectorAll(".opcion-entrega").forEach(o => o.classList.remove("activa"));
+    op.classList.add("activa");
+    op.querySelector("input").checked = true;
+    const esEnvio = op.dataset.valor === "envio";
+    document.getElementById("campo-direccion-contenedor").style.display = esEnvio ? "block" : "none";
+  });
+});
+
+/* ---------- Carrito: crear / obtener ---------- */
+async function asegurarCarrito() {
+  if (token) return token;
+  const data = await api("/api/pedidos/carrito/", { method: "POST" });
+  token = data.token;
+  localStorage.setItem("aromas_carrito_token", token);
+  return token;
+}
+
+function actualizarBadge(cantidadItems) {
+  document.querySelectorAll("[data-badge-carrito]").forEach(el => el.textContent = cantidadItems);
+}
+
+async function refrescarCarrito() {
+  if (!token) {
+    actualizarBadge(0);
+    return;
+  }
+  try {
+    carritoActual = await api(`/api/pedidos/carrito/${token}/`);
+  } catch (e) {
+    // token viejo/inválido (ej. carrito ya confirmado en otra pestaña) -> arrancar de cero
+    token = null;
+    localStorage.removeItem("aromas_carrito_token");
+    actualizarBadge(0);
+    return;
+  }
+  pintarCarrito();
+}
+
+function pintarCarrito() {
+  const cont = document.getElementById("carrito-lineas");
+  const items = (carritoActual && carritoActual.items) || [];
+  actualizarBadge(items.length);
+
+  if (items.length === 0) {
+    cont.innerHTML = `<div class="carrito-vacio"><span class="icono">🧺</span>Todavía no agregaste nada.</div>`;
+  } else {
+    cont.innerHTML = "";
+    for (const item of items) {
+      const linea = document.createElement("div");
+      linea.className = "linea-carrito";
+      const foto = item.articulo.imagen
+        ? `<img src="${item.articulo.imagen}" alt="">`
+        : `<div class="linea-icono">🍽️</div>`;
+      let detalle = "";
+      if (item.selecciones_dias && item.selecciones_dias.length) {
+        detalle = item.selecciones_dias.map(s => {
+          const nombreDia = (DIAS.find(d => d[0] === s.dia_semana) || [, s.dia_semana])[1];
+          return `${nombreDia}: ${s.plato.nombre}`;
+        }).join(" · ");
+      } else {
+        detalle = item.descripcion || "";
+      }
+      if (item.requiere_consulta) detalle += ` <span class="requiere-consulta-tag">a consultar</span>`;
+      linea.innerHTML = `
+        ${foto}
+        <div class="linea-info">
+          <h4>${item.articulo.nombre}</h4>
+          <div class="detalle">${detalle}</div>
+          <div class="linea-controles">
+            <div class="selector-cantidad">
+              <button type="button" data-menos="${item.id}">−</button>
+              <span>${parseFloat(item.cantidad)}</span>
+              <button type="button" data-mas="${item.id}">+</button>
+            </div>
+            <div class="linea-precio">${item.requiere_consulta ? "a consultar" : money(item.subtotal)}</div>
+          </div>
+          <button type="button" class="quitar-linea" data-quitar="${item.id}">Quitar</button>
+        </div>
+      `;
+      cont.appendChild(linea);
+    }
+  }
+
+  document.getElementById("resumen-total").textContent = money(carritoActual ? carritoActual.total_estimado : 0);
+  document.getElementById("boton-enviar-pedido").disabled = items.length === 0;
+
+  cont.querySelectorAll("[data-mas]").forEach(b => b.addEventListener("click", () => cambiarCantidad(b.dataset.mas, 1)));
+  cont.querySelectorAll("[data-menos]").forEach(b => b.addEventListener("click", () => cambiarCantidad(b.dataset.menos, -1)));
+  cont.querySelectorAll("[data-quitar]").forEach(b => b.addEventListener("click", () => quitarItem(b.dataset.quitar)));
+}
+
+async function cambiarCantidad(itemId, delta) {
+  const item = carritoActual.items.find(i => String(i.id) === String(itemId));
+  if (!item) return;
+  const nueva = parseFloat(item.cantidad) + delta;
+  if (nueva <= 0) return quitarItem(itemId);
+  try {
+    await api(`/api/pedidos/carrito/${token}/items/${itemId}/`, { method: "PATCH", body: JSON.stringify({ cantidad: nueva }) });
+    await refrescarCarrito();
+  } catch (e) { toast(errText(e), true); }
+}
+
+async function quitarItem(itemId) {
+  try {
+    await api(`/api/pedidos/carrito/${token}/items/${itemId}/`, { method: "DELETE" });
+    await refrescarCarrito();
+    toast("Se quitó del pedido.");
+  } catch (e) { toast(errText(e), true); }
+}
+
+async function agregarAlCarrito(body, mensajeOk) {
+  try {
+    await asegurarCarrito();
+    await api(`/api/pedidos/carrito/${token}/items/`, { method: "POST", body: JSON.stringify(body) });
+    await refrescarCarrito();
+    toast(mensajeOk || "Se agregó a tu pedido.");
+    abrirCarrito();
+  } catch (e) {
+    toast(errText(e), true);
+  }
+}
+
+/* ---------- Modalidades: precios ---------- */
+async function cargarPreciosModalidad() {
+  try {
+    const data = await api("/api/catalogo/modalidades-venta/");
+    for (const a of data) {
+      if (a.codigo === "9000") document.getElementById("precio-diaria").innerHTML = `${money(a.precio_venta)} <small>c/u</small>`;
+      if (a.codigo === "9002") document.getElementById("precio-semanal").innerHTML = `${money(a.precio_venta)} <small>la semana</small>`;
+    }
+  } catch (e) { /* no bloquea el resto de la página */ }
+}
+
+/* ---------- Menú de la semana (diaria / semanal) ---------- */
+function fotoUrl(plato) {
+  return plato.imagen || null;
+}
+
+function construirGrilla(contId, prefijo, conInput) {
+  const cont = document.getElementById(contId);
+  cont.innerHTML = "";
+  for (const [codigoDia, nombreDia] of DIAS) {
+    const col = document.createElement("div");
+    col.className = "dia-card";
+    const opciones = (menuActivo.dias[codigoDia] || []);
+    if (opciones.length === 0) {
+      col.classList.add("dia-sin-menu");
+      col.innerHTML = `<h4>${nombreDia}</h4><p class="dia-sin-menu-texto">Menú a confirmar</p>`;
+      cont.appendChild(col);
+      continue;
+    }
+    let html = `<h4>${nombreDia}</h4><div class="dia-opciones">`;
+    for (const op of opciones) {
+      const plato = op.plato;
+      const foto = fotoUrl(plato);
+      const inputName = `${prefijo}-${codigoDia}`;
+      html += `
+        <label class="opcion-plato-mini ${foto ? "" : "sin-foto-mini"}" data-input="${inputName}">
+          <input type="radio" name="${inputName}" value="${plato.codigo}">
+          ${foto ? `<img src="${foto}" alt="">` : ""}
+          <span class="opcion-plato-nombre">${plato.nombre}${plato.es_vegetariano ? " 🌱" : ""}${plato.requiere_consulta ? '<span class="requiere-consulta-tag">consultar</span>' : ""}</span>
+        </label>`;
+    }
+    html += `</div>`;
+    col.innerHTML = html;
+    cont.appendChild(col);
+  }
+  // marcar visualmente la opción tildada
+  cont.querySelectorAll('input[type=radio]').forEach(inp => {
+    inp.addEventListener("change", () => {
+      const grupo = cont.querySelectorAll(`label[data-input="${inp.name}"]`);
+      grupo.forEach(l => l.classList.remove("activa"));
+      inp.closest("label").classList.add("activa");
+      if (prefijo === "semanal") actualizarResumenSemana();
+    });
+  });
+}
+
+async function cargarMenuSemanal() {
+  try {
+    menuActivo = await api("/api/catalogo/menu-semanal/activo/");
+  } catch (e) {
+    const msg = `<div class="error-carga">No hay un menú semanal publicado por ahora. Probá con "A la carta" mientras tanto.</div>`;
+    document.getElementById("dias-grilla-diaria").innerHTML = msg;
+    document.getElementById("dias-grilla-semanal").innerHTML = msg;
+    return;
+  }
+  construirGrilla("dias-grilla-diaria", "diaria");
+  construirGrilla("dias-grilla-semanal", "semanal");
+  actualizarResumenSemana();
+}
+
+function leerSeleccionDia(prefijo, codigoDia) {
+  const el = document.querySelector(`input[name="${prefijo}-${codigoDia}"]:checked`);
+  return el ? el.value : null;
+}
+
+function actualizarResumenSemana() {
+  const lista = document.getElementById("resumen-semana-lista");
+  const boton = document.getElementById("boton-confirmar-semana");
+  let completos = 0;
+  lista.innerHTML = "";
+  for (const [codigoDia, nombreDia] of DIAS) {
+    const valor = leerSeleccionDia("semanal", codigoDia);
+    const fila = document.createElement("div");
+    fila.className = "resumen-semana-fila" + (valor ? "" : " vacia");
+    if (valor) {
+      completos++;
+      const opciones = menuActivo.dias[codigoDia] || [];
+      const plato = opciones.find(o => o.plato.codigo === valor);
+      fila.innerHTML = `<strong>${nombreDia}:</strong> ${plato ? plato.plato.nombre : valor}`;
+    } else {
+      fila.innerHTML = `<strong>${nombreDia}:</strong> sin elegir todavía`;
+    }
+    lista.appendChild(fila);
+  }
+  boton.disabled = completos !== 5;
+}
+
+document.getElementById("boton-agregar-diaria").addEventListener("click", () => {
+  const elegido = DIAS.map(([c]) => [c, leerSeleccionDia("diaria", c)]).filter(([, v]) => v);
+  if (elegido.length !== 1) {
+    toast("Elegí exactamente 1 opción (de un solo día) para la vianda diaria.", true);
+    return;
+  }
+  agregarAlCarrito({
+    modalidad_venta: "VIANDA_DIARIA",
+    selecciones_dias: [{ dia_semana: elegido[0][0], plato_codigo: elegido[0][1] }],
+  }, "Vianda diaria agregada al pedido.");
+});
+
+document.getElementById("boton-confirmar-semana").addEventListener("click", () => {
+  const selecciones = DIAS.map(([c]) => ({ dia_semana: c, plato_codigo: leerSeleccionDia("semanal", c) }));
+  if (selecciones.some(s => !s.plato_codigo)) {
+    toast("Elegí un plato para cada uno de los 5 días.", true);
+    return;
+  }
+  agregarAlCarrito({ modalidad_venta: "VIANDA_SEMANAL", selecciones_dias: selecciones }, "Semana completa agregada al pedido.");
+});
+
+/* ---------- A la carta ---------- */
+async function cargarCatalogoALaCarta() {
+  const cont = document.getElementById("grilla-catalogo");
+  try {
+    const data = await api("/api/catalogo/articulos/?linea_negocio=VIANDAS");
+    catalogoALaCarta = data.filter(a => a.categoria_nombre !== "Modalidad de Venta");
+  } catch (e) {
+    cont.innerHTML = `<div class="error-carga">No se pudo cargar el catálogo: ${errText(e)}</div>`;
+    return;
+  }
+  construirFiltros();
+  pintarCatalogo();
+}
+
+function construirFiltros() {
+  const cont = document.getElementById("filtros");
+  const categorias = [...new Set(catalogoALaCarta.map(a => a.categoria_nombre))].sort();
+  cont.innerHTML = `<button type="button" class="filtro activo" data-cat="todas">Todas</button>` +
+    categorias.map(c => `<button type="button" class="filtro" data-cat="${c}">${c}</button>`).join("");
+  cont.querySelectorAll(".filtro").forEach(btn => {
+    btn.addEventListener("click", () => {
+      cont.querySelectorAll(".filtro").forEach(b => b.classList.remove("activo"));
+      btn.classList.add("activo");
+      categoriaActiva = btn.dataset.cat;
+      pintarCatalogo();
+    });
+  });
+}
+
+document.getElementById("campo-busqueda").addEventListener("input", (e) => {
+  textoBusqueda = e.target.value.trim().toLowerCase();
+  pintarCatalogo();
+});
+
+function pintarCatalogo() {
+  const cont = document.getElementById("grilla-catalogo");
+  const avisoVacio = document.getElementById("aviso-sin-resultados");
+  let items = catalogoALaCarta;
+  if (categoriaActiva !== "todas") items = items.filter(a => a.categoria_nombre === categoriaActiva);
+  if (textoBusqueda) {
+    items = items.filter(a =>
+      a.nombre.toLowerCase().includes(textoBusqueda) ||
+      (a.descripcion || "").toLowerCase().includes(textoBusqueda)
+    );
+  }
+  if (items.length === 0) {
+    cont.innerHTML = "";
+    avisoVacio.classList.add("visible");
+    return;
+  }
+  avisoVacio.classList.remove("visible");
+  cont.innerHTML = "";
+  for (const a of items) {
+    const tarjeta = document.createElement("div");
+    tarjeta.className = "tarjeta-plato";
+    tarjeta.innerHTML = `
+      <div class="tarjeta-foto ${a.imagen ? "" : "sin-foto"}">
+        ${a.imagen ? `<img src="${a.imagen}" alt="${a.nombre}">` : "🍽️"}
+        ${a.es_vegetariano ? '<span class="insignia-veg">🌱 Vegetariano</span>' : ""}
+        <span class="insignia-numero">#${a.codigo}</span>
+      </div>
+      <div class="tarjeta-cuerpo">
+        <span class="tarjeta-categoria">${a.categoria_nombre}</span>
+        <h3>${a.nombre}</h3>
+        <p class="tarjeta-descripcion">${a.descripcion_web || a.descripcion || ""}</p>
+        <div class="tarjeta-pie">
+          <div class="tarjeta-precio">
+            <strong class="${a.requiere_consulta ? "precio-consultar" : ""}">${a.requiere_consulta ? "A consultar" : money(a.precio_venta)}</strong>
+            <span>por porción</span>
+          </div>
+          <div class="selector-cantidad">
+            <button type="button" data-restar="${a.codigo}">−</button>
+            <span id="cant-${a.codigo}">1</span>
+            <button type="button" data-sumar="${a.codigo}">+</button>
+          </div>
+        </div>
+        <button type="button" class="boton tarjeta-agregar" data-agregar="${a.codigo}">Agregar al pedido</button>
+      </div>
+    `;
+    cont.appendChild(tarjeta);
+  }
+  cont.querySelectorAll("[data-restar]").forEach(b => b.addEventListener("click", () => {
+    const span = document.getElementById(`cant-${b.dataset.restar}`);
+    span.textContent = Math.max(1, parseInt(span.textContent) - 1);
+  }));
+  cont.querySelectorAll("[data-sumar]").forEach(b => b.addEventListener("click", () => {
+    const span = document.getElementById(`cant-${b.dataset.sumar}`);
+    span.textContent = parseInt(span.textContent) + 1;
+  }));
+  cont.querySelectorAll("[data-agregar]").forEach(b => b.addEventListener("click", () => {
+    const codigo = b.dataset.agregar;
+    const cantidad = document.getElementById(`cant-${codigo}`).textContent;
+    agregarAlCarrito({ modalidad_venta: "A_LA_CARTA", articulo_codigo: codigo, cantidad }, "Se agregó a tu pedido.");
+  }));
+}
+
+/* ---------- Confirmar pedido (backend + WhatsApp) ---------- */
+function armarMensajeWhatsapp(pedido, tipoEntrega, direccion, nombre, notas) {
+  const lineas = [];
+  lineas.push(`¡Hola Aromas! 👋 Quiero confirmar mi pedido #${pedido.id}:`);
+  lineas.push("");
+  for (const item of pedido.items) {
+    let linea = `• ${item.articulo.nombre} x${parseFloat(item.cantidad)}`;
+    if (item.selecciones_dias && item.selecciones_dias.length) {
+      const dias = item.selecciones_dias.map(s => {
+        const nombreDia = (DIAS.find(d => d[0] === s.dia_semana) || [, s.dia_semana])[1];
+        return `${nombreDia}: ${s.plato.nombre}`;
+      }).join(", ");
+      linea += ` (${dias})`;
+    }
+    linea += item.requiere_consulta ? " — a consultar" : ` — ${money(item.subtotal)}`;
+    lineas.push(linea);
+  }
+  lineas.push("");
+  lineas.push(`Total estimado: ${money(pedido.total_estimado)}`);
+  lineas.push(tipoEntrega === "DELIVERY" ? `Envío a: ${direccion}` : "Retiro en el local");
+  lineas.push(`Nombre: ${nombre}`);
+  if (notas) lineas.push(`Notas: ${notas}`);
+  lineas.push("");
+  lineas.push("Te mando el comprobante de pago por acá mismo para confirmar. ¡Gracias!");
+  return lineas.join("\n");
+}
+
+document.getElementById("boton-enviar-pedido").addEventListener("click", async () => {
+  if (!token || !carritoActual || !carritoActual.items.length) {
+    toast("Tu pedido está vacío.", true);
+    return;
+  }
+  const nombre = document.getElementById("campo-nombre").value.trim();
+  const telefono = document.getElementById("campo-telefono").value.trim();
+  const tipoEntrega = document.querySelector('input[name="entrega"]:checked').value === "envio" ? "DELIVERY" : "RETIRO";
+  const direccion = document.getElementById("campo-direccion").value.trim();
+  const notas = document.getElementById("campo-notas").value.trim();
+
+  if (!nombre) { toast("Falta tu nombre.", true); return; }
+  if (!telefono) { toast("Falta tu WhatsApp o teléfono.", true); return; }
+  if (tipoEntrega === "DELIVERY" && !direccion) { toast("Falta la dirección de entrega.", true); return; }
+
+  const body = {
+    cliente: { nombre, telefono, whatsapp: telefono },
+    tipo_entrega: tipoEntrega,
+    observaciones: notas,
+  };
+  if (tipoEntrega === "DELIVERY") body.direccion = { direccion };
+
+  const boton = document.getElementById("boton-enviar-pedido");
+  boton.disabled = true;
+  boton.textContent = "Confirmando…";
+  try {
+    const pedido = await api(`/api/pedidos/carrito/${token}/confirmar/`, { method: "POST", body: JSON.stringify(body) });
+    const mensaje = armarMensajeWhatsapp(pedido, tipoEntrega, direccion, nombre, notas);
+    window.open(`https://wa.me/${WHATSAPP_NEGOCIO}?text=${encodeURIComponent(mensaje)}`, "_blank");
+    token = null;
+    localStorage.removeItem("aromas_carrito_token");
+    carritoActual = null;
+    pintarCarrito();
+    cerrarCarritoFn();
+    toast(`¡Pedido #${pedido.id} confirmado! Te llevamos a WhatsApp para que nos mandes el comprobante.`);
+  } catch (e) {
+    toast(errText(e), true);
+  } finally {
+    boton.disabled = false;
+    boton.textContent = "💬 Enviar pedido por WhatsApp";
+  }
+});
+
+/* ---------- Arranque ---------- */
+(async function init() {
+  await Promise.all([
+    cargarPreciosModalidad(),
+    cargarMenuSemanal(),
+    cargarCatalogoALaCarta(),
+  ]);
+  await refrescarCarrito();
+})();
+</script>
+
+</body>
+</html>

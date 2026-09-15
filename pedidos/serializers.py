@@ -44,7 +44,7 @@ class PlatoMinimoSerializer(serializers.ModelSerializer):
 class ArticuloMinimoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Articulo
-        fields = ["id", "codigo", "nombre", "precio_venta"]
+        fields = ["id", "codigo", "nombre", "precio_venta", "imagen"]
 
 
 class CarritoItemDiaSemanaReadSerializer(serializers.ModelSerializer):
