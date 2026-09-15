@@ -23,4 +23,4 @@ services:
 
 databases:
   - name: aromas-db
-    plan: starter
+    plan: 0.1c-256mb # ~USD 6/mes, el reemplazo del viejo plan "Starter" (ya no se puede crear)
