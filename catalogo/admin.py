@@ -36,6 +36,20 @@ class RecetaInline(admin.TabularInline):
     fk_name = "articulo"
     extra = 0
     autocomplete_fields = ["insumo"]
+    fields = ("insumo", "costo_unitario_insumo_fmt", "cantidad", "unidad", "costo_item_fmt", "observaciones")
+    readonly_fields = ("costo_unitario_insumo_fmt", "costo_item_fmt")
+
+    @admin.display(description="$ x unidad del insumo")
+    def costo_unitario_insumo_fmt(self, obj):
+        if not obj.pk:
+            return "—"
+        return f"$ {obj.insumo.costo_uso:,.4f}"
+
+    @admin.display(description="Costo de esta línea")
+    def costo_item_fmt(self, obj):
+        if not obj.pk:
+            return "—"
+        return f"$ {obj.cantidad * obj.insumo.costo_uso:,.2f}"
 
 
 @admin.register(Articulo)
