@@ -203,3 +203,28 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Email (aviso automático de "aumentos de costo", ver catalogo/management/
+# commands/enviar_alerta_costos.py). Pensado para usar Gmail SMTP con una
+# "contraseña de aplicación" (no la contraseña normal de la cuenta) -- se
+# configura 100% con variables de entorno, sin esto definido el envío
+# simplemente no anda (se loguea el error, no rompe nada más del sitio).
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = os.environ.get("EMAIL_HOST", "smtp.gmail.com")
+EMAIL_PORT = int(os.environ.get("EMAIL_PORT", "587"))
+EMAIL_USE_TLS = os.environ.get("EMAIL_USE_TLS", "True") == "True"
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
+DEFAULT_FROM_EMAIL = os.environ.get("DEFAULT_FROM_EMAIL", EMAIL_HOST_USER)
+
+# A dónde mandar el aviso de aumentos de costo (puede ser una lista separada
+# por comas). Si no está seteada, se usa EMAIL_HOST_USER.
+ALERTAS_COSTO_EMAIL = [
+    e.strip() for e in os.environ.get("ALERTAS_COSTO_EMAIL", "").split(",") if e.strip()
+] or ([EMAIL_HOST_USER] if EMAIL_HOST_USER else [])
+
+# Token secreto para el endpoint /cron/alerta-costos/ que dispara el envío
+# del aviso (lo llama un cron externo gratuito, ver guía de despliegue).
+# Sin este definido en el entorno, el endpoint rechaza cualquier pedido.
+CRON_ALERTA_COSTOS_TOKEN = os.environ.get("CRON_ALERTA_COSTOS_TOKEN", "")

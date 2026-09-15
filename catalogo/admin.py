@@ -1,15 +1,65 @@
+import io
+
 from django.contrib import admin
+from django.http import HttpResponse
+from django.utils import timezone
 from django.utils.html import format_html
 
 from .models import (
     Articulo,
     Categoria,
+    HistorialCostoArticulo,
     Marca,
     MenuSemanal,
     OpcionMenuDia,
     Receta,
+    TipoArticulo,
     Unidad,
 )
+
+
+def _exportar_historial_excel(queryset):
+    """Arma un .xlsx en memoria con las columnas que pidió Pichón: código,
+    descripción, ingrediente que aumentó, precio costo, precio venta y
+    % de ganancia. Se usa tanto desde la acción del admin como desde el
+    management command que manda el email periódico."""
+    from openpyxl import Workbook
+    from openpyxl.styles import Font
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Aumentos de costo"
+    encabezados = [
+        "Código", "Descripción", "Ingrediente que aumentó",
+        "Costo anterior", "Precio costo nuevo", "Precio venta",
+        "% ganancia", "Fecha", "Revisado",
+    ]
+    ws.append(encabezados)
+    for cell in ws[1]:
+        cell.font = Font(bold=True)
+
+    for h in queryset.select_related("articulo"):
+        pct = h.pct_ganancia_al_momento
+        ws.append([
+            h.articulo.codigo or "",
+            h.articulo.nombre,
+            h.ingrediente_detalle or "—",
+            float(h.costo_anterior),
+            float(h.costo_nuevo),
+            float(h.precio_venta_al_momento),
+            round(float(pct), 1) if pct is not None else "",
+            timezone.localtime(h.fecha).strftime("%d/%m/%Y %H:%M"),
+            "Sí" if h.revisado else "No",
+        ])
+
+    for col in ws.columns:
+        largo = max(len(str(c.value)) for c in col if c.value is not None)
+        ws.column_dimensions[col[0].column_letter].width = min(largo + 2, 40)
+
+    buffer = io.BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
+    return buffer
 
 
 @admin.register(Unidad)
@@ -98,6 +148,37 @@ class ArticuloAdmin(admin.ModelAdmin):
     def linea_negocio_fmt(self, obj):
         return obj.categoria.get_linea_negocio_display() if obj.categoria else "-"
 
+    def get_readonly_fields(self, request, obj=None):
+        fields = list(self.readonly_fields)
+        if obj and obj.tipo == TipoArticulo.ELABORADO and obj.receta_items.exists():
+            # Con receta cargada, "Precio costo" deja de ser editable a mano:
+            # se recalcula solo a partir del costo real de los ingredientes
+            # (ver save_related) para que nunca quede desactualizado.
+            fields.append("precio_costo")
+        return fields
+
+    def save_model(self, request, obj, form, change):
+        costo_anterior = None
+        if change and "precio_costo" in form.changed_data:
+            # Traigo el valor previo de la base (form.initial puede venir
+            # vacío en algunos casos) para comparar contra lo que se acaba
+            # de tipear y, si subió, dejarlo en el historial.
+            previo = Articulo.objects.filter(pk=obj.pk).values_list("precio_costo", flat=True).first()
+            costo_anterior = previo
+        super().save_model(request, obj, form, change)
+        if costo_anterior is not None and obj.precio_costo > costo_anterior:
+            HistorialCostoArticulo.objects.create(
+                articulo=obj,
+                ingrediente_detalle="",
+                costo_anterior=costo_anterior,
+                costo_nuevo=obj.precio_costo,
+                precio_venta_al_momento=obj.precio_venta,
+            )
+
+    def save_related(self, request, form, formsets, change):
+        super().save_related(request, form, formsets, change)
+        form.instance.sincronizar_precio_costo_desde_receta()
+
     @admin.display(description="Foto")
     def foto_mini(self, obj):
         if not obj.imagen:
@@ -115,6 +196,60 @@ class ArticuloAdmin(admin.ModelAdmin):
             '<img src="{}" style="max-width:220px;max-height:220px;object-fit:cover;border-radius:8px;">',
             obj.imagen.url,
         )
+
+
+@admin.register(HistorialCostoArticulo)
+class HistorialCostoArticuloAdmin(admin.ModelAdmin):
+    """El listado de "aumentos de costo" que pidió Pichón: código, desc,
+    ingrediente que aumentó, precio costo, precio venta y % de ganancia.
+    Por defecto muestra sólo lo no revisado (ver get_queryset/lista);
+    "Marcar como revisado" es la forma de sacar algo de esa cola una vez
+    que se decidió (o no) tocar el precio de venta."""
+
+    list_display = (
+        "fecha", "codigo_fmt", "articulo", "ingrediente_detalle",
+        "costo_anterior", "costo_nuevo", "precio_venta_al_momento",
+        "pct_ganancia_fmt", "revisado",
+    )
+    list_filter = ("revisado", "fecha")
+    search_fields = ("articulo__codigo", "articulo__nombre", "ingrediente_detalle")
+    date_hierarchy = "fecha"
+    actions = ["marcar_revisado", "exportar_excel"]
+    list_per_page = 100
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request).select_related("articulo")
+        # Sin filtros ni búsqueda aplicados (primer ingreso a la pantalla),
+        # arranco mostrando sólo lo pendiente -- así la pantalla es directamente
+        # la "cola de revisión" y no hay que acordarse de filtrar.
+        if not request.GET:
+            return qs.filter(revisado=False)
+        return qs
+
+    @admin.display(description="Código", ordering="articulo__codigo")
+    def codigo_fmt(self, obj):
+        return obj.articulo.codigo or "—"
+
+    @admin.display(description="% ganancia")
+    def pct_ganancia_fmt(self, obj):
+        pct = obj.pct_ganancia_al_momento
+        return f"{pct:.1f}%" if pct is not None else "—"
+
+    @admin.action(description="Marcar como revisado")
+    def marcar_revisado(self, request, queryset):
+        actualizados = queryset.filter(revisado=False).update(revisado=True, revisado_fecha=timezone.now())
+        self.message_user(request, f"{actualizados} aumento(s) marcado(s) como revisado.")
+
+    @admin.action(description="Exportar a Excel")
+    def exportar_excel(self, request, queryset):
+        buffer = _exportar_historial_excel(queryset)
+        nombre = f"aumentos_costo_{timezone.localdate():%Y%m%d}.xlsx"
+        response = HttpResponse(
+            buffer.read(),
+            content_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        )
+        response["Content-Disposition"] = f'attachment; filename="{nombre}"'
+        return response
 
 
 class OpcionMenuDiaInline(admin.TabularInline):

@@ -25,6 +25,7 @@ mantiene tal cual estaba: ahora el "plato" de cada opción es un Articulo
 """
 
 from datetime import timedelta
+from decimal import ROUND_HALF_UP, Decimal
 
 from django.core.exceptions import ValidationError
 from django.db import models
@@ -138,7 +139,10 @@ class Articulo(models.Model):
 
     precio_costo = models.DecimalField(
         max_digits=12, decimal_places=2, default=0,
-        help_text="Costo de la unidad de COMPRA (precio del proveedor)",
+        help_text="Costo de la unidad de COMPRA (precio del proveedor). Para un "
+                   "Elaborado con receta cargada, este valor se recalcula solo a "
+                   "partir del costo real de los ingredientes al guardar -- no se "
+                   "edita a mano.",
     )
     precio_venta = models.DecimalField(
         max_digits=12, decimal_places=2, default=0,
@@ -222,6 +226,67 @@ class Articulo(models.Model):
     def precio_sugerido(self):
         return calcular_precio_sugerido(self.costo_para_precio, self.alicuota_iva, self.markup_pct)
 
+    @property
+    def pct_ganancia(self):
+        """% de ganancia entre precio_costo (o costo_para_precio si no hay
+        precio_costo cargado) y precio_venta. Sólo informativo."""
+        base = self.precio_costo if self.precio_costo else self.costo_para_precio
+        if not self.precio_venta or not base:
+            return 0
+        return (self.precio_venta - base) / self.precio_venta * 100
+
+    def sincronizar_precio_costo_desde_receta(self, guardar=True):
+        """Para un ELABORADO con receta cargada: pone `precio_costo` en línea
+        con el costo real de los ingredientes (`costo_receta`), multiplicado
+        por `relacion_unidades` para que `costo_uso` termine dando lo mismo
+        que `costo_receta`. Se llama después de guardar los ítems de receta
+        (el admin lo hace solo); devuelve True si hubo que actualizar algo.
+        No hace nada si el artículo no es ELABORADO o todavía no tiene
+        ingredientes cargados -- en ese caso `precio_costo` se sigue
+        cargando a mano, como cualquier insumo.
+
+        De paso, detecta qué insumo(s) de la receta subieron de costo desde
+        la última vez (comparando contra el snapshot guardado en cada
+        Receta.costo_uso_insumo_anterior) y, si el costo total del elaborado
+        terminó subiendo, deja registrado un HistorialCostoArticulo para que
+        aparezca en el listado de "aumentos de costo" del admin."""
+        if self.tipo != TipoArticulo.ELABORADO or not self.receta_items.exists():
+            return False
+
+        ingredientes_que_subieron = []
+        for item in self.receta_items.select_related("insumo").all():
+            # Cuantizo a la misma precisión que guarda el campo (4 decimales):
+            # costo_uso sale de una división que puede dar decimal periódico
+            # (ej. dividir por 2900), así que comparar el valor "crudo" contra
+            # lo que quedó guardado la vez anterior detecta un "aumento"
+            # falso por puro redondeo, incluso cuando el insumo no cambió.
+            costo_actual = item.insumo.costo_uso.quantize(Decimal("0.0001"), rounding=ROUND_HALF_UP)
+            anterior = item.costo_uso_insumo_anterior
+            if anterior is not None and costo_actual > anterior:
+                ingredientes_que_subieron.append(item.insumo.nombre)
+            if costo_actual != anterior:
+                item.costo_uso_insumo_anterior = costo_actual
+                item.save(update_fields=["costo_uso_insumo_anterior"])
+
+        nuevo_precio_costo = (self.costo_receta * (self.relacion_unidades or 1)).quantize(
+            Decimal("0.01"), rounding=ROUND_HALF_UP
+        )
+        if nuevo_precio_costo != self.precio_costo:
+            costo_anterior = self.precio_costo
+            self.precio_costo = nuevo_precio_costo
+            if guardar:
+                self.save(update_fields=["precio_costo"])
+            if nuevo_precio_costo > costo_anterior:
+                HistorialCostoArticulo.objects.create(
+                    articulo=self,
+                    ingrediente_detalle=", ".join(ingredientes_que_subieron) or "receta (varios insumos)",
+                    costo_anterior=costo_anterior,
+                    costo_nuevo=nuevo_precio_costo,
+                    precio_venta_al_momento=self.precio_venta,
+                )
+            return True
+        return False
+
 
 class Receta(models.Model):
     """Composición de un artículo elaborado. `articulo` es el elaborado que
@@ -237,6 +302,11 @@ class Receta(models.Model):
     cantidad = models.DecimalField(max_digits=12, decimal_places=4, default=1)
     unidad = models.ForeignKey(Unidad, on_delete=models.PROTECT)
     observaciones = models.CharField(max_length=255, blank=True)
+    costo_uso_insumo_anterior = models.DecimalField(
+        max_digits=14, decimal_places=4, null=True, blank=True, editable=False,
+        help_text="Uso interno: último costo x uso conocido del insumo, para detectar "
+                   "aumentos y armar el historial de costos.",
+    )
 
     class Meta:
         verbose_name = "Ítem de receta"
@@ -249,6 +319,58 @@ class Receta(models.Model):
     def clean(self):
         if self.articulo_id and self.insumo_id and self.articulo_id == self.insumo_id:
             raise ValidationError("Un artículo no puede ser insumo de sí mismo.")
+
+
+class HistorialCostoArticulo(models.Model):
+    """Registro de cada vez que sube el `precio_costo` de un Articulo (sea un
+    insumo cargado a mano en el admin, o un elaborado recalculado solo desde
+    su receta). No se generan registros cuando el costo baja o no cambia --
+    sólo interesa el aumento, que es lo que puede ameritar revisar el precio
+    de venta.
+
+    Se arma como un historial que el admin va "revisando" (campo `revisado`)
+    en vez de compararse contra un umbral en %, porque varios aumentos
+    chiquitos seguidos nunca superarían un % fijo tomados de a uno -- acá
+    queda cada aumento a la vista hasta que alguien lo marca como
+    revisado, sin importar cuán chico haya sido."""
+
+    articulo = models.ForeignKey(
+        Articulo, on_delete=models.CASCADE, related_name="historial_costos"
+    )
+    ingrediente_detalle = models.CharField(
+        max_length=255, blank=True,
+        help_text="Para elaborados: nombre(s) del/los insumo(s) de la receta que subieron "
+                   "de costo y motivaron este aumento. Vacío para insumos cargados a mano.",
+    )
+    costo_anterior = models.DecimalField(max_digits=14, decimal_places=4)
+    costo_nuevo = models.DecimalField(max_digits=14, decimal_places=4)
+    precio_venta_al_momento = models.DecimalField(max_digits=12, decimal_places=2)
+    fecha = models.DateTimeField(auto_now_add=True)
+    revisado = models.BooleanField(
+        default=False,
+        help_text="Tildar una vez que se revisó si corresponde ajustar el precio de venta.",
+    )
+    revisado_fecha = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Aumento de costo"
+        verbose_name_plural = "Historial de aumentos de costo"
+        ordering = ["-fecha"]
+
+    def __str__(self):
+        return f"{self.articulo} · $ {self.costo_anterior} → $ {self.costo_nuevo} ({self.fecha:%d/%m/%Y})"
+
+    @property
+    def pct_aumento(self):
+        if not self.costo_anterior:
+            return None
+        return (self.costo_nuevo - self.costo_anterior) / self.costo_anterior * 100
+
+    @property
+    def pct_ganancia_al_momento(self):
+        if not self.precio_venta_al_momento:
+            return None
+        return (self.precio_venta_al_momento - self.costo_nuevo) / self.precio_venta_al_momento * 100
 
 
 DIAS_SEMANA_HABILES = [

@@ -21,9 +21,12 @@ from django.urls import include, path
 from django.views.generic import TemplateView
 from django.views.static import serve as static_serve
 
+from catalogo.urls import cron_urlpatterns
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/catalogo/", include("catalogo.urls")),
+    path("", include(cron_urlpatterns)),
     path("api/pedidos/", include("pedidos.urls")),
     path(
         "probar-carrito/",
