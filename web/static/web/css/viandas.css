@@ -46,21 +46,25 @@
   font-weight: 600;
 }
 
-/* ---- Días (diaria / semanal) ---- */
+/* ---- Días (diaria / semanal) ----
+   En PC, los 5 días entran siempre en una sola fila (sin scroll
+   horizontal); si no hay lugar (pantallas chicas), se apilan uno
+   debajo del otro -- ver el media query más abajo. */
 .dias-grilla {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
   margin-bottom: 28px;
 }
 .dia-card {
   background: var(--blanco);
   border-radius: var(--radio);
-  padding: 18px;
+  padding: 14px;
   box-shadow: var(--sombra);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  min-width: 0; /* para que el texto largo no fuerce el ancho de la columna */
 }
 .dia-card h4 {
   font-family: "Jost", sans-serif;
@@ -163,4 +167,11 @@
 
 @media (max-width: 780px) {
   .tarjetas-modalidad { grid-template-columns: 1fr; }
+}
+
+/* Los 5 días de la semana: en pantallas angostas ya no entran cómodos en
+   una fila, así que se apilan uno debajo del otro (en vez de achicarse
+   hasta quedar ilegibles). */
+@media (max-width: 960px) {
+  .dias-grilla { grid-template-columns: 1fr; }
 }
