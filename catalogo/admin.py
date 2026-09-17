@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.utils.html import format_html
 
+from django import forms
+
 from .models import (
     Articulo,
     Categoria,
@@ -13,6 +15,7 @@ from .models import (
     MenuSemanal,
     OpcionMenuDia,
     Receta,
+    Sector,
     TipoArticulo,
     Unidad,
 )
@@ -102,6 +105,13 @@ class RecetaInline(admin.TabularInline):
         return f"$ {obj.cantidad * obj.insumo.costo_uso:,.2f}"
 
 
+@admin.register(Sector)
+class SectorAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "activo")
+    list_filter = ("activo",)
+    search_fields = ("nombre",)
+
+
 @admin.register(Articulo)
 class ArticuloAdmin(admin.ModelAdmin):
     list_display = (
@@ -117,6 +127,12 @@ class ArticuloAdmin(admin.ModelAdmin):
     list_per_page = 50
     inlines = [RecetaInline]
     readonly_fields = ("costo_uso_fmt", "costo_receta_fmt", "precio_sugerido_fmt", "foto_preview")
+
+    def formfield_for_manytomany(self, db_field, request, **kwargs):
+        if db_field.name == "sectores_impresion":
+            kwargs["widget"] = forms.CheckboxSelectMultiple()
+            kwargs["queryset"] = Sector.objects.exclude(nombre="TICKET").order_by("nombre")
+        return super().formfield_for_manytomany(db_field, request, **kwargs)
     search_help_text = "Buscar por código o nombre"
     fieldsets = (
         (None, {"fields": ("codigo", "codigo_barras", "nombre", "descripcion", "categoria", "marca", "tipo")}),
@@ -129,6 +145,7 @@ class ArticuloAdmin(admin.ModelAdmin):
         ("Stock", {"fields": ("stock_actual", "stock_minimo", "controla_stock")}),
         ("Web", {"fields": ("foto_preview", "imagen", "visible_web", "descripcion_web")}),
         ("Viandas / Catering (si aplica)", {"fields": ("es_vegetariano", "unidades_por_presentacion", "ingredientes_texto")}),
+        ("Comanda", {"fields": ("sectores_impresion",)}),
         ("Estado", {"fields": ("activo",)}),
     )
 

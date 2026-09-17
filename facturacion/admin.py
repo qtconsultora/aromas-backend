@@ -1,6 +1,16 @@
 from django.contrib import admin
 
-from .models import CajaMovimiento, Comprobante, ComprobanteItem, Numeracion, Pago, Turno
+from .models import (
+    CajaMovimiento,
+    ConfigImpresora,
+    Comprobante,
+    ComprobanteItem,
+    Mesa,
+    MesaItem,
+    Numeracion,
+    Pago,
+    Turno,
+)
 
 
 class ComprobanteItemInline(admin.TabularInline):
@@ -38,3 +48,22 @@ class TurnoAdmin(admin.ModelAdmin):
     list_display = ("id", "usuario", "estado", "fecha_apertura", "fecha_cierre", "total_ventas")
     list_filter = ("estado",)
     inlines = [CajaMovimientoInline]
+
+
+class MesaItemInline(admin.TabularInline):
+    model = MesaItem
+    extra = 0
+    autocomplete_fields = ["articulo"]
+
+
+@admin.register(Mesa)
+class MesaAdmin(admin.ModelAdmin):
+    list_display = ("numero", "nombre", "estado", "turno", "usuario_apertura", "fecha_apertura")
+    list_filter = ("estado",)
+    inlines = [MesaItemInline]
+
+
+@admin.register(ConfigImpresora)
+class ConfigImpresoraAdmin(admin.ModelAdmin):
+    list_display = ("sector", "punto_venta", "nombre_windows", "activa")
+    list_filter = ("sector", "punto_venta", "activa")

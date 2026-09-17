@@ -211,3 +211,89 @@ class CajaMovimiento(models.Model):
 
     def __str__(self):
         return f"{self.get_tipo_display()} ${self.monto} — {self.concepto}"
+
+
+class EstadoMesa(models.TextChoices):
+    LIBRE = "LIBRE", "Libre"
+    OCUPADA = "OCUPADA", "Ocupada"
+
+
+class Mesa(models.Model):
+    """Mesa física del local (consumo en el salón). Se abre al sentarse la
+    primera persona y se va acumulando pedido (MesaItem) hasta que se cobra
+    -- ahí se convierte todo en un Comprobante real (igual que una venta de
+    mostrador) y la mesa vuelve a quedar LIBRE."""
+
+    numero = models.PositiveSmallIntegerField(unique=True)
+    nombre = models.CharField(max_length=50, blank=True, help_text="Ej. 'Mesa 3', 'Barra', 'Terraza 1'.")
+    estado = models.CharField(max_length=10, choices=EstadoMesa.choices, default=EstadoMesa.LIBRE)
+    turno = models.ForeignKey(
+        Turno, on_delete=models.SET_NULL, null=True, blank=True, related_name="mesas",
+        help_text="Turno de caja en el que se abrió (para poder auditar/cerrar todo junto).",
+    )
+    usuario_apertura = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True, related_name="mesas_abiertas"
+    )
+    fecha_apertura = models.DateTimeField(null=True, blank=True)
+    observaciones = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = "Mesa"
+        verbose_name_plural = "Mesas"
+        ordering = ["numero"]
+
+    def __str__(self):
+        return self.nombre or f"Mesa {self.numero}"
+
+
+class MesaItem(models.Model):
+    """Línea de pedido acumulada en una mesa mientras está OCUPADA. Al
+    cobrar la mesa, estas líneas se copian a ComprobanteItem y se borran de
+    acá (el registro permanente queda en el Comprobante, no acá)."""
+
+    mesa = models.ForeignKey(Mesa, on_delete=models.CASCADE, related_name="items")
+    articulo = models.ForeignKey(Articulo, on_delete=models.PROTECT)
+    descripcion = models.CharField(max_length=255, blank=True)
+    cantidad = models.DecimalField(max_digits=12, decimal_places=3, default=1)
+    precio_unit = models.DecimalField(max_digits=12, decimal_places=2, default=0)
+    sectores_enviados = models.CharField(
+        max_length=200, blank=True, default="",
+        help_text="Sectores (separados por coma) a los que ya se mandó a imprimir esta línea -- "
+                   "un artículo puede ir a más de un sector (ej. Cocina y Barra), y cada uno se "
+                   "manda por separado para no reimprimir lo que ya salió.",
+    )
+    observaciones = models.CharField(max_length=255, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = "Ítem de mesa"
+        verbose_name_plural = "Ítems de mesa"
+        ordering = ["created_at"]
+
+    def __str__(self):
+        return f"{self.cantidad} × {self.descripcion or self.articulo}"
+
+
+class ConfigImpresora(models.Model):
+    """Mapea un Sector (catalogo.Sector -- el mismo que se tilda en cada
+    artículo, ej. Cocina/Barra) al nombre real de la impresora en Windows,
+    por punto de venta -- el día que haya más de una terminal, cada una
+    puede tener impresoras físicas distintas conectadas aunque el sector
+    se llame igual."""
+
+    sector = models.ForeignKey("catalogo.Sector", on_delete=models.CASCADE, related_name="impresoras")
+    punto_venta = models.PositiveSmallIntegerField(default=1)
+    nombre_windows = models.CharField(
+        max_length=150, blank=True,
+        help_text="Nombre exacto de la impresora tal como figura en Windows (Dispositivos e impresoras).",
+    )
+    activa = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Configuración de impresora"
+        verbose_name_plural = "Configuración de impresoras"
+        unique_together = ("sector", "punto_venta")
+        ordering = ["punto_venta", "sector__nombre"]
+
+    def __str__(self):
+        return f"{self.sector} (PV{self.punto_venta}) → {self.nombre_windows or 'sin asignar'}"

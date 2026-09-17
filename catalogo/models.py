@@ -108,6 +108,26 @@ def calcular_precio_sugerido(costo, iva_pct, markup_pct):
     return con_iva * (1 + markup_pct / 100)
 
 
+class Sector(models.Model):
+    """Un destino de impresión de comanda (Cocina, Barra, etc.). Es la
+    fuente única de sectores: de acá salen tanto los checks de "dónde
+    imprime" de cada artículo (Articulo.sectores_impresion) como el mapeo
+    a impresora de Windows por terminal (facturacion.ConfigImpresora). El
+    nombre reservado "TICKET" identifica la impresora de mostrador para el
+    comprobante final -- no se ofrece como opción tildable en un artículo."""
+
+    nombre = models.CharField(max_length=30, unique=True)
+    activo = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Sector de impresión"
+        verbose_name_plural = "Sectores de impresión"
+        ordering = ["nombre"]
+
+    def __str__(self):
+        return self.nombre
+
+
 class Articulo(models.Model):
     codigo = models.CharField(max_length=50, unique=True, null=True, blank=True)
     codigo_barras = models.CharField(max_length=50, blank=True)
@@ -182,6 +202,13 @@ class Articulo(models.Model):
         blank=True,
         help_text="Referencia libre (ingredientes tal como figuraban en el catálogo viejo, "
                    "antes de tener recetas reales con cantidades). No se usa para costear.",
+    )
+    sectores_impresion = models.ManyToManyField(
+        "Sector", blank=True, related_name="articulos", verbose_name="Sectores de impresión",
+        help_text="Tildá a qué sector(es) de cocina/barra se manda la comanda de este artículo "
+                   "al venderlo (se puede tildar más de uno, ej. Cocina y Barra a la vez). Sin "
+                   "tildar ninguno = no imprime comanda aparte, sólo queda en el ticket (ej. una "
+                   "gaseosa envasada, o una vianda para llevar).",
     )
 
     activo = models.BooleanField(default=True)
