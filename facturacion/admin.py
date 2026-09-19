@@ -7,6 +7,7 @@ from .models import (
     ComprobanteItem,
     Mesa,
     MesaItem,
+    ZonaSalon,
     Numeracion,
     Pago,
     Turno,
@@ -56,10 +57,17 @@ class MesaItemInline(admin.TabularInline):
     autocomplete_fields = ["articulo"]
 
 
+@admin.register(ZonaSalon)
+class ZonaSalonAdmin(admin.ModelAdmin):
+    list_display = ("nombre", "orden", "activo")
+    list_editable = ("orden", "activo")
+
+
 @admin.register(Mesa)
 class MesaAdmin(admin.ModelAdmin):
-    list_display = ("numero", "nombre", "estado", "turno", "usuario_apertura", "fecha_apertura")
-    list_filter = ("estado",)
+    list_display = ("numero", "nombre", "zona", "capacidad", "forma", "estado", "turno", "usuario_apertura", "fecha_apertura")
+    list_filter = ("estado", "zona")
+    list_editable = ()
     inlines = [MesaItemInline]
 
 

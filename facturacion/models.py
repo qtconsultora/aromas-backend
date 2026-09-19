@@ -213,20 +213,62 @@ class CajaMovimiento(models.Model):
         return f"{self.get_tipo_display()} ${self.monto} — {self.concepto}"
 
 
+class ZonaSalon(models.Model):
+    """Zona física del salón donde están ubicadas las mesas (ej. 'Interior',
+    'Terraza') -- separado a propósito de `catalogo.Sector` (que es a dónde
+    se manda a imprimir cada plato, cocina/barra, no dónde está la mesa).
+    Se usa para las pestañas del mapa de mesas en el cliente local."""
+
+    nombre = models.CharField(max_length=50, unique=True)
+    orden = models.PositiveSmallIntegerField(default=0)
+    activo = models.BooleanField(default=True)
+
+    class Meta:
+        verbose_name = "Zona del salón"
+        verbose_name_plural = "Zonas del salón"
+        ordering = ["orden", "nombre"]
+
+    def __str__(self):
+        return self.nombre
+
+
 class EstadoMesa(models.TextChoices):
     LIBRE = "LIBRE", "Libre"
     OCUPADA = "OCUPADA", "Ocupada"
+    CUENTA_PEDIDA = "CUENTA_PEDIDA", "Cuenta pedida"
+    RESERVADA = "RESERVADA", "Reservada"
+
+
+class FormaMesa(models.TextChoices):
+    CUADRADA = "CUADRADA", "Cuadrada"
+    REDONDA = "REDONDA", "Redonda"
 
 
 class Mesa(models.Model):
     """Mesa física del local (consumo en el salón). Se abre al sentarse la
     primera persona y se va acumulando pedido (MesaItem) hasta que se cobra
     -- ahí se convierte todo en un Comprobante real (igual que una venta de
-    mostrador) y la mesa vuelve a quedar LIBRE."""
+    mostrador) y la mesa vuelve a quedar LIBRE.
+
+    `zona`, `forma`, `ancho`, `alto`, `pos_x`, `pos_y` y `capacidad` son
+    para el mapa visual de mesas del cliente local (arrastrable, por
+    pestaña de zona) -- `pos_x`/`pos_y` los actualiza la app cuando alguien
+    mueve la mesa en "Modo edición", no hace falta tocarlos acá salvo para
+    dejar una posición inicial razonable."""
 
     numero = models.PositiveSmallIntegerField(unique=True)
     nombre = models.CharField(max_length=50, blank=True, help_text="Ej. 'Mesa 3', 'Barra', 'Terraza 1'.")
-    estado = models.CharField(max_length=10, choices=EstadoMesa.choices, default=EstadoMesa.LIBRE)
+    estado = models.CharField(max_length=20, choices=EstadoMesa.choices, default=EstadoMesa.LIBRE)
+    zona = models.ForeignKey(
+        ZonaSalon, on_delete=models.PROTECT, null=True, blank=True, related_name="mesas",
+        help_text="Zona del salón (pestaña en el mapa de mesas). Sin asignar, la mesa no aparece en ningún mapa.",
+    )
+    capacidad = models.PositiveSmallIntegerField(default=4, help_text="Cantidad de comensales.")
+    forma = models.CharField(max_length=10, choices=FormaMesa.choices, default=FormaMesa.CUADRADA)
+    ancho = models.PositiveSmallIntegerField(default=110, help_text="Ancho en píxeles en el mapa de mesas.")
+    alto = models.PositiveSmallIntegerField(default=90, help_text="Alto en píxeles en el mapa de mesas.")
+    pos_x = models.PositiveSmallIntegerField(default=20, help_text="Posición X en el mapa de mesas.")
+    pos_y = models.PositiveSmallIntegerField(default=20, help_text="Posición Y en el mapa de mesas.")
     turno = models.ForeignKey(
         Turno, on_delete=models.SET_NULL, null=True, blank=True, related_name="mesas",
         help_text="Turno de caja en el que se abrió (para poder auditar/cerrar todo junto).",
