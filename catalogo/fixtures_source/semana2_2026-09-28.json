@@ -1,0 +1,143 @@
+{
+  "fecha_inicio": "2026-09-28",
+  "notas": "Semana 2 del ciclo de 5 semanas (menus_semanales_1_a_5)",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": 8000,
+      "codigo_fuente": 8057,
+      "nombre": "Costeletas de Cerdo al Disco con papas y camotes",
+      "descripcion": "Costeletas de cerdo cocinadas a fuego lento estilo \"al disco\", bien tiernas y doradas, acompañadas de papas y camotes asados.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": 8001,
+      "codigo_fuente": 8064,
+      "nombre": "Medallón de pollo gratinado con ensaladas",
+      "descripcion": "Medallón de pollo gratinado con una capa dorada de queso derretido, servido junto a ensaladas frescas de estación.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": 8002,
+      "codigo_fuente": 8019,
+      "nombre": "Chop Suey Vegetariano",
+      "descripcion": "Salteado de vegetales al wok (zanahoria, repollo, morrón y brotes de soja) en salsa de soja: un chop suey vegetariano liviano y sabroso.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": 8003,
+      "codigo_fuente": 8092,
+      "nombre": "Guiso Carrero (mostachones, ternera y papas)",
+      "descripcion": "Guiso casero de mostachones, carne de ternera bien tierna y papas, cocido a fuego lento en un caldo sustancioso.",
+      "es_vegetariano": false,
+      "categoria_nombre_override": "GUISOS / POTAJES"
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": 8004,
+      "codigo_fuente": 8072,
+      "nombre": "Pollo a la Sidra con papas",
+      "descripcion": "Pollo braseado en una salsa de sidra con notas dulces y ligeramente ácidas, acompañado de papas.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": 8005,
+      "codigo_fuente": 8017,
+      "nombre": "Berenjena napolitana con papas bravas",
+      "descripcion": "Berenjena napolitana gratinada con salsa de tomate y muzzarella, servida con papas bravas crocantes.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": 8006,
+      "codigo_fuente": 8067,
+      "nombre": "Milanesas de cerdo con ensalada de zanahoria y huevo",
+      "descripcion": "Milanesas de cerdo doradas y crocantes, acompañadas de una fresca ensalada de zanahoria rallada y huevo.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": 8007,
+      "codigo_fuente": 8065,
+      "nombre": "Merluza a la romana con puré de papas",
+      "descripcion": "Filet de merluza rebozado a la romana, crocante por fuera y jugoso por dentro, con puré de papas.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": 8008,
+      "codigo_fuente": 8026,
+      "nombre": "Muffin de vegetales con zanahoria y huevo, con papas al natural",
+      "descripcion": "Muffin salado de vegetales horneado, acompañado de ensalada de zanahoria y huevo y papas al natural.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": 8009,
+      "codigo_fuente": 8085,
+      "nombre": "Canelones de verdura y carne con salsa rosa",
+      "descripcion": "Canelones rellenos de verdura y carne, bañados en una cremosa salsa rosa.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": 8010,
+      "codigo_fuente": 8113,
+      "nombre": "Ñoquis de espinaca con bolognesa",
+      "descripcion": "Ñoquis caseros de espinaca bañados en una salsa bolognesa bien sabrosa.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": 8011,
+      "codigo_fuente": 8096,
+      "nombre": "Mac & Cheese (macarrones con queso)",
+      "descripcion": "Macarrones en una cremosa salsa de quesos fundidos, con un toque gratinado.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": 8012,
+      "codigo_fuente": 8114,
+      "nombre": "3 Empanadas con ensalada",
+      "descripcion": "Tres empanadas caseras horneadas, servidas con una fresca ensalada de hojas verdes.",
+      "es_vegetariano": false,
+      "categoria_nombre_override": "TARTAS Y EMPANADAS"
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": 8013,
+      "codigo_fuente": 8126,
+      "nombre": "Doble Cheese Burger con papas fritas",
+      "descripcion": "Doble hamburguesa de carne con generoso queso cheddar derretido, servida con papas fritas.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": 8014,
+      "codigo_fuente": 8028,
+      "nombre": "Pastel de calabaza, champiñones y muzzarella",
+      "descripcion": "Pastel horneado de calabaza, champiñones y muzzarella gratinada, con un interior cremoso.",
+      "es_vegetariano": true
+    }
+  ]
+}
