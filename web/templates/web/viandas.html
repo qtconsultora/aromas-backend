@@ -103,6 +103,13 @@
     <div class="franja-item"><span class="icono">🚚</span> Envío en Rosario y alrededores</div>
   </div>
 </div>
+</div>
+
+<!-- AVISO TEMPORAL: feriado lunes 12/10 -- sacar este bloque la semana que viene -->
+<div style="background:#f6e3c5;color:#3a2a14;text-align:center;padding:14px 20px;font-weight:600;font-size:0.95rem;line-height:1.5;">
+  ⚠️ El lunes 12/10 es feriado nacional: no elaboramos ni entregamos ese día.
+  Esta semana el servicio es <strong>de martes a viernes</strong> (4 días) — la Vianda Semanal de esta semana sale $30.000.
+</div>
 
 <!-- ============ MODALIDADES ============ -->
 <section class="modalidades" id="modalidades">
@@ -338,6 +345,9 @@ document.getElementById("anio").textContent = new Date().getFullYear();
 
 const WHATSAPP_NEGOCIO = "5493416825740";
 const DIAS = [["LUN","Lunes"],["MAR","Martes"],["MIE","Miércoles"],["JUE","Jueves"],["VIE","Viernes"]];
+// Días excluidos SOLO esta semana puntual (feriado 12/10) -- revertir a [] la semana que viene.
+const DIAS_NO_DISPONIBLES_ESTA_SEMANA = ["LUN"];
+const DIAS_DISPONIBLES = DIAS.filter(([c]) => !DIAS_NO_DISPONIBLES_ESTA_SEMANA.includes(c));
 
 let token = localStorage.getItem("aromas_carrito_token") || null;
 let menuActivo = null;
@@ -560,7 +570,7 @@ function fotoUrl(plato) {
 function construirGrilla(contId, prefijo, conInput) {
   const cont = document.getElementById(contId);
   cont.innerHTML = "";
-  for (const [codigoDia, nombreDia] of DIAS) {
+  for (const [codigoDia, nombreDia] of DIAS_DISPONIBLES) {
     const col = document.createElement("div");
     col.className = "dia-card";
     const opciones = (menuActivo.dias[codigoDia] || []);
@@ -621,7 +631,7 @@ function actualizarResumenSemana() {
   const boton = document.getElementById("boton-confirmar-semana");
   let completos = 0;
   lista.innerHTML = "";
-  for (const [codigoDia, nombreDia] of DIAS) {
+  for (const [codigoDia, nombreDia] of DIAS_DISPONIBLES) {
     const valor = leerSeleccionDia("semanal", codigoDia);
     const fila = document.createElement("div");
     fila.className = "resumen-semana-fila" + (valor ? "" : " vacia");
@@ -635,11 +645,11 @@ function actualizarResumenSemana() {
     }
     lista.appendChild(fila);
   }
-  boton.disabled = completos !== 5;
+  boton.disabled = completos !== DIAS_DISPONIBLES.length;
 }
 
 document.getElementById("boton-agregar-diaria").addEventListener("click", () => {
-  const elegido = DIAS.map(([c]) => [c, leerSeleccionDia("diaria", c)]).filter(([, v]) => v);
+  const elegido = DIAS_DISPONIBLES.map(([c]) => [c, leerSeleccionDia("diaria", c)]).filter(([, v]) => v);
   if (elegido.length !== 1) {
     toast("Elegí exactamente 1 opción (de un solo día) para la vianda diaria.", true);
     return;
@@ -651,7 +661,7 @@ document.getElementById("boton-agregar-diaria").addEventListener("click", () => 
 });
 
 document.getElementById("boton-confirmar-semana").addEventListener("click", () => {
-  const selecciones = DIAS.map(([c]) => ({ dia_semana: c, plato_codigo: leerSeleccionDia("semanal", c) }));
+  const selecciones = DIAS_DISPONIBLES.map(([c]) => ({ dia_semana: c, plato_codigo: leerSeleccionDia("semanal", c) }));
   if (selecciones.some(s => !s.plato_codigo)) {
     toast("Elegí un plato para cada uno de los 5 días.", true);
     return;
