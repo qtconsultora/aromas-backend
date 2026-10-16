@@ -1,0 +1,142 @@
+{
+  "fecha_inicio": "2026-10-19",
+  "notas": "Semana 3 del ciclo (lunes a viernes completa, ya sin feriado). Publicada 2026-10-19.",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": "8000",
+      "codigo_fuente": "8080",
+      "nombre": "Suprema gratinada con arroz a la crema",
+      "descripcion": "Suprema de pollo gratinada con muzzarella, acompañada de arroz a la crema.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": "8001",
+      "codigo_fuente": "8066",
+      "nombre": "Milanesa de pollo Napolitana con papas",
+      "descripcion": "Milanesa de pollo a la napolitana, con jamón, muzzarella y salsa de tomate, acompañada de papas.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": "8002",
+      "codigo_fuente": "8024",
+      "nombre": "Mil hojas de Verduras con ensaladas",
+      "descripcion": "Mil hojas de verduras horneadas en capas, acompañado de ensaladas frescas de estación.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": "8003",
+      "codigo_fuente": "8062",
+      "nombre": "Guiso de fideos Mostacholes con carne de Ternera",
+      "descripcion": "Guiso casero de mostachones con carne de ternera, cocido a fuego lento.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": "8004",
+      "codigo_fuente": "8134",
+      "nombre": "Pizza de carne Napolitana c/ Mostacholes c/crema",
+      "descripcion": "Pizza de carne a la napolitana, con mostachones y un toque de crema.",
+      "es_vegetariano": false,
+      "categoria_nombre_override": "Carnes"
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": "8005",
+      "codigo_fuente": "8040",
+      "nombre": "Verduras asadas con Cremoso de espinacas y queso",
+      "descripcion": "Verduras asadas de estación, acompañadas de un cremoso de espinaca y queso.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8006",
+      "codigo_fuente": "8053",
+      "nombre": "Carré de Cerdo Agridulce con papas al horno",
+      "descripcion": "Carré de cerdo con salsa agridulce, acompañado de papas al horno.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8007",
+      "codigo_fuente": "8074",
+      "nombre": "Pollo al horno con verduras asadas",
+      "descripcion": "Pollo al horno dorado y jugoso, acompañado de verduras asadas de estación.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8008",
+      "codigo_fuente": "8094",
+      "nombre": "Lasagna de Berenjenas con salsa mixta",
+      "descripcion": "Lasagna de berenjenas con salsa mixta (tomate y bechamel).",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": "8009",
+      "codigo_fuente": "8106",
+      "nombre": "Tallarines Caseros con Bolognesa",
+      "descripcion": "Tallarines caseros con salsa bolognesa de carne.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": "8010",
+      "codigo_fuente": "8088",
+      "nombre": "Creppe de Jamón y Queso con salsa rosa",
+      "descripcion": "Crepes de jamón y queso gratinados, cubiertos con salsa rosa.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": "8011",
+      "codigo_fuente": "8112",
+      "nombre": "Ñoquis de Espinaca con crema",
+      "descripcion": "Ñoquis de espinaca con salsa de crema.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8012",
+      "codigo_fuente": "8124",
+      "nombre": "Ciabatta con pollo y ensalada fresca",
+      "descripcion": "Ciabatta de pollo grillado con ensalada fresca.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8013",
+      "codigo_fuente": "8069",
+      "nombre": "Pastel de calabaza con Jamón, queso y Champignon",
+      "descripcion": "Pastel de calabaza con jamón, queso y champiñones.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8014",
+      "codigo_fuente": "8037",
+      "nombre": "Tarta de Verduras Braseadas con chips de camotes",
+      "descripcion": "Tarta de verduras braseadas, acompañada de chips de camote.",
+      "es_vegetariano": true
+    }
+  ]
+}
