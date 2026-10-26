@@ -1,0 +1,141 @@
+{
+  "fecha_inicio": "2026-10-26",
+  "notas": "Semana 4 del ciclo. 2 platos nuevos (8144 Bondiola, 8145 Tarta) sumados al catalogo.",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": "8000",
+      "codigo_fuente": "8074",
+      "nombre": "Pollo al horno con Verduras al horno",
+      "descripcion": "Pollo al horno dorado y jugoso, acompañado de verduras al horno.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": "8001",
+      "codigo_fuente": "8144",
+      "nombre": "Bondiola al horno con Vegetales Grillados",
+      "descripcion": "Bondiola de cerdo al horno, jugosa, acompañada de vegetales grillados.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": "8002",
+      "codigo_fuente": "8021",
+      "nombre": "Colchón de Arvejas",
+      "descripcion": "Colchón de arvejas tiernas, cremoso, con un toque de manteca y hierbas.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": "8003",
+      "codigo_fuente": "8057",
+      "nombre": "Costeletas de Cerdo al Disco con papas y camotes",
+      "descripcion": "Costeletas de cerdo cocidas al disco, acompañadas de papas y camotes.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": "8004",
+      "codigo_fuente": "8071",
+      "nombre": "Pollo a la portuguesa con papas",
+      "descripcion": "Pollo a la portuguesa en salsa de tomate con morrones y cebolla, acompañado de papas.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": "8005",
+      "codigo_fuente": "8031",
+      "nombre": "Roll de Berenjenas con papas natural",
+      "descripcion": "Roll de berenjenas relleno, acompañado de papas naturales.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8006",
+      "codigo_fuente": "8048",
+      "nombre": "Arroz amarillo con pollo",
+      "descripcion": "Arroz amarillo con trozos de pollo, estilo casero.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8007",
+      "codigo_fuente": "8052",
+      "nombre": "Carré a la Mostaza con puré de papas",
+      "descripcion": "Carré de cerdo con salsa a la mostaza, acompañado de puré de papas.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8008",
+      "codigo_fuente": "8145",
+      "nombre": "Tarta de Verduras y Muzzarella con Ensalada Variada",
+      "descripcion": "Tarta de verduras y muzzarella, acompañada de una ensalada variada.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": "8009",
+      "codigo_fuente": "8102",
+      "nombre": "Tallarines a la carbonara",
+      "descripcion": "Tallarines a la carbonara, con panceta y salsa cremosa de queso.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": "8010",
+      "codigo_fuente": "8089",
+      "nombre": "Creppe de Pollo con salsa rosa",
+      "descripcion": "Crepes de pollo gratinados, cubiertos con salsa rosa.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": "8011",
+      "codigo_fuente": "8086",
+      "nombre": "Canelones de Verdura, champiñón y Ricotta con crema",
+      "descripcion": "Canelones rellenos de verdura, champiñón y ricotta, bañados en salsa de crema.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8012",
+      "codigo_fuente": "8137",
+      "nombre": "Sándwich de Milanesas Completo",
+      "descripcion": "Sándwich de milanesa completo, con lechuga, tomate, jamón, queso y huevo.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8013",
+      "codigo_fuente": "8063",
+      "nombre": "Medallón de Atún y espinaca con tortillas de papas y verdura",
+      "descripcion": "Medallón de atún y espinaca, acompañado de tortillas de papas y verdura.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8014",
+      "codigo_fuente": "8022",
+      "nombre": "Ensalada completa con Tirabuzón tricolor",
+      "descripcion": "Ensalada completa con tirabuzón tricolor y vegetales frescos de estación.",
+      "es_vegetariano": true
+    }
+  ]
+}

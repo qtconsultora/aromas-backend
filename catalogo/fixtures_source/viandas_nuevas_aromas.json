@@ -772,5 +772,17 @@
     "categoria": "Minutas",
     "nombre": "Triple de miga primavera (1/2 plancha)",
     "nota": ""
+  },
+  {
+    "codigo": 8144,
+    "categoria": "Carnes",
+    "nombre": "Bondiola al horno con Vegetales Grillados",
+    "nota": ""
+  },
+  {
+    "codigo": 8145,
+    "categoria": "Vegetarianos",
+    "nombre": "Tarta de Verduras y Muzzarella con Ensalada Variada",
+    "nota": ""
   }
 ]
