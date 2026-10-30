@@ -784,5 +784,11 @@
     "categoria": "Vegetarianos",
     "nombre": "Tarta de Verduras y Muzzarella con Ensalada Variada",
     "nota": ""
+  },
+  {
+    "codigo": 8146,
+    "categoria": "Carnes",
+    "nombre": "Milanesa de Cerdo con Puré de Calabaza",
+    "nota": ""
   }
 ]

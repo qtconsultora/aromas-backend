@@ -1,0 +1,142 @@
+{
+  "fecha_inicio": "2026-11-02",
+  "notas": "Semana 5 del ciclo. Plato nuevo 8146 (Milanesa con pure calabaza) sumado al catalogo.",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": "8000",
+      "codigo_fuente": "8060",
+      "nombre": "Filet de pollo al Puerro con papas al horno",
+      "descripcion": "Filet de pollo con puerro, acompañado de papas al horno.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": "8001",
+      "codigo_fuente": "8055",
+      "nombre": "Chop suey",
+      "descripcion": "Chop suey de vegetales salteados al wok, estilo casero.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": "8002",
+      "codigo_fuente": "8097",
+      "nombre": "Medallones de espinaca con mostachones",
+      "descripcion": "Medallones de espinaca, dorados por fuera y tiernos por dentro, acompañados de mostachones.",
+      "es_vegetariano": true,
+      "categoria_nombre_override": "Vegetarianos"
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": "8003",
+      "codigo_fuente": "8101",
+      "nombre": "Suprema de pollo con mostachones a la crema",
+      "descripcion": "Suprema de pollo con mostachones bañados en una salsa de crema.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": "8004",
+      "codigo_fuente": "8068",
+      "nombre": "Pan de carne rellena con puré mixto",
+      "descripcion": "Pan de carne rellena, acompañado de puré mixto.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": "8005",
+      "codigo_fuente": "8023",
+      "nombre": "Guiso de fideos moñitos vegetariano",
+      "descripcion": "Guiso de fideos moñitos con vegetales de estación.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8006",
+      "codigo_fuente": "8059",
+      "nombre": "Costillita de Cerdo Barbacoa con papas al natural",
+      "descripcion": "Costillita de cerdo con salsa barbacoa, acompañada de papas al natural.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8007",
+      "codigo_fuente": "8146",
+      "nombre": "Milanesa de Cerdo con Puré de Calabaza",
+      "descripcion": "Milanesa de cerdo, dorada y crocante, acompañada de puré de calabaza.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8008",
+      "codigo_fuente": "8017",
+      "nombre": "Berenjena napolitana con papas bravas",
+      "descripcion": "Berenjena a la napolitana, gratinada, acompañada de papas bravas.",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": "8009",
+      "codigo_fuente": "8087",
+      "nombre": "Chop suey con spaghetti",
+      "descripcion": "Chop suey de vegetales salteados al wok, con spaghetti.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": "8010",
+      "codigo_fuente": "8009",
+      "nombre": "Tallarines con Salsa de Champiñones y Pollo",
+      "descripcion": "Tallarines con salsa de champiñones y trozos de pollo.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": "8011",
+      "codigo_fuente": "8011",
+      "nombre": "Canelones de Verdura y Ricotta con salsa mixta",
+      "descripcion": "Canelones rellenos de verdura y ricotta, bañados en salsa mixta (tomate y bechamel).",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8012",
+      "codigo_fuente": "8139",
+      "nombre": "Sándwich de Foccacia de Jamón y Queso",
+      "descripcion": "Sándwich de foccacia con jamón y queso derretido.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8013",
+      "codigo_fuente": "8076",
+      "nombre": "Primavera con blanco de pollo",
+      "descripcion": "Primavera de vegetales salteados con blanco de pollo.",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8014",
+      "codigo_fuente": "8038",
+      "nombre": "Tarta de Zapallitos con Huevos Revueltos",
+      "descripcion": "Tarta de zapallitos con huevos revueltos.",
+      "es_vegetariano": true
+    }
+  ]
+}
