@@ -790,5 +790,11 @@
     "categoria": "Carnes",
     "nombre": "Milanesa de Cerdo con Puré de Calabaza",
     "nota": ""
+  },
+  {
+    "codigo": 8147,
+    "categoria": "Vegetarianos",
+    "nombre": "Omellet Capresse con Ensalada Multicolor",
+    "nota": ""
   }
 ]
