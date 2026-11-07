@@ -1,0 +1,142 @@
+{
+  "fecha_inicio": "2026-11-09",
+  "notas": "Semana del 09/11 (feriado nacional por visita del Papa Leon XIV, lunes sin venta). Plato nuevo 8147 (Omellet Capresse, foto venia mal numerada 8013).",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": 8000,
+      "codigo_fuente": 8067,
+      "nombre": "Milanesas Cerdo con ensalada de zanahoria, huevo",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": 8001,
+      "codigo_fuente": 8079,
+      "nombre": "Suprema de pollo con Tortilla verdura y papas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": 8002,
+      "codigo_fuente": 8147,
+      "nombre": "Omellet Capresse con Ensalada Multicolor",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": 8003,
+      "codigo_fuente": 8092,
+      "nombre": "Guiso Carrero (mostacholes, Ternera, Papas)",
+      "descripcion": "",
+      "es_vegetariano": false,
+      "categoria_nombre_override": "GUISOS / POTAJES"
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": 8004,
+      "codigo_fuente": 8073,
+      "nombre": "Pollo al disco con papas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": 8005,
+      "codigo_fuente": 8043,
+      "nombre": "Zuchinis Salteados con Hongos y Arroz Especiado",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": 8006,
+      "codigo_fuente": 8075,
+      "nombre": "Pollo al verdeo con papas fritas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": 8007,
+      "codigo_fuente": 8070,
+      "nombre": "Pastel de Papas con Carne",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": 8008,
+      "codigo_fuente": 8018,
+      "nombre": "Calabaza rellena de humita con ensaladas",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": 8009,
+      "codigo_fuente": 8095,
+      "nombre": "Lasagna de Verdura, carne y Jamón",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": 8010,
+      "codigo_fuente": 8085,
+      "nombre": "Canelones de verdura y carne con salsa rosa",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": 8011,
+      "codigo_fuente": 8109,
+      "nombre": "Tallarines de Espinaca Salsa de Hongos",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": 8012,
+      "codigo_fuente": 8121,
+      "nombre": "ChessBurguer & Bacon con papas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": 8013,
+      "codigo_fuente": 8065,
+      "nombre": "Merluza a la romana con pure de papas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": 8014,
+      "codigo_fuente": 8042,
+      "nombre": "Zapallitos Rellenos con papas al natural",
+      "descripcion": "",
+      "es_vegetariano": true
+    }
+  ]
+}

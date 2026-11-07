@@ -105,6 +105,12 @@
 </div>
 </div>
 
+<!-- AVISO TEMPORAL: feriado lunes 9/11 (visita Papa Leon XIV) -- sacar este bloque la semana que viene -->
+<div style="background:#f6e3c5;color:#3a2a14;text-align:center;padding:14px 20px;font-weight:600;font-size:0.95rem;line-height:1.5;">
+  ⚠️ El lunes 9/11 es feriado nacional (visita del Papa León XIV): no elaboramos ni entregamos ese día.
+  Esta semana el servicio es <strong>de martes a viernes</strong> (4 días) — la Vianda Semanal de esta semana sale $30.000.
+</div>
+
 <!-- ============ MODALIDADES ============ -->
 <section class="modalidades" id="modalidades">
   <div class="contenedor">
@@ -340,7 +346,8 @@ document.getElementById("anio").textContent = new Date().getFullYear();
 const WHATSAPP_NEGOCIO = "5493416825740";
 const DIAS = [["LUN","Lunes"],["MAR","Martes"],["MIE","Miércoles"],["JUE","Jueves"],["VIE","Viernes"]];
 // Días excluidos SOLO esta semana puntual (feriado 12/10) -- revertir a [] la semana que viene.
-const DIAS_NO_DISPONIBLES_ESTA_SEMANA = []; // feriado 12/10 ya paso -- queda [] hasta el proximo feriado puntual
+// Dias excluidos SOLO esta semana puntual (feriado 9/11, visita Papal) -- revertir a [] la semana que viene.
+const DIAS_NO_DISPONIBLES_ESTA_SEMANA = ["LUN"];
 const DIAS_DISPONIBLES = DIAS.filter(([c]) => !DIAS_NO_DISPONIBLES_ESTA_SEMANA.includes(c));
 
 let token = localStorage.getItem("aromas_carrito_token") || null;
