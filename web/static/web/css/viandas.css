@@ -76,6 +76,8 @@
   font-weight: 700;
 }
 .dia-sin-menu { align-items: center; justify-content: center; text-align: center; min-height: 140px; background: var(--crema-oscura); }
+.dia-feriado { align-items: center; justify-content: center; text-align: center; min-height: 140px; background: #f6e3c5; color: #3a2a14; }
+.dia-feriado .dia-sin-menu-texto { color: #3a2a14; font-weight: 600; }
 .dia-sin-menu-texto { color: var(--texto-suave); font-size: 0.85rem; margin: 0; }
 
 .dia-opciones { display: flex; flex-direction: column; gap: 8px; }

@@ -571,9 +571,15 @@ function fotoUrl(plato) {
 function construirGrilla(contId, prefijo, conInput) {
   const cont = document.getElementById(contId);
   cont.innerHTML = "";
-  for (const [codigoDia, nombreDia] of DIAS_DISPONIBLES) {
+  for (const [codigoDia, nombreDia] of DIAS) {
     const col = document.createElement("div");
     col.className = "dia-card";
+    if (DIAS_NO_DISPONIBLES_ESTA_SEMANA.includes(codigoDia)) {
+      col.classList.add("dia-feriado");
+      col.innerHTML = `<h4>${nombreDia}</h4><p class="dia-sin-menu-texto">⚠️ Feriado Nacional<br>No disponible esta semana</p>`;
+      cont.appendChild(col);
+      continue;
+    }
     const opciones = (menuActivo.dias[codigoDia] || []);
     if (opciones.length === 0) {
       col.classList.add("dia-sin-menu");
