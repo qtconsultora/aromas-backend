@@ -796,5 +796,23 @@
     "categoria": "Vegetarianos",
     "nombre": "Omellet Capresse con Ensalada Multicolor",
     "nota": ""
+  },
+  {
+    "codigo": 8174,
+    "categoria": "Carnes",
+    "nombre": "Pollo grillado con ensalada de rúcula, tomate cherry y parmesano",
+    "nota": ""
+  },
+  {
+    "codigo": 8152,
+    "categoria": "Vegetarianos",
+    "nombre": "Vegetales grillados con quinoa y queso fresco",
+    "nota": ""
+  },
+  {
+    "codigo": 8178,
+    "categoria": "Carnes",
+    "nombre": "Wok de Verduras y Pechugas",
+    "nota": ""
   }
 ]

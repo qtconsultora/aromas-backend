@@ -1,0 +1,141 @@
+{
+  "fecha_inicio": "2026-11-16",
+  "notas": "Semana del 16/11 (Menu Verano, Semana 2). Nuevos: 8174, 8152, 8178. Faltan fotos: 8178, 8029, 8122, 8049 (pendiente generar).",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": 8000,
+      "codigo_fuente": 8061,
+      "nombre": "Filet de pollo gratinado con ensaladas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": 8001,
+      "codigo_fuente": 8178,
+      "nombre": "Wok de Verduras y Pechugas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": 8002,
+      "codigo_fuente": 8031,
+      "nombre": "Roll de Berenjenas con papas natural",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": 8003,
+      "codigo_fuente": 8066,
+      "nombre": "Milanesa pollo Napolitana con papas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": 8004,
+      "codigo_fuente": 8053,
+      "nombre": "Carre de Cerdo Agridulce con papas al horno",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": 8005,
+      "codigo_fuente": 8029,
+      "nombre": "Revuelto de Zapallitos con calabaza gratinada",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": 8006,
+      "codigo_fuente": 8174,
+      "nombre": "Pollo grillado con ensalada de rúcula, tomate cherry y parmesano",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": 8007,
+      "codigo_fuente": 8069,
+      "nombre": "Pastel de calabaza con Jamón, queso y Champiñón",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": 8008,
+      "codigo_fuente": 8152,
+      "nombre": "Vegetales grillados con quinoa y queso fresco",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": 8009,
+      "codigo_fuente": 8126,
+      "nombre": "Doble Chess Burguer con papas fritas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": 8010,
+      "codigo_fuente": 8118,
+      "nombre": "Brioche Desmenuzado de Cerdo",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": 8011,
+      "codigo_fuente": 8094,
+      "nombre": "Lasagna de Berenjenas",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": 8012,
+      "codigo_fuente": 8122,
+      "nombre": "Choripan completo",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": 8013,
+      "codigo_fuente": 8049,
+      "nombre": "Atun a la marinera con pure de papas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": 8014,
+      "codigo_fuente": 8038,
+      "nombre": "Tarta de Zapallitos con Huevos Revueltos",
+      "descripcion": "",
+      "es_vegetariano": true
+    }
+  ]
+}
