@@ -814,5 +814,17 @@
     "categoria": "Carnes",
     "nombre": "Wok de Verduras y Pechugas",
     "nota": ""
+  },
+  {
+    "codigo": 8149,
+    "categoria": "Carnes",
+    "nombre": "Medallones de pollo marinados con ensalada de hojas verdes y almendras",
+    "nota": ""
+  },
+  {
+    "codigo": 8179,
+    "categoria": "Vegetarianos",
+    "nombre": "Lasagna de Berenjenas con salsa tuco",
+    "nota": ""
   }
 ]

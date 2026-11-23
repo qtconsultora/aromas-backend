@@ -1,0 +1,142 @@
+{
+  "fecha_inicio": "2026-11-23",
+  "notas": "Semana del 23/11 (Menu Verano, Semana 3). Feriado nacional lunes 23/11 (Dia de la Soberania Nacional). Nuevos: 8149, 8179 (Lasagna c/salsa tuco).",
+  "platos": [
+    {
+      "dia": "LUN",
+      "numero_opcion": 1,
+      "codigo_slot": "8000",
+      "codigo_fuente": "8144",
+      "nombre": "Bondiola al horno con Vegetales Grillados",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 2,
+      "codigo_slot": "8001",
+      "codigo_fuente": "8149",
+      "nombre": "Medallones de pollo marinados con ensalada de hojas verdes y almendras",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "LUN",
+      "numero_opcion": 3,
+      "codigo_slot": "8002",
+      "codigo_fuente": "8041",
+      "nombre": "Wok de Lentejas y Verduras",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 1,
+      "codigo_slot": "8003",
+      "codigo_fuente": "8146",
+      "nombre": "Milanesa de Cerdo con Puré de Calabaza",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 2,
+      "codigo_slot": "8004",
+      "codigo_fuente": "8076",
+      "nombre": "Primavera con blanco de pollo",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MAR",
+      "numero_opcion": 3,
+      "codigo_slot": "8005",
+      "codigo_fuente": "8097",
+      "nombre": "Medallones de espinacas con mostacholes",
+      "descripcion": "",
+      "es_vegetariano": true,
+      "categoria_nombre_override": "Vegetarianos"
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8006",
+      "codigo_fuente": "8074",
+      "nombre": "Pollo al horno con verduras asadas",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8007",
+      "codigo_fuente": "8057",
+      "nombre": "Costeletas de Cerdo al Disco con papas y camotes",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "MIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8008",
+      "codigo_fuente": "8022",
+      "nombre": "ENSALADA completa con Tirabuzón TRICOLOR",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 1,
+      "codigo_slot": "8009",
+      "codigo_fuente": "8088",
+      "nombre": "Creppe de Jamón y Queso con salsa rosa",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 2,
+      "codigo_slot": "8010",
+      "codigo_fuente": "8147",
+      "nombre": "Omellet Capresse con Ensalada Multicolor",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "JUE",
+      "numero_opcion": 3,
+      "codigo_slot": "8011",
+      "codigo_fuente": "8179",
+      "nombre": "Lasagna de Berenjenas con salsa tuco",
+      "descripcion": "",
+      "es_vegetariano": true
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 1,
+      "codigo_slot": "8012",
+      "codigo_fuente": "8119",
+      "nombre": "Burrito de pollo, champi y quesos",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 2,
+      "codigo_slot": "8013",
+      "codigo_fuente": "8063",
+      "nombre": "Medallon Atun y espinaca con tortillas de papas y verdura",
+      "descripcion": "",
+      "es_vegetariano": false
+    },
+    {
+      "dia": "VIE",
+      "numero_opcion": 3,
+      "codigo_slot": "8014",
+      "codigo_fuente": "8033",
+      "nombre": "Tarta de Calabaza, Muzzarella y Choclo con ensalada",
+      "descripcion": "",
+      "es_vegetariano": true
+    }
+  ]
+}
